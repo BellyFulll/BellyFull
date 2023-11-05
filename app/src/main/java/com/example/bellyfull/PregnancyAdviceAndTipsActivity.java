@@ -5,6 +5,6 @@ public class PregnancyAdviceAndTipsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("Hello Woadsfadsfsdrldasf!");
+        System.out.println("Hello Woadsfadsfsdasrldasf!");
     }
 }
