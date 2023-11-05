@@ -1,4 +1,4 @@
 package com.example.bellyfull;
 
-public class PregnancyAdviceAndTipsActivity {
+public class PregnancyAdviceAndTipsActivity extends AppCompatActivity {
 }
