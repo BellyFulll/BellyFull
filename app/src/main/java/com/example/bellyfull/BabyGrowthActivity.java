@@ -1,3 +1,3 @@
-public class BabyGrowthActivity {
+public class BabyGrowthActivity extends AppCompatActivity {
     
 }
