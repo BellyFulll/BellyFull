@@ -1,5 +1,11 @@
-/app/src/main/java/com/example/bellyfull/PregnancyTrackingActivity.java @teojiesern
-/app/src/main/java/com/example/bellyfull/PregnancyAdviceAndTipsActivity.java @PeiHui369
-/app/src/main/java/com/example/bellyfull/PersonalisedNotificationsActivity.java @VinnieTiang
-/app/src/main/java/com/example/bellyfull/EmergencyAndHelpActivity.java @PoisonDarterz
-/app/src/main/java/com/example/bellyfull/BabyGrowthActivity.java @JunnXiann
+# Team Members:
+# @teojiesern @PeiHui369 @VinnieTiang @PoisonDarterz @JunnXiann
+
+# Modules
+/app/src/main/java/com/example/bellyfull/modules/PregnancyTracking/ @teojiesern
+/app/src/main/java/com/example/bellyfull/modules/AdviceAndTips/ @PeiHui369
+/app/src/main/java/com/example/bellyfull/modules/PersonalisedNotifications/ @VinnieTiang
+/app/src/main/java/com/example/bellyfull/modules/EmergencyAndHelp/ @PoisonDarterz
+/app/src/main/java/com/example/bellyfull/modules/PostDelivery @JunnXiann
+
+# Activities
