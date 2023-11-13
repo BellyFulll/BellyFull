@@ -1,10 +1,11 @@
 plugins {
     id("com.android.application")
+    id("androidx.navigation.safeargs")
 }
 
 android {
     namespace = "com.example.bellyfull"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.bellyfull"
@@ -29,11 +30,22 @@ android {
 }
 
 dependencies {
+    val nav_version = "2.7.5"
 
+    // navigation
+    implementation("androidx.navigation:navigation-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-ui:$nav_version")
+
+    // ori
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Exclude kotlin-stdlib-jdk8
+    configurations.implementation {
+        exclude(group = "org.jetbrains.kotlin", module = "kotlin-stdlib-jdk8")
+    }
 }
