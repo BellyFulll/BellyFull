@@ -21,6 +21,7 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         System.out.println("View created in login");
+        System.out.println("hello");
         Button BtnLogin = view.findViewById(R.id.BtnLogin);
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
