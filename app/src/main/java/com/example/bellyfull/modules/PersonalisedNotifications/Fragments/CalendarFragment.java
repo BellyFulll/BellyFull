@@ -36,6 +36,10 @@ public class CalendarFragment extends Fragment {
 
     private static final String CHANNEL_ID = "ReminderChannel";
 
+    public CalendarFragment() {
+        super(R.layout.fragment_calendar);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_calendar, container, false);
@@ -55,46 +59,48 @@ public class CalendarFragment extends Fragment {
         // Schedule health checkup reminder when the fragment is created
         scheduleHealthCheckupReminder();
 
-        CalendarView calendarView =view.findViewById(R.id.calendarView);
+        CalendarView calendarView = view.findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
-                showEventInputDialog(year,month,dayOfMonth);
+                showEventInputDialog(year, month, dayOfMonth);
             }
         });
     }
-private void showEventInputDialog(int year, int month, int dayOfMonth){
-    AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-    builder.setTitle("Add Event");
 
-    // Inflate the layout for the dialog
-    View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_event_input, null);
-    builder.setView(dialogView);
+    private void showEventInputDialog(int year, int month, int dayOfMonth) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Add Event");
 
-    // Initialize the DatePicker in the dialog
-    DatePicker datePicker = dialogView.findViewById(R.id.datePicker);
-    datePicker.init(year, month, dayOfMonth, null);
+        // Inflate the layout for the dialog
+        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_event_input, null);
+        builder.setView(dialogView);
 
-    // Set up the buttons
-    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            int selectedYear = datePicker.getYear();
-            int selectedMonth = datePicker.getMonth();
-            int selectedDayOfMonth = datePicker.getDayOfMonth();
-            // Retrieve user input and save the event
-            // Update the UI to display the event below the calendar
-        }
-    });
-builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int i) {
-        dialog.dismiss();
+        // Initialize the DatePicker in the dialog
+        DatePicker datePicker = dialogView.findViewById(R.id.datePicker);
+        datePicker.init(year, month, dayOfMonth, null);
+
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int selectedYear = datePicker.getYear();
+                int selectedMonth = datePicker.getMonth();
+                int selectedDayOfMonth = datePicker.getDayOfMonth();
+                // Retrieve user input and save the event
+                // Update the UI to display the event below the calendar
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.create().show();
     }
-});
 
-builder.create().show();
-}
     private void onSettingsButtonClick() {
         Intent intent = new Intent(requireContext(), NotificationSettingsActivity.class);
         startActivity(intent);

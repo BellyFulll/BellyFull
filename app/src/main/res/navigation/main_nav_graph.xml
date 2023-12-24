@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.bellyfull.modules.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/tipsFragment"
+        android:name="com.example.bellyfull.modules.AdviceAndTips.Fragments.AdviceAndTipsFragment"
+        android:label="fragment_advice_and_tips"
+        tools:layout="@layout/fragment_advice_and_tips" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.bellyfull.modules.PersonalisedNotifications.Fragments.CalendarFragment"
+        android:label="CalendarFragment"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/babyFragment"
+        android:name="com.example.bellyfull.modules.PregnancyTracking.Fragments.BabyVisualizationFragment"
+        android:label="fragment_baby_visualization"
+        tools:layout="@layout/fragment_baby_visualization" />
+    <fragment
+        android:id="@+id/momFragment"
+        android:name="com.example.bellyfull.modules.PregnancyTracking.Fragments.MomVisualizationFragment"
+        android:label="fragment_mom_visualization"
+        tools:layout="@layout/fragment_mom_visualization" />
+
+</navigation>

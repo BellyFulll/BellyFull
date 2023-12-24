@@ -30,15 +30,6 @@ public class RegisterFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             }
         });
-
-//        Button btnToCalendar = view.findViewById(R.id.btnCalendar);
-//        btnToCalendar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                NavDirections action = RegisterFragmentDirections.actionRegisterFragmentToCalendarFragment2();
-//                Navigation.findNavController(view).navigate(action);
-//            }
-//        });
     }
 
     @Override
@@ -46,6 +37,4 @@ public class RegisterFragment extends Fragment {
         super.onDestroyView();
         System.out.println("View destroyed in signup");
     }
-
-
 }
