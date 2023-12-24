@@ -30,4 +30,8 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
+    <activity
+        android:id="@+id/notificationSettingsActivity"
+        android:name="com.example.bellyfull.modules.PersonalisedNotifications.Activity.NotificationSettingsActivity"
+        android:label="NotificationSettingsActivity" />
 </navigation>
