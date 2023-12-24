@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pink1">#EE5284</color>
+    <color name="pink2">#F48FB1</color>
+    <color name="pink3">#F8B6CC</color>
+    <color name="pink4">#FBD8E4</color>
+    <color name="pink6">#FFB0C2</color>
+<!--    <style name="BottomNavigationViewStyle">-->
+<!--        <item name="android:background">@color/pink2</item>-->
+<!--    </style>-->
+
 </resources>
