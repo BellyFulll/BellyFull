@@ -2,33 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Home"
-        android:icon="@drawable/baseline_home_24"/>
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home" />
     <item
-        android:id="@+id/tip"
+        android:id="@+id/tipsFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Tips"
-        android:icon="@drawable/baseline_try_24"/>
+        android:icon="@drawable/baseline_try_24"
+        android:title="Tips" />
     <item
-        android:id="@+id/cal"
+        android:id="@+id/calendarFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Calendar"
-        android:icon="@drawable/baseline_calendar_month_24"/>
+        android:icon="@drawable/baseline_calendar_month_24"
+        android:title="Calendar" />
     <item
-        android:id="@+id/baby"
+        android:id="@+id/babyFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Baby"
-        android:icon="@drawable/baseline_child_care_24"/>
+        android:icon="@drawable/baseline_child_care_24"
+        android:title="Baby" />
     <item
-        android:id="@+id/mom"
+        android:id="@+id/momFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Mom"
-        android:icon="@drawable/baseline_woman_24"/>
+        android:icon="@drawable/baseline_woman_24"
+        android:title="Mom" />
 </menu>

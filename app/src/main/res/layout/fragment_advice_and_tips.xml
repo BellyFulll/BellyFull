@@ -6,7 +6,6 @@
     tools:context=".modules.AdviceAndTips.Fragments.AdviceAndTipsFragment"
     android:background="@color/pink2">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
