@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.bellyfull.Constant.db_constant;
 import com.example.bellyfull.data.firebase.collection.User;
 import com.example.bellyfull.data.firebase.firebase;
 import com.example.bellyfull.data.firebase.ports.fbSignUpRepository;
@@ -28,7 +29,7 @@ public class fbSignUpRepositoryImpl implements fbSignUpRepository {
         User user = new User(userId, name, email, password, null, null);
         FirebaseFirestore db = firebase.getDatabase();
 
-        db.collection("USER").document(userId.toString())
+        db.collection(db_constant.UserCollection).document(userId.toString())
                 .set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
