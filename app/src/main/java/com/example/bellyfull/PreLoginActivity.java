@@ -34,8 +34,5 @@ public class PreLoginActivity extends AppCompatActivity {
             return;
         }
         navController.navigate(R.id.action_mainLoadingFragment_to_loginFragment);
-
     }
-
-
 }
