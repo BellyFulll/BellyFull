@@ -21,7 +21,7 @@ public class PreLoginActivity extends AppCompatActivity {
         // variables
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor spEditor = sharedPreferences.edit();
-        boolean ISLOGIN = sharedPreferences.getBoolean("isLogin", false);
+        boolean ISLOGIN = sharedPreferences.getBoolean("isLogin", true);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.NHFPreLogin);
         NavController navController = navHostFragment.getNavController();
         LoginFlow loginFlow = new LoginFlow();
