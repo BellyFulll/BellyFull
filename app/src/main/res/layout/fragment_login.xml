@@ -33,11 +33,14 @@
         android:id="@+id/ETLoginEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edit_text"
+        android:alpha="0.75"
         android:drawableRight="@drawable/mail"
         android:ems="10"
         android:hint="example@gmail.com"
         android:inputType="text"
         android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/TVLoginEmailLabel" />
@@ -63,6 +66,9 @@
         android:ems="10"
         android:hint="**************"
         android:inputType="text"
+        android:paddingVertical="10dp"
+        android:background="@drawable/rounded_edit_text"
+        android:alpha="0.75"
         android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -125,8 +131,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="OR"
         android:fontFamily="@font/inter_normal"
+        android:text="OR"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/TVLoginDHAC" />
@@ -155,7 +161,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12311901" />
+        app:layout_constraintGuide_begin="91dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
