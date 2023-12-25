@@ -8,6 +8,7 @@
     <color name="pink4">#FBD8E4</color>
     <color name="pink6">#FFB0C2</color>
     <color name="brown1">#9A3F4A</color>
+    <color name="grey">#8C8A8A</color>
     <!--    <style name="BottomNavigationViewStyle">-->
     <!--        <item name="android:background">@color/pink2</item>-->
     <!--    </style>-->

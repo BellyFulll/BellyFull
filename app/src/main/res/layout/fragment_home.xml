@@ -1,17 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.HomeFragment"
-    android:background="@color/pink2">
+    android:background="@color/pink2"
+    tools:context=".modules.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ImageView
+        android:id="@+id/embryovessel"
+        android:layout_width="414dp"
+        android:layout_height="424dp"
+        android:src="@drawable/embryo_vessel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/profilebase2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="HOME"
-        android:textSize="25dp" />
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/embryovessel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/profile_ellipse2" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/profilebase1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/profilebase2"
+        app:layout_constraintEnd_toEndOf="@+id/profileIcon"
+        app:layout_constraintStart_toStartOf="@+id/profileIcon"
+        app:layout_constraintTop_toTopOf="@+id/profilebase2"
+        app:srcCompat="@drawable/profile_ellipse1" />
+
+    <ImageView
+        android:id="@+id/profileIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/profilebase1"
+        app:layout_constraintEnd_toEndOf="@+id/profilebase2"
+        app:layout_constraintStart_toStartOf="@+id/profilebase2"
+        app:layout_constraintTop_toTopOf="@+id/profilebase1"
+        app:srcCompat="@drawable/profile_icon" />
+
+    <ImageView
+        android:id="@+id/embryo"
+        android:layout_width="404dp"
+        android:layout_height="358dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/embryo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/embryovessel" />
+
+    <ImageView
+        android:id="@+id/embryoDeco"
+        android:layout_width="416dp"
+        android:layout_height="430dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/embryo_deco"
+        app:layout_constraintBottom_toBottomOf="@+id/embryovessel"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TVHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="70dp"
+        android:rotation="15"
+        android:text="Baby Height"
+        android:textColor="@color/grey"
+        app:layout_constraintBottom_toBottomOf="@+id/embryovessel"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TV17cm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:rotation="15"
+        android:shadowColor="@color/grey"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"
+        android:text="17cm"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/TVHeight"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="@+id/TVHeight"
+        app:layout_constraintTop_toBottomOf="@+id/TVHeight" />
+
+    <TextView
+        android:id="@+id/TVWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Baby Weight"
+        android:textColor="@color/grey"
+        app:layout_constraintBottom_toBottomOf="@+id/embryovessel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TV110gr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:shadowColor="@color/grey"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"
+        android:text="110 gr"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVWeight" />
+
+    <TextView
+        android:id="@+id/TVDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="65dp"
+        android:rotation="-13.5"
+        android:text="Days Left"
+        android:textColor="@color/grey"
+        app:layout_constraintBottom_toBottomOf="@+id/embryovessel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/TV168days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:rotation="-13.5"
+        android:shadowColor="@color/grey"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"
+        android:text="168 days"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:translationX="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/TVDays"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/TVDays"
+        app:layout_constraintTop_toBottomOf="@+id/TVDays" />
+
+    <TextView
+        android:id="@+id/TVDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="116dp"
+        android:text="Your baby is the size of a pear"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/pink2"
+        app:layout_constraintBottom_toBottomOf="@+id/embryovessel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TVWhatHappen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="What's happening this week?"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/embryovessel" />
+
+    <ImageButton
+        android:id="@+id/babyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/material_on_background_disabled"
+        android:src="@drawable/baby_button"
+        app:layout_constraintEnd_toEndOf="@+id/babyIcon"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="@+id/babyIcon"
+        app:layout_constraintTop_toBottomOf="@+id/TVWhatHappen" />
+
+    <ImageView
+        android:id="@+id/babyIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/baby_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/babyButton"
+        app:layout_constraintStart_toStartOf="@+id/TVWhatHappen"
+        app:layout_constraintTop_toTopOf="@+id/babyButton"
+        app:layout_constraintVertical_bias="0.454" />
+
+    <ImageButton
+        android:id="@+id/momButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/material_on_background_disabled"
+        android:src="@drawable/pregnant_button"
+        app:layout_constraintBottom_toBottomOf="@+id/momIcon"
+        app:layout_constraintEnd_toEndOf="@+id/momIcon"
+        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintStart_toStartOf="@+id/momIcon"
+        app:layout_constraintTop_toTopOf="@+id/momIcon"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/momIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/pregnant_icon"
+        app:layout_constraintStart_toEndOf="@+id/babyIcon"
+        app:layout_constraintTop_toBottomOf="@+id/TVWhatHappen" />
+
+    <TextView
+        android:id="@+id/TVEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Upcoming Events"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVBaby" />
+
+    <TextView
+        android:id="@+id/TVBaby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="Baby"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/babyButton"
+        app:layout_constraintTop_toBottomOf="@+id/babyButton" />
+
+    <TextView
+        android:id="@+id/TVMum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Mum"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/momButton"
+        app:layout_constraintTop_toBottomOf="@+id/momIcon" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
