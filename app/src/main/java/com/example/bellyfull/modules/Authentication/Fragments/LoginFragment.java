@@ -3,6 +3,7 @@ package com.example.bellyfull.modules.Authentication.Fragments;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,13 +21,25 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        System.out.println("View created in login");
+        // Variables
         Button BtnLogin = view.findViewById(R.id.BtnLogin);
-        BtnLogin.setOnClickListener(new View.OnClickListener() {
+        Button BtnLoginSignup = view.findViewById(R.id.BtnLoginSignup);
+
+        // Listeners
+        BtnLoginSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavDirections action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment();
                 Navigation.findNavController(view).navigate(action);
+            }
+        });
+
+        BtnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText ETEmail = view.findViewById(R.id.ETLoginEmail);
+                EditText ETPassword = view.findViewById(R.id.ETLoginPassword);
+
             }
         });
     }
@@ -34,6 +47,5 @@ public class LoginFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        System.out.println("View destroyed in login");
     }
 }

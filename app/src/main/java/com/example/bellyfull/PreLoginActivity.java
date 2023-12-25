@@ -1,16 +1,15 @@
 package com.example.bellyfull;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.bellyfull.modules.Authentication.Flows.LoginFlow;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.example.bellyfull.modules.General.MainLoadingFragmentDirections;
 
 public class PreLoginActivity extends AppCompatActivity {
     @Override
@@ -21,10 +20,9 @@ public class PreLoginActivity extends AppCompatActivity {
         // variables
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor spEditor = sharedPreferences.edit();
-        boolean ISLOGIN = sharedPreferences.getBoolean("isLogin", true);
+        boolean ISLOGIN = sharedPreferences.getBoolean("isLogin", false);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.NHFPreLogin);
         NavController navController = navHostFragment.getNavController();
-        LoginFlow loginFlow = new LoginFlow();
 
         // logic
         if (ISLOGIN) {
@@ -33,6 +31,6 @@ public class PreLoginActivity extends AppCompatActivity {
             finish();
             return;
         }
-        navController.navigate(R.id.action_mainLoadingFragment_to_loginFragment);
+        navController.navigate(MainLoadingFragmentDirections.actionMainLoadingFragmentToLoginFragment());
     }
 }

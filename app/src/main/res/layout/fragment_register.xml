@@ -67,7 +67,7 @@
         android:drawableRight="@drawable/mail"
         android:ems="10"
         android:hint="example@gmail.com"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:paddingHorizontal="10dp"
         android:paddingVertical="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -96,7 +96,7 @@
         android:drawableRight="@drawable/show_pass"
         android:ems="10"
         android:hint="**************"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingHorizontal="10dp"
         android:paddingVertical="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -190,14 +190,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="642dp" />
+        app:layout_constraintGuide_begin="91dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="521dp" />
+        app:layout_constraintGuide_begin="211dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
