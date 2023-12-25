@@ -11,7 +11,10 @@
         tools:layout="@layout/fragment_main_loading">
         <action
             android:id="@+id/action_mainLoadingFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/mainLoadingFragment"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
