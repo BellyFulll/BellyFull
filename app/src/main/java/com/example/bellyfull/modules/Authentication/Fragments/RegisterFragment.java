@@ -22,7 +22,7 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         System.out.println("view created in signup");
-        Button BtnSignUp = view.findViewById(R.id.BtnSignup);
+        Button BtnSignUp = view.findViewById(R.id.BtnSignUp);
         BtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:fontFamily="@font/inter_normal"
-        android:padding="0dp"
+        android:paddingHorizontal="10dp"
         android:text="Forgot Password?"
         android:textColor="@color/brown1"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -85,7 +85,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/pink1"
-        android:fontFamily="@font/a_bee_zee_italic"
+        android:fontFamily="@font/a_bee_zee_regular"
         android:text="Login"
         android:textSize="12dp"
         app:cornerRadius="10dp"
@@ -97,6 +97,7 @@
         android:id="@+id/TVLoginDHAC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/a_bee_zee_regular"
         android:paddingRight="5dp"
         android:text="Don't have an account?"
         app:layout_constraintBottom_toBottomOf="@+id/BtnLoginSignup"
@@ -110,6 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:fontFamily="@font/a_bee_zee_regular"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:padding="0dp"
@@ -118,12 +120,24 @@
         app:layout_constraintStart_toEndOf="@+id/TVLoginDHAC"
         app:layout_constraintTop_toBottomOf="@+id/BtnLogin" />
 
+    <TextView
+        android:id="@+id/TVLoginOr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="OR"
+        android:fontFamily="@font/inter_normal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/TVLoginDHAC" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/BtnLoginGoogleSignup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/white"
+        android:fontFamily="@font/a_bee_zee_regular"
         android:gravity="center"
         android:text="Sign Up With Google"
         android:textColor="@color/black"
@@ -134,7 +148,7 @@
         app:iconTint="@null"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/TVLoginDHAC" />
+        app:layout_constraintTop_toBottomOf="@+id/TVLoginOr" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -170,6 +184,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="475dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
