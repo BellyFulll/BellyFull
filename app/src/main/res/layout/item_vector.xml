@@ -1,0 +1,13 @@
+<!-- res/layout/item_vector.xml -->
+<View
+    android:id="@+id/vector"
+    android:layout_width="482dp"
+    android:layout_height="229dp"
+    android:layout_alignParentLeft="true"
+    android:layout_marginLeft="-58dp"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="-129dp"
+    android:background="@drawable/vector"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
+
+

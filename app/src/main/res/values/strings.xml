@@ -1,5 +1,6 @@
+<!-- res/values/strings.xml -->
 <resources>
-    <string name="app_name">BellyFull</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nutritional">Nutritional Guidelines</string>
+    <string name="exercise_re">Exercise Recommendations</string>
+    <string name="faq">FAQ</string>
 </resources>
