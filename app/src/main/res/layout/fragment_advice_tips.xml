@@ -26,20 +26,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Exercise Recommendations -->
+
     <include
         android:id="@+id/ng_bloc"
         layout="@layout/item_events_bloc"
         android:layout_width="339dp"
         android:layout_height="150dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="180dp"
         android:background="@drawable/events_bloc"
-        app:layout_constraintMarginStart="10dp"
         app:layout_constraintMarginTop="470dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Exercise Recommendations -->
     <TextView
         android:id="@+id/exercise_re"
         android:layout_width="0dp"
@@ -63,8 +63,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="392dp"
         android:background="@drawable/events_bloc"
-        app:layout_constraintMarginStart="10dp"
-        app:layout_constraintMarginTop="470dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
