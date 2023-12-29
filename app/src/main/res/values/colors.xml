@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pink1">#EE5284</color>
+    <color name="pink2">#F48FB1</color>
+    <color name="pink3">#F8B6CC</color>
+    <color name="pink4">#FBD8E4</color>
+    <color name="pink6">#FFB0C2</color>
+    <color name="brown1">#9A3F4A</color>
+    <color name="grey">#8C8A8A</color>
+    <color name="overlay_bg">#FCDDE8</color>
 </resources>

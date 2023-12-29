@@ -24,6 +24,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -31,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.firebase:firebase-storage:20.3.0")
     val nav_version = "2.7.5"
 
     // navigation
@@ -50,6 +52,5 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
-
-
 }
+

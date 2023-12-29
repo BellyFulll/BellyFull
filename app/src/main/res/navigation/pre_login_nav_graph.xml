@@ -2,8 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    android:id="@+id/pre_login_nav_graph"
+    app:startDestination="@id/mainLoadingFragment">
+    <fragment
+        android:id="@+id/mainLoadingFragment"
+        android:name="com.example.bellyfull.modules.General.MainLoadingFragment"
+        android:label="MainLoadingFragment"
+        tools:layout="@layout/fragment_main_loading">
+        <action
+            android:id="@+id/action_mainLoadingFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/mainLoadingFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.bellyfull.modules.Authentication.Fragments.LoginFragment"
@@ -17,6 +30,7 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.bellyfull.modules.Authentication.Fragments.RegisterFragment"
@@ -30,4 +44,5 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
+
 </navigation>

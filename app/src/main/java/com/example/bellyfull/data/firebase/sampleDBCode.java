@@ -1,4 +1,4 @@
-package com.example.bellyfull;
+package com.example.bellyfull.data.firebase;
 
 import android.util.Log;
 
