@@ -1,0 +1,17 @@
+<!-- res/drawable/events_bloc.xml -->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="339dp"
+    android:height="64dp"
+    android:viewportWidth="339"
+    android:viewportHeight="64">
+
+    <group>
+        <clip-path
+            android:pathData="M10 0H329C334.523 0 339 4.47715 339 10V54C339 59.5228 334.523 64 329 64H10C4.47715 64 0 59.5228 0 54V10C0 4.47715 4.47715 0 10 0Z"/>
+        <path
+            android:pathData="M0 0V64H339V0"
+            android:fillColor="#F8B6CC"/>
+    </group>
+</vector>

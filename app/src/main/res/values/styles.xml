@@ -1,0 +1,17 @@
+<!-- res/values/styles.xml -->
+<resources>
+    <style name="nutritional">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#FFF0F0</item>
+    </style>
+
+    <style name="exercise_re">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#FFF0F0</item>
+    </style>
+
+    <style name="faq">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#FFF0F0</item>
+    </style>
+</resources>
