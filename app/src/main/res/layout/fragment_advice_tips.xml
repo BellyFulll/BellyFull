@@ -35,10 +35,10 @@
         android:layout_height="150dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="180dp"
-        android:background="@drawable/events_bloc"
-        app:layout_constraintMarginTop="470dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/events_bloc"/>
+<!--        app:layout_constraintMarginTop="470dp" />-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/exercise_re"
@@ -89,11 +89,11 @@
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="544dp"
-        android:background="@drawable/events_bloc"
-        app:layout_constraintMarginStart="10dp"
-        app:layout_constraintMarginTop="470dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/events_bloc"/>
+<!--        app:layout_constraintMarginStart="10dp"/> -->
+<!--        app:layout_constraintMarginTop="470dp" />-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/TVnutritionalGuidelines"
