@@ -9,6 +9,6 @@
         android:resizeMode="horizontal|vertical"
         android:widgetCategory="home_screen"
         android:previewLayout="@layout/emergency_widget"
-        android:targetCellHeight="1"
-        android:targetCellWidth="1"
+        android:targetCellHeight="2"
+        android:targetCellWidth="2"
         android:initialKeyguardLayout="@layout/emergency_widget" />
