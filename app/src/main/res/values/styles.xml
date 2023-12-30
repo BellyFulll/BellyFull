@@ -1,5 +1,6 @@
 <!-- res/values/styles.xml -->
 <resources>
+
     <style name="nutritional">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#FFF0F0</item>
@@ -13,5 +14,15 @@
     <style name="faq">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#FFF0F0</item>
+    </style>
+
+    <style name="Widget.BellyFull.AppWidget.Container" parent="android:Widget">
+        <item name="android:id">@android:id/background</item>
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
+
+    <style name="Widget.BellyFull.AppWidget.InnerView" parent="android:Widget">
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 </resources>

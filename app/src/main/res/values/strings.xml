@@ -6,4 +6,7 @@
     <string name="nutritional">Nutritional Guidelines</string>
     <string name="exercise_re">Exercise Recommendations</string>
     <string name="faq">FAQ</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>
