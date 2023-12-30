@@ -18,6 +18,7 @@ public class EmergencyWidget extends AppWidgetProvider {
                                 int appWidgetId) {
 
         CharSequence widgetText = context.getString(R.string.appwidget_text);
+        // Construct the Intent object linking to EmergencyActivity
         Intent intent = new Intent(context, EmergencyActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         // Construct the RemoteViews object

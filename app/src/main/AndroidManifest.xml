@@ -45,11 +45,13 @@
         <activity
                 android:name=".MainActivity"
                 android:exported="false"
-                android:windowSoftInputMode="adjustPan" />
+                android:windowSoftInputMode="adjustPan"
+                android:launchMode="singleInstance"/>
         <!-- emergency activity -->
         <activity
                 android:name=".modules.EmergencyAndHelp.Fragments.EmergencyActivity"
-                android:exported="true">
+                android:exported="true"
+                android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
