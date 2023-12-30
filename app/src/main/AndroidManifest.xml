@@ -36,7 +36,6 @@
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -47,6 +46,20 @@
                 android:name=".MainActivity"
                 android:exported="false"
                 android:windowSoftInputMode="adjustPan" />
+        <!-- emergency activity -->
+        <activity
+                android:name=".modules.EmergencyAndHelp.Fragments.EmergencyActivity"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- metadata for api key-->
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="@string/google_maps_key" />
     </application>
 
 </manifest>
