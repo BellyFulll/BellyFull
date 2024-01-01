@@ -14,7 +14,7 @@
 
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/TVUpcomingEvent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upcoming Events"
@@ -25,6 +25,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
         <ImageButton
+            android:id="@+id/IBProfileCTA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00000000"
@@ -33,7 +34,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/IBMumCTA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -41,10 +42,10 @@
             android:background="#00000000"
             android:src="@drawable/momcta"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/TVWhatIsHappening" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/IBBabyCTA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
@@ -52,9 +53,10 @@
             android:background="#00000000"
             android:src="@drawable/babycta"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/TVWhatIsHappening" />
 
         <TextView
+            android:id="@+id/TVBabyCTALabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -62,11 +64,12 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-            app:layout_constraintStart_toStartOf="@+id/imageButton2"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+            app:layout_constraintEnd_toEndOf="@+id/IBBabyCTA"
+            app:layout_constraintStart_toStartOf="@+id/IBBabyCTA"
+            app:layout_constraintTop_toBottomOf="@+id/IBBabyCTA" />
 
         <TextView
+            android:id="@+id/TVMumCTALabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -74,12 +77,12 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton"
-            app:layout_constraintStart_toStartOf="@+id/imageButton"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+            app:layout_constraintEnd_toEndOf="@+id/IBMumCTA"
+            app:layout_constraintStart_toStartOf="@+id/IBMumCTA"
+            app:layout_constraintTop_toBottomOf="@+id/IBMumCTA" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/TVWhatIsHappening"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="What's happening this week?"
@@ -92,7 +95,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
         <TextView
-            android:id="@+id/TV17cm"
+            android:id="@+id/TVBabyHeightValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -104,13 +107,13 @@
             android:text="17cm"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/TVHeight"
+            app:layout_constraintEnd_toEndOf="@+id/TVBabyHeightLabel"
             app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toStartOf="@+id/TVHeight"
-            app:layout_constraintTop_toBottomOf="@+id/TVHeight" />
+            app:layout_constraintStart_toStartOf="@+id/TVBabyHeightLabel"
+            app:layout_constraintTop_toBottomOf="@+id/TVBabyHeightLabel" />
 
         <TextView
-            android:id="@+id/TVHeight"
+            android:id="@+id/TVBabyHeightLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -121,7 +124,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
         <TextView
-            android:id="@+id/TVWeight"
+            android:id="@+id/TVBabyWeightLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -133,7 +136,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
         <TextView
-            android:id="@+id/TV110gr"
+            android:id="@+id/TVBabyWeightValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -147,10 +150,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TVWeight" />
+            app:layout_constraintTop_toBottomOf="@+id/TVBabyWeightLabel" />
 
         <TextView
-            android:id="@+id/TVDays"
+            android:id="@+id/TVDaysLeftLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
@@ -161,7 +164,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
         <TextView
-            android:id="@+id/TV168days"
+            android:id="@+id/TVDaysLeftValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -174,10 +177,10 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:translationX="10sp"
-            app:layout_constraintEnd_toEndOf="@+id/TVDays"
+            app:layout_constraintEnd_toEndOf="@+id/TVDaysLeftLabel"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/TVDays"
-            app:layout_constraintTop_toBottomOf="@+id/TVDays" />
+            app:layout_constraintStart_toStartOf="@+id/TVDaysLeftLabel"
+            app:layout_constraintTop_toBottomOf="@+id/TVDaysLeftLabel" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"
@@ -219,7 +222,7 @@
             android:layout_height="150dp"
             android:paddingBottom="20dp"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/TVUpcomingEvent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
