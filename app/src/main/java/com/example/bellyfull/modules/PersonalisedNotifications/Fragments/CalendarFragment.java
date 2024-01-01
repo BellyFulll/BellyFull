@@ -158,7 +158,8 @@ public class CalendarFragment extends Fragment {
                 requireContext(),
                 0,
                 intent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+//                PendingIntent.FLAG_UPDATE_CURRENT,
+                PendingIntent.FLAG_IMMUTABLE
         );
 
         AlarmManager alarmManager = (AlarmManager) requireContext().getSystemService(Context.ALARM_SERVICE);
@@ -167,5 +168,3 @@ public class CalendarFragment extends Fragment {
         }
     }
 }
-
-

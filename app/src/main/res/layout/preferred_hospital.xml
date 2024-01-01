@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/pregnancy_mum_input_bg">
+
+    <TextView
+            android:fontFamily="@font/a_bee_zee_regular"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/PrefHospTitle"
+            android:text="Preferred Hospital"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="344dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+            android:scrollbars="vertical"
+            android:layout_width="255dp"
+            android:layout_height="315dp"
+            android:id="@+id/pTextView"
+            android:textSize="20sp"
+            android:layout_margin="6dp"
+            android:text="sample text for now"
+            android:fontFamily="@font/a_bee_zee_regular"
+            android:layout_marginTop="25dp"
+            app:layout_constraintTop_toBottomOf="@+id/PrefHospTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

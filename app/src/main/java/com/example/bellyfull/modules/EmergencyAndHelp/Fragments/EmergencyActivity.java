@@ -75,6 +75,13 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
             medicalInfoIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // This flag starts the activity in a new task
             startActivity(medicalInfoIntent);
         });
+
+        Button vPreferredHospitalBtn = findViewById(R.id.vPrefHosp);
+        vPreferredHospitalBtn.setOnClickListener(view -> {
+            Intent preferredHospitalIntent = new Intent(this, PreferredHospital.class);
+            preferredHospitalIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // This flag starts the activity in a new task
+            startActivity(preferredHospitalIntent);
+        });
     }
 
     @Override
