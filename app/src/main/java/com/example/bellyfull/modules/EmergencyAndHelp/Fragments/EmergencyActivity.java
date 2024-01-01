@@ -1,6 +1,8 @@
 package com.example.bellyfull.modules.EmergencyAndHelp.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.location.Location;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -65,6 +68,13 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
         mapFragment.getMapAsync(this);
 
         performNearbySearch();
+
+        Button vMedInfoBtn = findViewById(R.id.vMedInfoBtn);
+        vMedInfoBtn.setOnClickListener(view -> {
+            Intent medicalInfoIntent = new Intent(this, MedicalInfoActivity.class);
+            medicalInfoIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // This flag starts the activity in a new task
+            startActivity(medicalInfoIntent);
+        });
     }
 
     @Override
@@ -160,7 +170,6 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
         dialIntent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(dialIntent);
     }
-
 }
 
 

@@ -1,4 +1,4 @@
-package com.example.bellyfull;
+package com.example.bellyfull.modules.EmergencyAndHelp.Fragments;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+import com.example.bellyfull.R;
 import com.example.bellyfull.modules.EmergencyAndHelp.Fragments.EmergencyActivity;
 
 /**
@@ -14,13 +15,14 @@ import com.example.bellyfull.modules.EmergencyAndHelp.Fragments.EmergencyActivit
  */
 public class EmergencyWidget extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
         CharSequence widgetText = context.getString(R.string.appwidget_text);
+
         // Construct the Intent object linking to EmergencyActivity
         Intent intent = new Intent(context, EmergencyActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.emergency_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);
