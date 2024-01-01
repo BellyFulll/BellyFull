@@ -9,7 +9,6 @@ public class firebase {
     }
 
     public static FirebaseFirestore getDatabase() {
-        System.out.println("Instance: " + INSTANCE);
         if (INSTANCE == null) {
             INSTANCE = FirebaseFirestore.getInstance();
         }
