@@ -29,7 +29,7 @@ public class NearbySearchAsyncTask extends AsyncTask<Void, Void, List<PlaceResul
 
     public NearbySearchAsyncTask(Context context, int radius, NearbySearchListener listener) {
         this.context = context;
-        this.radius = 5000;
+        this.radius = radius;
         this.listener = listener;
     }
 
@@ -75,20 +75,24 @@ protected List<PlaceResult> doInBackground(Void... voids) {
             for (int i = 0; i < resultsArray.length(); i++) {
                 JSONObject placeObject = resultsArray.getJSONObject(i);
 
+
                 // Check if the place is a hospital
                 JSONArray typesArray = placeObject.getJSONArray("types");
                 boolean isHospital = isHospital(typesArray);
 
+
                 if (isHospital) {
+                    String placeId = placeObject.getString("place_id");
                     String name = placeObject.getString("name");
                     String address = placeObject.optString("vicinity", "N/A");
-                    String phoneNumber = placeObject.optString("formatted_phone_number", "N/A");
-
                     double latitude = placeObject.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
                     double longitude = placeObject.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
 
-                    PlaceResult placeResult = new PlaceResult(name, address, phoneNumber, latitude, longitude);
-                    placeResults.add(placeResult);
+                    // Fetch additional details using Place Details API
+                    PlaceResult placeResult = fetchPlaceDetails(placeId, name, address, latitude, longitude);
+                    if (placeResult != null) {
+                        placeResults.add(placeResult);
+                    }
                 }
             }
         }
@@ -145,6 +149,37 @@ private boolean isHospital(JSONArray typesArray) {
 
     public interface NearbySearchListener {
         void onNearbySearchComplete(List<PlaceResult> placeResults);
+    }
+
+    private PlaceResult fetchPlaceDetails(String placeId, String name, String address, double latitude, double longitude) {
+        try {
+            String apiUrl = String.format("https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,formatted_phone_number&key=%s",
+                    placeId, context.getString(R.string.google_maps_key));
+
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            InputStream inputStream = connection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder responseStringBuilder = new StringBuilder();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                responseStringBuilder.append(line);
+            }
+
+            // Parse JSON response
+            JSONObject jsonResponse = new JSONObject(responseStringBuilder.toString());
+            Log.i(TAG, "Place Details JSON response: " + jsonResponse.toString());
+
+            // Extract phone number from details
+            String phoneNumber = jsonResponse.optJSONObject("result").optString("formatted_phone_number", "N/A");
+
+            return new PlaceResult(name, address, phoneNumber, latitude, longitude);
+        } catch (IOException | JSONException e) {
+            Log.e(TAG, "Error fetching Place Details: " + e.getMessage());
+            return null;
+        }
     }
 }
 

@@ -1,8 +1,11 @@
 package com.example.bellyfull.modules.EmergencyAndHelp.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.location.Location;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bellyfull.R;
@@ -17,20 +20,24 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.ScrollingMovementMethod;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.Task;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.PlaceLikelihood;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
-import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
-import com.google.android.libraries.places.api.model.Place;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -60,61 +67,6 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
         performNearbySearch();
     }
 
-
-//        // Initialize the SDK
-//        Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
-//        // Create a new Places client instance
-//        placesClient = Places.createClient(this);
-//        // Use fields to define the data types to return.
-//        List<Place.Field> placeFields = Arrays.asList(Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.TYPES);
-//        // Use the builder to create a FindCurrentPlaceRequest.
-//        FindCurrentPlaceRequest request = FindCurrentPlaceRequest.newInstance(placeFields);
-//
-//
-//
-//        // Call findCurrentPlace and handle the response (first check that the user has granted permission).
-//if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//    Task<FindCurrentPlaceResponse> placeResponse = placesClient.findCurrentPlace(request);
-//    placeResponse.addOnCompleteListener(task -> {
-//        if (task.isSuccessful()) {
-//            FindCurrentPlaceResponse response = task.getResult();
-//            for (PlaceLikelihood placeLikelihood : response.getPlaceLikelihoods()) {
-//                String placeName = placeLikelihood.getPlace().getName();
-//                List<String> placeTypes = placeLikelihood.getPlace().getPlaceTypes();
-//                Log.i(TAG, "placeName: " + placeName);
-//
-//                if (placeTypes != null && placeTypes.contains(Place.Type.HOSPITAL.toString())) {
-//                    // Update TextViews with the hospital information
-//                    TextView mNameTextView = findViewById(R.id.mNameTextView);
-//                    TextView mAddressTextView = findViewById(R.id.mAddressTextView);
-//                    TextView mPhoneNumberTextView = findViewById(R.id.mPhoneTextView);
-//
-//                    mNameTextView.setText(placeLikelihood.getPlace().getName());
-//                    mAddressTextView.setText(placeLikelihood.getPlace().getAddress());
-//                    mPhoneNumberTextView.setText(placeLikelihood.getPlace().getPhoneNumber());
-//
-//                    // Add a marker for the hospital on the Google Map
-//                    mMap.addMarker(new MarkerOptions()
-//                            .title(placeName)
-//                            .position(placeLikelihood.getPlace().getLatLng()));
-//
-//                    Log.i(TAG, "this code is running #4");
-//
-//                }
-//            }
-//        } else {
-//            Exception exception = task.getException();
-//            if (exception instanceof ApiException) {
-//                ApiException apiException = (ApiException) exception;
-//                Log.e(TAG, "Place not found: " + apiException.getStatusCode());
-//                Log.e(TAG, "Status message: " + apiException.getMessage());
-//            }
-//        }
-//    });
-//} else {
-//    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-//}
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -138,7 +90,7 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
     private void performNearbySearch() {
         // Create an instance of NearbySearchAsyncTask
         NearbySearchAsyncTask nearbySearchAsyncTask = new NearbySearchAsyncTask(
-                this, 10000, new NearbySearchAsyncTask.NearbySearchListener() {
+                this, 5000, new NearbySearchAsyncTask.NearbySearchListener() {
             @Override
             public void onNearbySearchComplete(List<PlaceResult> placeResults) {
                 // Handle the list of PlaceResult objects (e.g., update UI, display markers on the map)
@@ -151,25 +103,64 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void updateMapWithPlaces(List<PlaceResult> placeResults) {
+        TextView mTextView = findViewById(R.id.mTextView);
+        mTextView.setMovementMethod(new ScrollingMovementMethod());
 
-    TextView mNameTextView = findViewById(R.id.mNameTextView);
-    TextView mAddressTextView = findViewById(R.id.mAddressTextView);
-    TextView mPhoneNumberTextView = findViewById(R.id.mPhoneTextView);
+        for (PlaceResult placeResult : placeResults) {
 
-    for (PlaceResult placeResult : placeResults) {
-        // Append information to TextViews
-        mNameTextView.append(placeResult.getName() + "\n");
-        mAddressTextView.append(placeResult.getAddress() + "\n");
-        mPhoneNumberTextView.append(placeResult.getPhoneNumber() + "\n");
+        // Create a SpannableString to apply different styles
+        SpannableString spannableString = new SpannableString(placeResult.getName() + "\n");
 
-        // Add markers for each place
-        LatLng placeLatLng = new LatLng(placeResult.getLatitude(), placeResult.getLongitude());
-        mMap.addMarker(new MarkerOptions()
+        // Apply light blue color and bold style to the hospital name
+        spannableString.setSpan(new ForegroundColorSpan(Color.BLUE), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Append hospital name with styles
+        mTextView.append(spannableString);
+
+
+            // Append hospital address
+            mTextView.append(placeResult.getAddress() + "\n");
+
+            // Append hospital phone number (with a clickable link)
+            appendClickablePhoneNumber(mTextView, placeResult.getPhoneNumber());
+
+            // Add an empty line
+            mTextView.append("\n");
+
+            // Add markers for each place
+            LatLng placeLatLng = new LatLng(placeResult.getLatitude(), placeResult.getLongitude());
+            mMap.addMarker(new MarkerOptions()
                 .position(placeLatLng)
                 .title(placeResult.getName()));
 
+        }
     }
+
+    private void appendClickablePhoneNumber(TextView textView, final String phoneNumber) {
+        // Append phone number with a clickable link
+        SpannableString spannable = new SpannableString(phoneNumber);
+        spannable.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                // Handle the click event (e.g., open the dialer with the phone number)
+                dialPhoneNumber(phoneNumber);
+            }
+        }, 0, phoneNumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Make the phone number appear as a clickable link
+        textView.append(spannable);
+        textView.append("\n");
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
+
+    private void dialPhoneNumber(String phoneNumber) {
+        // Open the dialer with the provided phone number
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        dialIntent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(dialIntent);
+    }
+
 }
 
 
