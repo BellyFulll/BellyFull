@@ -88,6 +88,11 @@ protected List<PlaceResult> doInBackground(Void... voids) {
                     double latitude = placeObject.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
                     double longitude = placeObject.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
 
+                    // skip if name contains Dr.
+                    if (name.contains("Dr.")) {
+                        continue;
+                    }
+
                     // Fetch additional details using Place Details API
                     PlaceResult placeResult = fetchPlaceDetails(placeId, name, address, latitude, longitude);
                     if (placeResult != null) {
