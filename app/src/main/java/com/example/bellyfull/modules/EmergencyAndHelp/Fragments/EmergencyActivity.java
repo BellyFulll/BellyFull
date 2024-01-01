@@ -78,6 +78,12 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     @Override
+    public void onBackPressed() {
+        // Finish the current activity and all activities below it in the stack
+        finishAffinity();
+    }
+
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
