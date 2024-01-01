@@ -63,7 +63,6 @@ public class LoginFragment extends Fragment {
                 impl.getPassword(email, new dbLoginCallback() {
                     @Override
                     public void onCallback(QueryDocumentSnapshot document) {
-                        System.out.println(document.getString("password"));
                         if (inputPassword.equals(document.getString("password"))) {
                             String userId = document.getString("userId");
                             spEditor.putBoolean(preference_constant.pIsLogin, true);
