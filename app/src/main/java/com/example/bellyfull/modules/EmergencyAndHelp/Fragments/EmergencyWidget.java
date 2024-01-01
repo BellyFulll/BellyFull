@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.example.bellyfull.R;
@@ -14,18 +15,18 @@ import com.example.bellyfull.modules.EmergencyAndHelp.Fragments.EmergencyActivit
  * Implementation of App Widget functionality.
  */
 public class EmergencyWidget extends AppWidgetProvider {
-
+    static final String TAG = "EmergencyWidget";
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
+
 
         CharSequence widgetText = context.getString(R.string.appwidget_text);
 
         // Construct the Intent object linking to EmergencyActivity
         Intent intent = new Intent(context, EmergencyActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.emergency_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
         views.setOnClickPendingIntent(R.id.widget_button, pendingIntent);
 
         // Instruct the widget manager to update the widget
@@ -35,6 +36,7 @@ public class EmergencyWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
+        Log.d(TAG, "updateAppWidget: Updating widget");
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
