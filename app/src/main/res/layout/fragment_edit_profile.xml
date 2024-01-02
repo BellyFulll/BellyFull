@@ -34,6 +34,7 @@
                 android:text="Name" />
 
             <EditText
+                android:id="@+id/ETNameUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -66,6 +67,7 @@
                 android:text="Email" />
 
             <EditText
+                android:id="@+id/ETEmailUpdate"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -99,6 +101,7 @@
                 android:text="Contact" />
 
             <EditText
+                android:id="@+id/ETContactUpdate"
                 android:layout_width="222dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -132,6 +135,7 @@
                 android:text="Address" />
 
             <EditText
+                android:id="@+id/ETAddressUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_gravity="start"
@@ -165,6 +169,7 @@
                 android:text="Preferred\nHospital\nNumber" />
 
             <EditText
+                android:id="@+id/ETHospitalContactUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
