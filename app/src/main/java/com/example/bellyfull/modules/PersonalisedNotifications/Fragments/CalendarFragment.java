@@ -157,7 +157,8 @@ public class CalendarFragment extends Fragment {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 requireContext(),
                 0,
-                intent,              PendingIntent.FLAG_UPDATE_CURRENT,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT
         );
 
         AlarmManager alarmManager = (AlarmManager) requireContext().getSystemService(Context.ALARM_SERVICE);
