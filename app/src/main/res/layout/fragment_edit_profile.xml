@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/editprofile"
+        tools:context=".modules.General.ProfileEditFragment">
+
+
+        <LinearLayout
+            android:id="@+id/NameContainer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/rounded_linear_layout"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center"
+                android:text="Name" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:background="@drawable/rounded_edit_text"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/EmailContainer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_linear_layout"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/NameContainer">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center"
+                android:text="Email" />
+
+            <EditText
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:background="@drawable/rounded_edit_text"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ContactContainer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_linear_layout"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmailContainer">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:text="Contact" />
+
+            <EditText
+                android:layout_width="222dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edit_text"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/AddressContainer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_linear_layout"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ContactContainer">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:text="Address" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:background="@drawable/rounded_edit_text"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/PreferredHospitalContainer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_linear_layout"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddressContainer">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:text="Preferred\nHospital" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:background="@drawable/rounded_edit_text"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/BtnSaveEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/pink1"
+            android:fontFamily="@font/a_bee_zee_regular"
+            android:text="Save"
+            android:textSize="12dp"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/PreferredHospitalContainer"
+            app:layout_constraintStart_toStartOf="@+id/PreferredHospitalContainer"
+            app:layout_constraintTop_toBottomOf="@+id/PreferredHospitalContainer" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/BtnBackProfileEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/pink1"
+            android:fontFamily="@font/a_bee_zee_regular"
+            android:text="Back"
+            android:textSize="12dp"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/BtnSaveEdit"
+            app:layout_constraintTop_toBottomOf="@+id/BtnSaveEdit" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="138dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
