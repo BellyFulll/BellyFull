@@ -10,13 +10,16 @@ public class User {
     private String contact;
     private String address;
 
-    public User(String userId, String name, String email, String password, String contact, String address) {
+    private String preferredHospitalContact;
+
+    public User(String userId, String name, String email, String password, String contact, String address, String preferredHospitalContact) {
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.password = password;
         this.contact = contact;
         this.address = address;
+        this.preferredHospitalContact = preferredHospitalContact;
     }
 
     public User() {
@@ -69,5 +72,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPreferredHospitalContact() {
+        return preferredHospitalContact;
+    }
+
+    public void setPreferredHospitalContact(String preferredHospitalContact) {
+        this.preferredHospitalContact = preferredHospitalContact;
     }
 }

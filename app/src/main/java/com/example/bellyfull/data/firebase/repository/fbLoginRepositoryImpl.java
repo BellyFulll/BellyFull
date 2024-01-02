@@ -2,7 +2,7 @@ package com.example.bellyfull.data.firebase.repository;
 
 import androidx.annotation.NonNull;
 
-import com.example.bellyfull.Constant.db_constant;
+import com.example.bellyfull.Constant.db_collection_constant;
 import com.example.bellyfull.data.firebase.firebase;
 import com.example.bellyfull.data.firebase.ports.fbLoginRepository;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,7 +18,7 @@ public class fbLoginRepositoryImpl implements fbLoginRepository {
     public void getPassword(String email, dbLoginCallback callback) {
         FirebaseFirestore db = firebase.getDatabase();
         StringBuilder sb = new StringBuilder();
-        db.collection(db_constant.UserCollection)
+        db.collection(db_collection_constant.UserCollection)
                 .whereEqualTo("email", email)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
