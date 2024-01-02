@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.General.ProfileFragment"
-    android:background="@drawable/profile">
+    android:background="@drawable/profile"
+    tools:context=".modules.General.ProfileFragment">
 
     <TextView
         android:id="@+id/TVNameValueProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="N/A"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline15" />
@@ -20,7 +19,6 @@
         android:id="@+id/TVEmailValueProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="N/A"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline17" />
@@ -29,7 +27,6 @@
         android:id="@+id/TVContactValueProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="N/A"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline18" />
@@ -38,16 +35,14 @@
         android:id="@+id/TVAddressValueProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="N/A"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline19" />
 
     <TextView
-        android:id="@+id/TVPreferredHospitalValueProfile"
+        android:id="@+id/TVPreferredHospitalContactValueProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="N/A"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline16" />
@@ -64,7 +59,7 @@ we can provide you with the best service"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline20"
-        app:layout_constraintTop_toBottomOf="@+id/TVPreferredHospitalValueProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/TVPreferredHospitalContactValueProfile" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/BtnEditProfile"
