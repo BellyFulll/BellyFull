@@ -33,6 +33,7 @@ public class ProfileFragment extends Fragment {
 
         Button BtnBackProfile = view.findViewById(R.id.BtnBackProfile);
         Button BtnLogoutProfile = view.findViewById(R.id.BtnLogoutProfile);
+        Button BtnEditProfile = view.findViewById(R.id.BtnEditProfile);
         SharedPreferences preferences = getActivity().getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
         SharedPreferences.Editor spEditor = preferences.edit();
 
@@ -65,6 +66,14 @@ public class ProfileFragment extends Fragment {
                         dialog.dismiss();
                     }
                 });
+            }
+        });
+
+        BtnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavDirections action = ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment();
+                Navigation.findNavController(view).navigate(action);
             }
         });
     }
