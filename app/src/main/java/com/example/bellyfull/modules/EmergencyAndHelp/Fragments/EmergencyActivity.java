@@ -67,6 +67,7 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
 
+        // Perform Nearby Search
         performNearbySearch();
 
         Button vMedInfoBtn = findViewById(R.id.vMedInfoBtn);
@@ -75,7 +76,6 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
             medicalInfoIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // This flag starts the activity in a new task
             startActivity(medicalInfoIntent);
         });
-
         Button vPreferredHospitalBtn = findViewById(R.id.vPrefHosp);
         vPreferredHospitalBtn.setOnClickListener(view -> {
             Intent preferredHospitalIntent = new Intent(this, PreferredHospital.class);
@@ -120,7 +120,6 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
                 updateMapWithPlaces(placeResults);
             }
         });
-
         // Execute the task
         nearbySearchAsyncTask.execute();
     }
@@ -130,33 +129,20 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
         mTextView.setMovementMethod(new ScrollingMovementMethod());
 
         for (PlaceResult placeResult : placeResults) {
-
-        // Create a SpannableString to apply different styles
-        SpannableString spannableString = new SpannableString(placeResult.getName() + "\n");
-
-        // Apply light blue color and bold style to the hospital name
-        spannableString.setSpan(new ForegroundColorSpan(Color.BLUE), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        // Append hospital name with styles
-        mTextView.append(spannableString);
-
-
-            // Append hospital address
+            // Create a SpannableString to apply blue color and bold style to the hospital name
+            SpannableString spannableString = new SpannableString(placeResult.getName() + "\n");
+            spannableString.setSpan(new ForegroundColorSpan(Color.BLUE), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            // Append hospital name and address
+            mTextView.append(spannableString);
             mTextView.append(placeResult.getAddress() + "\n");
-
             // Append hospital phone number (with a clickable link)
             appendClickablePhoneNumber(mTextView, placeResult.getPhoneNumber());
-
-            // Add an empty line
             mTextView.append("\n");
 
             // Add markers for each place
             LatLng placeLatLng = new LatLng(placeResult.getLatitude(), placeResult.getLongitude());
-            mMap.addMarker(new MarkerOptions()
-                .position(placeLatLng)
-                .title(placeResult.getName()));
-
+            mMap.addMarker(new MarkerOptions().position(placeLatLng).title(placeResult.getName()));
         }
     }
 

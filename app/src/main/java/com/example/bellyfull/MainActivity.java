@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
+import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +25,12 @@ public class MainActivity extends AppCompatActivity {
     private void setupBottomNavMenu(NavController navController) {
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         NavigationUI.setupWithNavController(bottomNav, navController);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Finish the current activity and all activities below it in the stack
+        finishAffinity();
+        Log.i(TAG, "finishAffinity() called");
     }
 }
