@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bellyfull.R;
 
-public class MomVisualizationFragment extends Fragment {
+public class MomInputFragment extends Fragment {
 
-    public MomVisualizationFragment() {
-        super(R.layout.fragment_mom_visualization);
+    public MomInputFragment() {
+        super(R.layout.fragment_mom_input);
     }
 
     @Override

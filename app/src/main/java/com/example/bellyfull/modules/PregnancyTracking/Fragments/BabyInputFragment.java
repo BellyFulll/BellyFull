@@ -6,17 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.bellyfull.R;
 
-public class BabyVisualizationFragment extends Fragment {
+public class BabyInputFragment extends Fragment {
 
 
-    public BabyVisualizationFragment() {
-        super(R.layout.fragment_baby_visualization);
+    public BabyInputFragment() {
+        super(R.layout.fragment_baby_input);
     }
 
     @Override

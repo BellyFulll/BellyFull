@@ -114,35 +114,35 @@ we can provide you with the best service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="155dp" />
+        app:layout_constraintGuide_begin="174dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="302dp" />
+        app:layout_constraintGuide_begin="340dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="186dp" />
+        app:layout_constraintGuide_begin="205dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="226dp" />
+        app:layout_constraintGuide_begin="256dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="259dp" />
+        app:layout_constraintGuide_begin="297dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline20"
