@@ -12,7 +12,7 @@ import com.example.bellyfull.R;
 public class MomVisualizationFragment extends Fragment {
 
     public MomVisualizationFragment() {
-        super(R.layout.fragment_mom_visualization);
+        super(R.layout.fragment_mom_input);
     }
 
     @Override
