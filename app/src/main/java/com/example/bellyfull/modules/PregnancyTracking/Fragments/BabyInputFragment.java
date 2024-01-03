@@ -1,18 +1,20 @@
 package com.example.bellyfull.modules.PregnancyTracking.Fragments;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.View;
+
 import com.example.bellyfull.R;
 
-public class MomVisualizationFragment extends Fragment {
+public class BabyInputFragment extends Fragment {
 
-    public MomVisualizationFragment() {
-        super(R.layout.fragment_mom_input);
+
+    public BabyInputFragment() {
+        super(R.layout.fragment_baby_input);
     }
 
     @Override

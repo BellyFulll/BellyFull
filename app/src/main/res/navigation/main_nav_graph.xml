@@ -38,12 +38,12 @@
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/babyInputFragment"
-        android:name="com.example.bellyfull.modules.PregnancyTracking.Fragments.BabyVisualizationFragment"
+        android:name="com.example.bellyfull.modules.PregnancyTracking.Fragments.BabyInputFragment"
         android:label="fragment_baby_visualization"
         tools:layout="@layout/fragment_baby_input" />
     <fragment
         android:id="@+id/momInputFragment"
-        android:name="com.example.bellyfull.modules.PregnancyTracking.Fragments.MomVisualizationFragment"
+        android:name="com.example.bellyfull.modules.PregnancyTracking.Fragments.MomInputFragment"
         android:label="fragment_mom_visualization"
         tools:layout="@layout/fragment_mom_input" />
     <fragment
