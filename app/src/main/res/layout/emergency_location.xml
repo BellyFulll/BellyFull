@@ -15,12 +15,13 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp"
             android:background="@drawable/map_bg_box">
+
         <fragment
                 android:id="@+id/mapView"
                 class="com.google.android.gms.maps.SupportMapFragment"
                 tools:context=".modules.EmergencyAndHelp.Fragments.EmergencyActivity"
-                android:layout_width="373dp"
-                android:layout_height="243dp"
+                android:layout_width="370dp"
+                android:layout_height="262dp"
                 android:layout_margin="6dp" />
     </FrameLayout>
 
@@ -36,8 +37,8 @@
 
         <TextView
                 android:scrollbars="vertical"
-                android:layout_width="376dp"
-                android:layout_height="386dp"
+                android:layout_width="375dp"
+                android:layout_height="472dp"
                 android:id="@+id/mTextView"
                 android:textSize="20sp"
                 android:textColor="@color/white"

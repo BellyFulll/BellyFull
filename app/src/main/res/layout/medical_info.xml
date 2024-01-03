@@ -17,7 +17,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="344dp"
+            android:layout_marginTop="428dp"
             app:layout_constraintHorizontal_bias="0.496" />
 
     <TextView
