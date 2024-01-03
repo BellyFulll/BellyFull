@@ -20,13 +20,13 @@
         android:icon="@drawable/baseline_calendar_month_24"
         android:title="Calendar" />
     <item
-        android:id="@+id/babyFragment"
+        android:id="@+id/babyVisualisationFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/baseline_child_care_24"
         android:title="Baby" />
     <item
-        android:id="@+id/momFragment"
+        android:id="@+id/momVisualisationFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/baseline_woman_24"
