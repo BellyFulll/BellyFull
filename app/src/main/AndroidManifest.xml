@@ -62,9 +62,6 @@
         <activity
                 android:name=".modules.EmergencyAndHelp.Fragments.MedicalInfoActivity"
                 android:exported="true" />
-        <activity
-                android:name=".modules.EmergencyAndHelp.Fragments.PreferredHospital"
-                android:exported="true" />
 
         <!-- metadata for api key-->
         <meta-data

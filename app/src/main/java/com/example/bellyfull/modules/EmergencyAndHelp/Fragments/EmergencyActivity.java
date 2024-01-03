@@ -1,5 +1,6 @@
 package com.example.bellyfull.modules.EmergencyAndHelp.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +11,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bellyfull.Constant.preference_constant;
+import com.example.bellyfull.PreLoginActivity;
 import com.example.bellyfull.R;
+import com.example.bellyfull.data.firebase.collection.User;
+import com.example.bellyfull.data.firebase.ports.dbProfileCallback;
+import com.example.bellyfull.data.firebase.repository.fbEmergencyImpl;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -45,18 +51,24 @@ import java.util.List;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+
 public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private FusedLocationProviderClient fusedLocationClient;
     private static final int REQUEST_LOCATION_PERMISSION = 101;
-    private PlacesClient placesClient;
     private static final String TAG = "EmergencyActivity";
-    private static Location lastKnownLocation;
+    private static final String FB_TAG = "Firebase - Emergency";
+    private String preferredHospitalPhoneNumber;
+    private AlertDialog alertDialog;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.emergency_location);
+
+        preferences = getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
+        String userId = preferences.getString(preference_constant.pUserId, "");
 
         if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
@@ -77,10 +89,25 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
             startActivity(medicalInfoIntent);
         });
         Button vPreferredHospitalBtn = findViewById(R.id.vPrefHosp);
-        vPreferredHospitalBtn.setOnClickListener(view -> {
-            Intent preferredHospitalIntent = new Intent(this, PreferredHospital.class);
-            preferredHospitalIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // This flag starts the activity in a new task
-            startActivity(preferredHospitalIntent);
+        vPreferredHospitalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fbEmergencyImpl impl = new fbEmergencyImpl(getApplicationContext());
+                impl.getUserHospital(userId, new dbProfileCallback() {
+                    @Override
+                    public void onSuccess(User user) {
+                        if (user != null) {
+                            preferredHospitalPhoneNumber = user.getPreferredHospitalContact();
+                            Log.i(FB_TAG, "onClick: " + preferredHospitalPhoneNumber);
+                            if (preferredHospitalPhoneNumber.equals("")) {
+                                showLoginDialog();
+                            } else {
+                                initiatePhoneCall(preferredHospitalPhoneNumber);
+                            }
+                        }
+                    }
+                });
+            }
         });
     }
 
@@ -168,6 +195,43 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
         Intent dialIntent = new Intent(Intent.ACTION_DIAL);
         dialIntent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(dialIntent);
+    }
+
+    private void initiatePhoneCall(String phoneNumber) {
+        // Intent to initiate a phone call
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        dialIntent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(dialIntent);
+    }
+
+    private void showLoginDialog() {
+        // Create a custom dialog with your layout
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.req_login_dialog, null);
+        builder.setView(dialogView);
+
+        Button confirmButton = dialogView.findViewById(R.id.confirmButton);
+        Button cancelButton = dialogView.findViewById(R.id.cancelButton);
+        // Set click listeners for buttons
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // start PreLoginActivity
+                Intent preLoginIntent = new Intent(EmergencyActivity.this, PreLoginActivity.class);
+                startActivity(preLoginIntent);
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // User clicked the "No" button, dismiss the dialog
+                alertDialog.dismiss();
+            }
+        });
+
+        // Create and show the AlertDialog
+        alertDialog = builder.create();
+        alertDialog.show();
     }
 }
 
