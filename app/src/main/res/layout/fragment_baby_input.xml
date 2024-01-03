@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/pregnancy_baby_input_bg"
-        tools:context=".modules.PregnancyTracking.Fragments.BabyVisualizationFragment">
+        tools:context=".modules.PregnancyTracking.Fragments.BabyInputFragment">
 
 
         <TextView
