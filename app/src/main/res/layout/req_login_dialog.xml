@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@drawable/exit_bg_box">
+
+    <TextView
+            android:fontFamily="@font/a_bee_zee_regular"
+            android:id="@+id/dialogMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You are not logged in. Proceed to log in?"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"/>
+
+    <Button
+            android:fontFamily="@font/a_bee_zee_regular"
+            android:id="@+id/confirmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textSize="17sp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/pink1"
+            android:layout_below="@id/dialogMessage"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"/>
+
+    <Button
+            android:fontFamily="@font/a_bee_zee_regular"
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:textSize="17sp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/pink2"
+            android:layout_below="@id/dialogMessage"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/confirmButton"/>
+
+</RelativeLayout>
