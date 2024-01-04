@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
                 if (
-                        navDestination.getId() == R.id.profileFragment || navDestination.getId() == R.id.profileEditFragment
+                        navDestination.getId() == R.id.profileFragment || navDestination.getId() == R.id.profileEditFragment || navDestination.getId() == R.id.babyInputFragment || navDestination.getId() == R.id.momInputFragment
                 ) {
                     navBar.setVisibility(View.INVISIBLE);
 

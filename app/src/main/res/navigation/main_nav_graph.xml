@@ -40,7 +40,13 @@
         android:id="@+id/babyInputFragment"
         android:name="com.example.bellyfull.modules.PregnancyTracking.Fragments.BabyInputFragment"
         android:label="fragment_baby_visualization"
-        tools:layout="@layout/fragment_baby_input" />
+        tools:layout="@layout/fragment_baby_input">
+        <action
+            android:id="@+id/action_babyInputFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:animator/fade_in"
+            app:exitAnim="@android:animator/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/momInputFragment"
         android:name="com.example.bellyfull.modules.PregnancyTracking.Fragments.MomInputFragment"
