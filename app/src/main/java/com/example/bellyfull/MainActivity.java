@@ -41,29 +41,54 @@ public class MainActivity extends AppCompatActivity {
                 if (
                         navDestination.getId() == R.id.profileFragment || navDestination.getId() == R.id.profileEditFragment || navDestination.getId() == R.id.babyInputFragment || navDestination.getId() == R.id.momInputFragment
                 ) {
-                    navBar.setVisibility(View.INVISIBLE);
-
-                    ConstraintSet constraintSet = new ConstraintSet();
-                    constraintSet.clone((ConstraintLayout) findViewById(R.id.CLMainActivity));
-                    constraintSet.connect(R.id.NHFMain, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
-                    constraintSet.connect(R.id.NHFMain, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
-                    constraintSet.applyTo(findViewById(R.id.CLMainActivity));
+                    hideBottomNavWithDelay(navBar);
                 } else {
-                    navBar.setVisibility(View.VISIBLE);
-
-                    ConstraintSet constraintSet = new ConstraintSet();
-                    constraintSet.clone((ConstraintLayout) findViewById(R.id.CLMainActivity));
-                    constraintSet.connect(R.id.NHFMain, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
-                    constraintSet.connect(R.id.NHFMain, ConstraintSet.BOTTOM, R.id.bottomNavigationView, ConstraintSet.TOP, 0);
-                    constraintSet.applyTo(findViewById(R.id.CLMainActivity));
+                    showBottomNavWithDelay(navBar);
                 }
             }
         });
     }
 
+    private void hideBottomNavWithDelay(final BottomNavigationView navBar) {
+        navBar.animate().alpha(0f).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                navBar.setVisibility(View.INVISIBLE);
+                ConstraintSet constraintSet = new ConstraintSet();
+                constraintSet.clone((ConstraintLayout) findViewById(R.id.CLMainActivity));
+                constraintSet.connect(R.id.NHFMain, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
+                constraintSet.connect(R.id.NHFMain, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
+                constraintSet.applyTo(findViewById(R.id.CLMainActivity));
+                navBar.setAlpha(1f); 
+            }
+        }).start();
+    }
+
+    private void showBottomNavWithDelay(final BottomNavigationView navBar) {
+        navBar.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                navBar.setVisibility(View.VISIBLE);
+                ConstraintSet constraintSet = new ConstraintSet();
+                constraintSet.clone((ConstraintLayout) findViewById(R.id.CLMainActivity));
+                constraintSet.connect(R.id.NHFMain, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
+                constraintSet.connect(R.id.NHFMain, ConstraintSet.BOTTOM, R.id.bottomNavigationView, ConstraintSet.TOP, 0);
+                constraintSet.applyTo(findViewById(R.id.CLMainActivity));
+            }
+        }, 350);
+    }
+
     @Override
     public void onBackPressed() {
-        showExitConfirmationDialog();
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.NHFMain);
+        NavController navController = navHostFragment.getNavController();
+        NavDestination currentDestination = navController.getCurrentDestination();
+
+        if (currentDestination != null && currentDestination.getId() == R.id.homeFragment) {
+            showExitConfirmationDialog();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private void setupBottomNavMenu(NavController navController) {
@@ -73,18 +98,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showExitConfirmationDialog() {
-        // Create a custom dialog with your layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.exit_dialog, null);
         builder.setView(dialogView);
 
         Button confirmButton = dialogView.findViewById(R.id.confirmButton);
         Button cancelButton = dialogView.findViewById(R.id.cancelButton);
-        // Set click listeners for buttons
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Finish the current activity and all activities below it in the stack
                 finishAffinity();
                 Log.i(TAG, "finishAffinity() called");
                 alertDialog.dismiss();
@@ -93,12 +115,10 @@ public class MainActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // User clicked the "No" button, dismiss the dialog
                 alertDialog.dismiss();
             }
         });
 
-        // Create and show the AlertDialog
         alertDialog = builder.create();
         alertDialog.show();
     }
