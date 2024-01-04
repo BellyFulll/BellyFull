@@ -40,7 +40,7 @@ public class ResetPasswordFragment extends Fragment {
         Button btnResetPassword = view.findViewById(R.id.btnResetPassword);
         btnResetPassword.setOnClickListener(v -> {
             String newPassword = etNewPassword.getText().toString().trim();
-            if (!newPassword.isEmpty()) {
+            if (!newPassword.isEmpty() && newPassword.length() >= 8) {
                 resetPassword(newPassword);
                 // Navigate to the login page after resetting the password
                 Navigation.findNavController(requireView()).popBackStack(R.id.loginFragment, false);
