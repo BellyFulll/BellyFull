@@ -21,12 +21,30 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageButton IBProfileCTA = view.findViewById(R.id.IBProfileCTA);
+        ImageButton IBBabyCTA = view.findViewById(R.id.IBBabyCTA);
+        ImageButton IBMumCTA = view.findViewById(R.id.IBMumCTA);
 
 
         IBProfileCTA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavDirections action = HomeFragmentDirections.actionHomeFragmentToProfileFragment();
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
+
+        IBBabyCTA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavDirections action = HomeFragmentDirections.actionHomeFragmentToBabyInputFragment();
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
+
+        IBMumCTA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavDirections action = HomeFragmentDirections.actionHomeFragmentToMomInputFragment();
                 Navigation.findNavController(view).navigate(action);
             }
         });

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/pregnancy_baby_input_bg"
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/a_bee_zee_regular"
-            android:text="Fetal Length:"
+            android:text="Fetal Length (cm):"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/a_bee_zee_regular"
-            android:text="Fetal Weight:"
+            android:text="Fetal Weight (gram):"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/a_bee_zee_regular"
-            android:text="Head Circumference:"
+            android:text="Head Circumference (cm):"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
@@ -82,7 +82,7 @@
                 android:background="@drawable/rounded_edit_text"
                 android:backgroundTint="@color/white"
                 android:ems="10"
-                android:hint="Type..."
+                android:hint="Enter some notes..."
                 android:inputType="text"
                 android:paddingLeft="10dp"
                 tools:layout_editor_absoluteX="49dp"
@@ -121,7 +121,6 @@
                 android:focusable="false"
                 android:gravity="center"
                 android:inputType="text"
-                android:text="17"
                 tools:layout_editor_absoluteX="49dp"
                 tools:layout_editor_absoluteY="394dp" />
 
@@ -173,7 +172,6 @@
                 android:focusable="false"
                 android:gravity="center"
                 android:inputType="text"
-                android:text="17"
                 tools:layout_editor_absoluteX="49dp"
                 tools:layout_editor_absoluteY="394dp" />
 
@@ -225,7 +223,6 @@
                 android:focusable="false"
                 android:gravity="center"
                 android:inputType="text"
-                android:text="17"
                 tools:layout_editor_absoluteX="49dp"
                 tools:layout_editor_absoluteY="394dp" />
 
@@ -253,13 +250,27 @@
         </LinearLayout>
 
         <Button
-            android:layout_width="200dp"
+            android:id="@+id/btnUpdate"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/pink1"
+            android:paddingVertical="10dp"
             android:text="Update"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/overlay_bg"
+            android:paddingVertical="10dp"
+            android:text="Cancel"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
@@ -268,7 +279,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="318dp" />
+            app:layout_constraintGuide_begin="389dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
