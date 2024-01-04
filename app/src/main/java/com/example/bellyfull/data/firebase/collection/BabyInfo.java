@@ -1,5 +1,7 @@
 package com.example.bellyfull.data.firebase.collection;
 
+import java.util.Date;
+
 public class BabyInfo {
     private String babyInfoId;
     private Double fetalLength;
@@ -7,17 +9,19 @@ public class BabyInfo {
     private Double headCircumference;
     private String growthNotes;
     private String userId;
+    private Date entryDate;
 
     public BabyInfo() {
     }
 
-    public BabyInfo(String babyInfoId, Double fetalLength, Double fetalWeight, Double headCircumference, String growthNotes, String userId) {
+    public BabyInfo(String babyInfoId, Double fetalLength, Double fetalWeight, Double headCircumference, String growthNotes, String userId, Date entryDate) {
         this.babyInfoId = babyInfoId;
         this.fetalLength = fetalLength;
         this.fetalWeight = fetalWeight;
         this.headCircumference = headCircumference;
         this.growthNotes = growthNotes;
         this.userId = userId;
+        this.entryDate = entryDate;
     }
 
     public String getBabyInfoId() {
@@ -66,5 +70,13 @@ public class BabyInfo {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Date getEntryDate() {
+        return entryDate;
+    }
+
+    public void setEntryDate(Date entryDate) {
+        this.entryDate = entryDate;
     }
 }

@@ -2,8 +2,10 @@ package com.example.bellyfull.data.firebase.ports;
 
 import android.content.Context;
 
+import java.util.UUID;
+
 public interface dbBabyInfoRepository {
-    public void getBabyInfo(String userId, dbBabyInfoCallback callback);
+    public void createBabyInfo(String userId, String babyInfoId);
 
     public void setBabyInfoFetalLength(String babyInfoId, Double fetalLength);
 
