@@ -121,6 +121,7 @@
                 android:focusable="false"
                 android:gravity="center"
                 android:inputType="text"
+                android:text="0.0"
                 tools:layout_editor_absoluteX="49dp"
                 tools:layout_editor_absoluteY="394dp" />
 
@@ -172,6 +173,7 @@
                 android:focusable="false"
                 android:gravity="center"
                 android:inputType="text"
+                android:text="0.0"
                 tools:layout_editor_absoluteX="49dp"
                 tools:layout_editor_absoluteY="394dp" />
 
@@ -223,6 +225,7 @@
                 android:focusable="false"
                 android:gravity="center"
                 android:inputType="text"
+                android:text="0.0"
                 tools:layout_editor_absoluteX="49dp"
                 tools:layout_editor_absoluteY="394dp" />
 

@@ -17,9 +17,9 @@ import androidx.navigation.Navigation;
 
 import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
-import com.example.bellyfull.data.firebase.collection.BabyInfo;
-import com.example.bellyfull.data.firebase.ports.dbBabyInfoCallback;
 import com.example.bellyfull.data.firebase.repository.fbBabyInfoRepositoryImpl;
+
+import java.util.UUID;
 
 
 public class BabyInputFragment extends Fragment {
@@ -28,27 +28,15 @@ public class BabyInputFragment extends Fragment {
     EditText ETHeadCircumference;
     EditText ETGrowthNotes;
     fbBabyInfoRepositoryImpl impl;
-    SharedPreferences preferences;
-
 
     public BabyInputFragment() {
         super(R.layout.fragment_baby_input);
     }
 
-    dbBabyInfoCallback callback = new dbBabyInfoCallback() {
-        @Override
-        public void onSuccess(BabyInfo babyInfo) {
-            updateUI(babyInfo);
-        }
-    };
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        preferences = getActivity().getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
         impl = new fbBabyInfoRepositoryImpl(getContext());
-        String userId = preferences.getString(preference_constant.pUserId, "");
-        impl.getBabyInfo(userId, callback);
     }
 
     @Override
@@ -81,7 +69,7 @@ public class BabyInputFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Double currentValue = Double.parseDouble(ETFetalLength.getText().toString());
-                if(currentValue <= 0) return;
+                if (currentValue <= 0) return;
                 currentValue -= 0.5;
                 ETFetalLength.setText(currentValue.toString());
             }
@@ -100,7 +88,7 @@ public class BabyInputFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Double currentValue = Double.parseDouble(ETFetalWeight.getText().toString());
-                if(currentValue <= 0) return;
+                if (currentValue <= 0) return;
                 currentValue -= 0.5;
                 ETFetalWeight.setText(currentValue.toString());
             }
@@ -119,7 +107,7 @@ public class BabyInputFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Double currentValue = Double.parseDouble(ETHeadCircumference.getText().toString());
-                if(currentValue <= 0) return;
+                if (currentValue <= 0) return;
                 currentValue -= 0.5;
                 ETHeadCircumference.setText(currentValue.toString());
             }
@@ -134,10 +122,13 @@ public class BabyInputFragment extends Fragment {
         });
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
-            String babyInfoId = preferences.getString(preference_constant.pBabyInfoId, "");
-
             @Override
             public void onClick(View v) {
+                SharedPreferences preferences = getActivity().getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
+                String userId = preferences.getString(preference_constant.pUserId, "");
+                String babyInfoId = UUID.randomUUID().toString();
+                impl.createBabyInfo(userId, babyInfoId);
+
                 String updatedFetalLength = ETFetalLength.getText().toString();
                 String updatedFetalWeight = ETFetalWeight.getText().toString();
                 String updatedHeadCircumference = ETHeadCircumference.getText().toString();
@@ -145,41 +136,24 @@ public class BabyInputFragment extends Fragment {
 
                 if (!updatedFetalLength.matches("")) {
                     impl.setBabyInfoFetalLength(babyInfoId, Double.parseDouble(updatedFetalLength));
+                    ETFetalLength.getText().clear();
                 }
                 if (!updatedFetalWeight.matches("")) {
                     impl.setBabyInfoFetalWeight(babyInfoId, Double.parseDouble(updatedFetalWeight));
+                    ETFetalWeight.getText().clear();
                 }
                 if (!updatedHeadCircumference.matches("")) {
                     impl.setBabyInfoHeadCircumference(babyInfoId, Double.parseDouble(updatedHeadCircumference));
+                    ETHeadCircumference.getText().clear();
                 }
                 if (!updatedGrowthNotes.matches("")) {
                     impl.setBabyInfoGrowthNotes(babyInfoId, updatedGrowthNotes);
+                    ETGrowthNotes.getText().clear();
                 }
 
                 ETGrowthNotes.clearFocus();
                 Toast.makeText(getContext(), "Successfully updated", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void updateUI(BabyInfo babyInfo) {
-        if (babyInfo.getFetalLength() == null) {
-            ETFetalLength.setText("0");
-        } else {
-            ETFetalLength.setText(babyInfo.getFetalLength().toString());
-        }
-
-        if (babyInfo.getFetalWeight() == null) {
-            ETFetalWeight.setText("0");
-        } else {
-            ETFetalWeight.setText(babyInfo.getFetalWeight().toString());
-        }
-
-        if (babyInfo.getHeadCircumference() == null) {
-            ETHeadCircumference.setText("0");
-        } else {
-            ETHeadCircumference.setText(babyInfo.getHeadCircumference().toString());
-        }
-        ETGrowthNotes.setText(babyInfo.getGrowthNotes());
     }
 }
