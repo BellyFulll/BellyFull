@@ -42,22 +42,8 @@ public class MainActivity extends AppCompatActivity {
                         navDestination.getId() == R.id.profileFragment || navDestination.getId() == R.id.profileEditFragment || navDestination.getId() == R.id.babyInputFragment || navDestination.getId() == R.id.momInputFragment
                 ) {
                     hideBottomNavWithDelay(navBar);
-//                    navBar.setVisibility(View.INVISIBLE);
-//
-//                    ConstraintSet constraintSet = new ConstraintSet();
-//                    constraintSet.clone((ConstraintLayout) findViewById(R.id.CLMainActivity));
-//                    constraintSet.connect(R.id.NHFMain, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
-//                    constraintSet.connect(R.id.NHFMain, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
-//                    constraintSet.applyTo(findViewById(R.id.CLMainActivity));
                 } else {
                     showBottomNavWithDelay(navBar);
-//                    navBar.setVisibility(View.VISIBLE);
-//
-//                    ConstraintSet constraintSet = new ConstraintSet();
-//                    constraintSet.clone((ConstraintLayout) findViewById(R.id.CLMainActivity));
-//                    constraintSet.connect(R.id.NHFMain, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
-//                    constraintSet.connect(R.id.NHFMain, ConstraintSet.BOTTOM, R.id.bottomNavigationView, ConstraintSet.TOP, 0);
-//                    constraintSet.applyTo(findViewById(R.id.CLMainActivity));
                 }
             }
         });
@@ -73,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 constraintSet.connect(R.id.NHFMain, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
                 constraintSet.connect(R.id.NHFMain, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
                 constraintSet.applyTo(findViewById(R.id.CLMainActivity));
-                navBar.setAlpha(1f); // Reset alpha for future use
+                navBar.setAlpha(1f); 
             }
         }).start();
     }
