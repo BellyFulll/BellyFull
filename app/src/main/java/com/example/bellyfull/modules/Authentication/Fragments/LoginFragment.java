@@ -63,6 +63,7 @@ public class LoginFragment extends Fragment {
         Button BtnLogin = view.findViewById(R.id.BtnLogin);
         Button BtnLoginSignup = view.findViewById(R.id.BtnLoginSignup);
         Button BtnLoginGoogleSignup = view.findViewById(R.id.BtnLoginGoogleSignup);
+        Button BtnLoginForgotPwd = view.findViewById(R.id.BtnLoginForgotPass);
         EditText ETEmail = view.findViewById(R.id.ETLoginEmail);
         EditText ETPassword = view.findViewById(R.id.ETLoginPassword);
 
@@ -108,6 +109,14 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 signInWithGoogle();
+            }
+        });
+
+        BtnLoginForgotPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavDirections action = LoginFragmentDirections.actionLoginFragmentToForgotPwdFragment();
+                Navigation.findNavController(view).navigate(action);
             }
         });
     }

@@ -1,7 +1,5 @@
 package com.example.bellyfull.modules.Authentication.Fragments;
 
-// VerifyCodeFragment.java
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +18,7 @@ import com.example.bellyfull.R;
 
 public class VerifyCodeFragment extends Fragment {
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_verify_code, container, false);
@@ -31,15 +30,16 @@ public class VerifyCodeFragment extends Fragment {
 
         EditText etVerificationCode = view.findViewById(R.id.etVerificationCode);
         Button btnVerifyCode = view.findViewById(R.id.btnVerifyCode);
+        VerifyCodeFragmentArgs args = VerifyCodeFragmentArgs.fromBundle(getArguments());
+        String email = args.getEmail();
+        String verificationCode = args.getVerificationCode();
 
         btnVerifyCode.setOnClickListener(v -> {
-            String verificationCode = etVerificationCode.getText().toString().trim();
-            if (!verificationCode.isEmpty()) {
+            String verificationCodeIn = etVerificationCode.getText().toString().trim();
+            if (!verificationCodeIn.isEmpty()) {
                 // Validate the verification code
-                if (verificationCode.equals("123456")) { // Replace with your logic to validate the code
-                    // Verification successful, navigate to the password reset page
-                    NavDirections action = VerifyCodeFragmentDirections.actionVerifyCodeFragmentToResetPasswordFragment();
-                    Navigation.findNavController(requireView()).navigate(action);
+                if (verificationCodeIn.equals(verificationCode)) {
+                    navigateToResetPassword(email);
                 } else {
                     Toast.makeText(requireContext(), "Invalid verification code", Toast.LENGTH_SHORT).show();
                 }
@@ -47,6 +47,12 @@ public class VerifyCodeFragment extends Fragment {
                 Toast.makeText(requireContext(), "Enter the verification code", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void navigateToResetPassword(String email) {
+        NavDirections action = VerifyCodeFragmentDirections
+                .actionVerifyCodeFragmentToResetPasswordFragment(email);
+        Navigation.findNavController(requireView()).navigate(action);
     }
 }
 

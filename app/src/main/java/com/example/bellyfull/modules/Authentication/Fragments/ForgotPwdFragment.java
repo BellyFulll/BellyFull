@@ -15,13 +15,16 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.bellyfull.R;
+import com.example.bellyfull.data.firebase.repository.fbProfileRepositoryImpl;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Random;
 
 public class ForgotPwdFragment extends Fragment {
     private FirebaseFirestore db;
+    EmailSender emailSender = new EmailSender();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,8 +36,8 @@ public class ForgotPwdFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         db = FirebaseFirestore.getInstance();
 
-        EditText etEmail = view.findViewById(R.id.etForgotPwdEmail);
-        Button btnSendVerification = view.findViewById(R.id.btnSendVerification);
+        EditText etEmail = view.findViewById(R.id.EFPwdEmail);
+        Button btnSendVerification = view.findViewById(R.id.BtnFPwd);
 
         btnSendVerification.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
@@ -47,34 +50,33 @@ public class ForgotPwdFragment extends Fragment {
     }
 
     private void sendVerificationCode(String email) {
-        db.collection("users").document(email)
+        fbProfileRepositoryImpl impl = new fbProfileRepositoryImpl(getContext());
+
+        db.collection("USER")
+                .whereEqualTo("email", email)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            // Email exists, send verification code
-                            String verificationCode = generateVerificationCode();
-                            // Send email with verification code using your preferred method (e.g., email service)
-                            // Now, navigate to the verification code input page
-                            NavDirections action = ForgotPwdFragmentDirections.actionForgotPwdFragmentToVerifyCodeFragment(email, verificationCode);
-                            Navigation.findNavController(requireView()).navigate(action);
-                        } else {
-                            Toast.makeText(requireContext(), "Email does not exist", Toast.LENGTH_SHORT).show();
-                        }
+                        QuerySnapshot document = task.getResult();
+                        // Email exists, send verification code
+                        String verificationCode = generateVerificationCode();
+                        // Send email with verification code using your preferred method (e.g., email service)
+                        emailSender.sendEmail(email, verificationCode);
+                        Toast.makeText(requireContext(), "Verification code sent", Toast.LENGTH_SHORT).show();
+                        // Now, navigate to the verification code input page
+                        NavDirections action = ForgotPwdFragmentDirections.actionForgotPwdFragmentToVerifyCodeFragment(email, verificationCode);
+                        Navigation.findNavController(requireView()).navigate(action);
                     } else {
-                        Toast.makeText(requireContext(), "Failed to check email existence", Toast.LENGTH_SHORT).show();
+                        // Email does not exist
+                        Toast.makeText(requireContext(), "Email does not exist", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     private String generateVerificationCode() {
         Random random = new Random();
-        // generate 6 digit random number
         int code = random.nextInt(999999);
-        // parse to string
         String codeStr = String.valueOf(code);
-        // pad with leading zeros
         codeStr = String.format("%06d", code);
         return codeStr;
     }
