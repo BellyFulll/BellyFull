@@ -26,7 +26,6 @@ public class fbEmergencyImpl implements dbEmergency {
                     if (!queryDocumentSnapshots.isEmpty()) {
                         DocumentSnapshot documentSnapshot = queryDocumentSnapshots.getDocuments().get(0);
                         User user = documentSnapshot.toObject(User.class);
-                        System.out.println(user.getName());
                         callback.onSuccess(user);
                     } else {
                         callback.onSuccess(null);
