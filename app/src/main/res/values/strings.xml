@@ -10,4 +10,5 @@
     <string name="widget_action">Call</string>
     <string name="app_widget_description">Add a way to contact emergency.</string>
     <string name="google_maps_key">AIzaSyDX8_QhmDgUc_usfSukB30C6Uanyfw8m9o</string>
+    <string name="default_web_client_id">1032101887943-gs2q0b58r41p93fkdslpjibetc7ifkrf.apps.googleusercontent.com</string>
 </resources>
