@@ -1,4 +1,4 @@
-package com.example.bellyfull.modules.AdviceAndTips.Adapter;// AdviceAdapter.java
+package com.example.bellyfull.modules.AdviceAndTips.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

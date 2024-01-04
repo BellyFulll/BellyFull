@@ -17,3 +17,4 @@ public class AdviceItem {
         return content;
     }
 }
+

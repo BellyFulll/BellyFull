@@ -1,4 +1,6 @@
+/*
 package com.example.bellyfull.modules.AdviceAndTips.Fragments;
+
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,11 +29,6 @@ public class AdviceTipsFragment extends Fragment {
         TextView nutritionalTextView = view.findViewById(R.id.nutritional);
         TextView exerciseReTextView = view.findViewById(R.id.exercise_re);
         TextView faqTextView = view.findViewById(R.id.faq);
-
-        // Accessing includes
-        View ngBloc = view.findViewById(R.id.ng_bloc);
-        View erBloc = view.findViewById(R.id.er_bloc);
-        View faqBloc = view.findViewById(R.id.faq_bloc);
 
         // Accessing additional TextViews
         TextView tvNutritionalGuidelines = view.findViewById(R.id.TVnutritionalGuidelines);
@@ -76,3 +73,5 @@ public class AdviceTipsFragment extends Fragment {
     }
 
 }
+*/
+

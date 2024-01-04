@@ -9,7 +9,6 @@
     android:background="#F48FB1"
     android:clipToOutline="true">
 
-
     <!-- Nutritional Guidelines -->
     <TextView
         android:id="@+id/nutritional"
@@ -22,7 +21,6 @@
         android:text="@string/nutritional"
         android:textAppearance="@style/nutritional"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,40 +29,42 @@
     <include
         android:id="@+id/ng_bloc"
         layout="@layout/item_events_bloc"
-        android:layout_width="339dp"
+        android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="180dp"
-        android:background="@drawable/events_bloc"/>
-<!--        app:layout_constraintMarginTop="470dp" />-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+        android:background="@drawable/events_bloc"
+        app:layout_constraintBottom_toTopOf="@id/exercise_re"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nutritional"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/exercise_re"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="188dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
         android:text="@string/exercise_re"
         android:textAppearance="@style/exercise_re"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/ng_bloc"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nutritional" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <include
         android:id="@+id/er_bloc"
         layout="@layout/item_events_bloc"
-        android:layout_width="339dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="392dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/events_bloc"
+        app:layout_constraintTop_toBottomOf="@id/exercise_re"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- FAQ -->
     <TextView
@@ -77,23 +77,22 @@
         android:gravity="center_vertical"
         android:text="@string/faq"
         android:textAppearance="@style/faq"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/er_bloc"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/exercise_re" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <include
         android:id="@+id/faq_bloc"
         layout="@layout/item_events_bloc"
-        android:layout_width="339dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
+        android:layout_marginTop="182dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="544dp"
-        android:background="@drawable/events_bloc"/>
-<!--        app:layout_constraintMarginStart="10dp"/> -->
-<!--        app:layout_constraintMarginTop="470dp" />-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/events_bloc"
+        app:layout_constraintTop_toBottomOf="@id/faq"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/TVnutritionalGuidelines"
