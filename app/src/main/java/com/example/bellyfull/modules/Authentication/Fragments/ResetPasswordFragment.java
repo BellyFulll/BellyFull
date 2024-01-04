@@ -35,6 +35,7 @@ public class ResetPasswordFragment extends Fragment {
         // Retrieve the email from arguments
         ResetPasswordFragmentArgs args = ResetPasswordFragmentArgs.fromBundle(getArguments());
         userEmail = args.getEmail();
+
         EditText etNewPassword = view.findViewById(R.id.etNewPassword);
         Button btnResetPassword = view.findViewById(R.id.btnResetPassword);
         btnResetPassword.setOnClickListener(v -> {
