@@ -38,6 +38,7 @@ public class RegisterFragment extends Fragment {
     private static final int RC_SIGN_IN = 9001;
     private FirebaseFirestore db;
     private GoogleSignInClient mGoogleSignInClient;
+
     public RegisterFragment() {
         super(R.layout.fragment_register);
     }
@@ -58,7 +59,7 @@ public class RegisterFragment extends Fragment {
         // Variable
         Button BtnSignUp = view.findViewById(R.id.BtnSignUp);
         Button BtnSignUpLogin = view.findViewById(R.id.BtnSignUpLogin);
-        Button BtnLoginGoogleSignup = view.findViewById(R.id.BtnLoginGoogleSignup);
+        Button BtnLoginGoogleSignup = view.findViewById(R.id.BtnSignUpGoogleSignup);
         EditText ETName = view.findViewById(R.id.ETSignUpName);
         EditText ETEmail = view.findViewById(R.id.ETSignUpEmail);
         EditText ETPassword = view.findViewById(R.id.ETSignUpPassword);
@@ -105,7 +106,7 @@ public class RegisterFragment extends Fragment {
         });
     }
 
-     private void signInWithGoogle() {
+    private void signInWithGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
