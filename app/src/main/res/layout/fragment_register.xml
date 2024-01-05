@@ -103,18 +103,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/TVSignUpPasswordLabel" />
 
-    <Button
-        android:id="@+id/BtnSignUpForgotPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/inter_normal"
-        android:paddingHorizontal="10dp"
-        android:text="Forgot Password?"
-        android:textColor="@color/brown1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/ETSignUpPassword" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/BtnSignUp"
         android:layout_width="0dp"
