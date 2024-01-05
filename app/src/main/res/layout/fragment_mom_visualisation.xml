@@ -4,20 +4,169 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink2"
+    android:background="@drawable/mom_visual_bg"
     tools:context=".modules.visualisation.Fragments.MomVisualisationFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Mom Visualisation Fragment"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+    <androidx.constraintlayout.widget.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="225dp"
+            android:id="@+id/guideline26" />
 
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="@+id/guideline26"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDaily"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/overlay_bg"
+                android:paddingVertical="15dp"
+                android:text="Daily"
+                android:textColor="@color/pink2"
+                android:textSize="20dp"
+                app:cornerRadius="15dp" />
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnWeekly"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/overlay_bg"
+                android:paddingVertical="15dp"
+                android:text="Weekly"
+                android:textColor="@color/pink2"
+                android:textSize="20dp"
+                app:cornerRadius="15dp" />
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnMonthly"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/overlay_bg"
+                android:paddingVertical="15dp"
+                android:text="Monthly"
+                android:textColor="@color/pink2"
+                android:textSize="20dp"
+                app:cornerRadius="15dp" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="300dp"
+            android:id="@+id/guideline27" />
+        <androidx.cardview.widget.CardView
+                android:layout_width="391dp"
+                android:layout_height="170dp"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="@color/overlay_bg"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintTop_toTopOf="@+id/guideline27"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/cardViewBig">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Placeholder text for card 1"
+                    android:textSize="18sp"
+                    android:id="@+id/tvCardViewBig"/>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewBig"
+            android:id="@+id/linearLayout7">
+        <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/overlay_bg"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/cardView2">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Placeholder text for card 2"
+                    android:textSize="18sp"
+                    android:id="@+id/tvCardView2" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/overlay_bg"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/cardView3">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Placeholder text for card 3"
+                    android:textSize="18sp"
+                    android:id="@+id/tvCardView3"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/overlay_bg"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/cardView4">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Placeholder text for card 4"
+                    android:textSize="18sp"
+                    android:id="@+id/tvCardView4"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/overlay_bg"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/cardView5">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Placeholder text for card 5"
+                    android:textSize="18sp"
+                    android:id="@+id/tvCardView5"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
