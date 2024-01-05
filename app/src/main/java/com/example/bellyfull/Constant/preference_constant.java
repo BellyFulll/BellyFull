@@ -4,5 +4,4 @@ public class preference_constant {
     public static String pUserInfo = "userInfo";
     public static String pIsLogin = "ISLOGIN";
     public static String pUserId = "USERID";
-    public static String pBabyInfoId = "BABY_INFO_ID";
 }
