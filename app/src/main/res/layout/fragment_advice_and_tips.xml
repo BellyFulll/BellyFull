@@ -1,16 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.AdviceAndTips.Fragments.AdviceAndTipsFragment"
-    android:background="@color/pink2">
+    android:background="@color/pink2"
+    tools:context=".modules.AdviceAndTips.Fragments.AdviceAndTipsFragment">
 
     <TextView
+        android:id="@+id/nutritionalguidelines"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="132dp"
+        android:gravity="center_vertical"
+        android:text="@string/nutritional"
+        android:textAppearance="@style/nutritional"
+        app:layout_constraintStart_toStartOf="@+id/leftMargin"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/exerciserecommendations"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="308dp"
+        android:gravity="center_vertical"
+        android:text="Exercise Recommendations"
+        android:textAppearance="@style/nutritional"
+        app:layout_constraintStart_toStartOf="@+id/leftMargin"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/frequentlyaskedquestions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="484dp"
+        android:gravity="center_vertical"
+        android:text="Frequently Asked Questions"
+        android:textAppearance="@style/nutritional"
+        app:layout_constraintStart_toStartOf="@+id/leftMargin"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rightMargin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="AdviseAndTipsFragment"
-        android:textSize="25dp" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="376dp" />
 
-</RelativeLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/leftMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="26dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvng"
+        android:layout_width="350dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="156dp"
+        android:background="@color/pink3"
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="10" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rver"
+        android:layout_width="350dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="332dp"
+        android:background="@color/pink3"
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="10" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvfaq"
+        android:layout_width="350dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="512dp"
+        android:background="@color/pink3"
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="10" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
