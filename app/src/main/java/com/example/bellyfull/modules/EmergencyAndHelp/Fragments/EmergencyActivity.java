@@ -39,6 +39,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -158,7 +159,7 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
         for (PlaceResult placeResult : placeResults) {
             // Create a SpannableString to apply blue color and bold style to the hospital name
             SpannableString spannableString = new SpannableString(placeResult.getName() + "\n");
-            spannableString.setSpan(new ForegroundColorSpan(Color.BLUE), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.brown1)), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             // Append hospital name and address
             mTextView.append(spannableString);
