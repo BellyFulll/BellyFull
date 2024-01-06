@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="200dp"
+        android:layout_height="160dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        app:cardBackgroundColor="@color/overlay_bg"
+        app:cardCornerRadius="8dp"
+        android:id="@+id/cardKcalMin">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="1698 kcal"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:id="@+id/tvCardKcalMinValue"
+            android:textColor="@color/pink1"
+            android:fontFamily="@font/a_bee_zee_regular"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Consumed"
+            android:textSize="18sp"
+            android:id="@+id/tvCardKcalMinTitle"
+            android:translationY="33dp"
+            android:textColor="@color/pink1"
+            android:fontFamily="@font/a_bee_zee_regular"/>
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/img_mom_kcal"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="60dp"/>
+</androidx.cardview.widget.CardView>
+
