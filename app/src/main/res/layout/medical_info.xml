@@ -6,66 +6,75 @@
         android:layout_height="match_parent"
         android:background="@drawable/pregnancy_mum_input_bg">
 
-
-    <TextView
-            android:fontFamily="@font/a_bee_zee_regular"
-            android:text="Mum's information"
-            android:textSize="30sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/medInfoTitle"
+    <FrameLayout
+            android:id="@+id/textFrame"
+            android:layout_width="385dp"
+            android:layout_height="492dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="428dp" />
+            app:layout_constraintTop_toBottomOf="@id/guideline28"
+            android:background="@color/pink6">
 
-    <TextView
-            android:fontFamily="@font/a_bee_zee_regular"
-            android:text="Name"
-            android:textSize="25sp"
+        <TextView
+                android:fontFamily="@font/a_bee_zee_regular"
+                android:text="Mum's information"
+                android:textSize="30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/medInfoTitle"
+                android:textColor="@color/dark_pink"
+                android:layout_gravity="center_horizontal" />
+
+        <TextView
+                android:fontFamily="@font/a_bee_zee_regular"
+                android:text="Name: "
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mumName"
+                android:textColor="@color/dark_pink"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center_horizontal" />
+
+        <TextView
+                android:fontFamily="@font/a_bee_zee_regular"
+                android:text="Pregnant for n weeks"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mumPregnancyWeeks"
+                android:textColor="@color/dark_pink"
+                android:layout_marginTop="95dp"
+                android:layout_gravity="center_horizontal" />
+
+        <TextView
+                android:fontFamily="@font/a_bee_zee_regular"
+                android:text="Contact No: "
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mumContactNo"
+                android:textColor="@color/dark_pink"
+                android:layout_marginTop="140dp"
+                android:layout_gravity="center_horizontal" />
+
+        <TextView
+                android:fontFamily="@font/a_bee_zee_regular"
+                android:text="Address: "
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mumAddress"
+                android:textColor="@color/dark_pink"
+                android:layout_marginTop="185dp"
+                android:layout_gravity="center_horizontal" />
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mumName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/medInfoTitle" />
-
-    <TextView
-            android:fontFamily="@font/a_bee_zee_regular"
-            android:text="Address."
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mumAddress"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/mumContactNo" />
-
-    <TextView
-            android:fontFamily="@font/a_bee_zee_regular"
-            android:text="Contact No."
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mumContactNo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/mumPregnancyWeeks" />
-
-    <TextView
-            android:fontFamily="@font/a_bee_zee_regular"
-            android:text="Pregnant for n weeks"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mumPregnancyWeeks"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/mumName" />
-
+            app:layout_constraintGuide_begin="420dp"
+            android:id="@+id/guideline28" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
