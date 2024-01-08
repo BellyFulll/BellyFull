@@ -144,51 +144,78 @@
         android:text="Select Category"
         android:paddingLeft="10dp"
         android:layout_marginBottom="5dp"/>
-
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RadioGroup
+        android:id="@+id/MyRG"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/RB1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edit_text"
             android:backgroundTint="@color/pink2"
-            android:text="Check Up"
-            android:paddingHorizontal="5dp"/>
+            android:paddingHorizontal="5dp"
+            android:text="Check Up" />
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/RB2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type 2"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/rounded_edit_text"
             android:backgroundTint="@color/pink3"
-            android:layout_marginLeft="10dp"
-            android:paddingHorizontal="5dp"/>
+            android:paddingHorizontal="5dp"
+            android:text="Type 2"
+            android:visibility="invisible"/>
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/RB3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/rounded_edit_text"
             android:backgroundTint="@color/pink4"
+            android:paddingHorizontal="5dp"
             android:text="Type 3"
-            android:layout_marginLeft="10dp"
-            android:paddingHorizontal="5dp"/>
-    </RadioGroup>
+            android:visibility="invisible"/>
 
+        <RadioButton
+            android:id="@+id/RB4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rounded_edit_text"
+            android:backgroundTint="@color/pink4"
+            android:paddingHorizontal="5dp"
+            android:text="Type 4"
+            android:visibility="invisible"/>
+        <RadioButton
+            android:id="@+id/RB5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rounded_edit_text"
+            android:backgroundTint="@color/pink4"
+            android:paddingHorizontal="5dp"
+            android:text="Type 5"
+            android:visibility="invisible"/>
+    </RadioGroup>
+    </HorizontalScrollView>
     <TextView
-        android:id="@+id/TVaddCategory"
+        android:id="@+id/TVAddCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="+ Add new"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
         android:paddingLeft="10dp"
-        android:textColor="@color/purple"
-        android:layout_marginBottom="20dp"/>
+        android:text="+ Add new"
+        android:textColor="@color/purple" />
 
     <Button
         android:id="@+id/btnCreateEvent"

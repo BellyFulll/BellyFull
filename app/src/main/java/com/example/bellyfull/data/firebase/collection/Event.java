@@ -1,20 +1,25 @@
 package com.example.bellyfull.data.firebase.collection;
 
+import android.graphics.Color;
+
 public class Event {
     private String eventName;
     private String note;
     private String date;
-    private String time;
+    private String startTime;
+    private String endTime;
     private String userId;
     private String category;
-    public Event (String eventName, String date, String time, String userId, String category){
+    private Color categoryColor;
+
+    public Event(String eventName, String date, String time, String userId, String category) {
         this.date = date;
     }
 
-    public Event (){
+    public Event() {
     }
 
-    public void setEventName(String eventName,String userId) {
+    public void setEventName(String eventName) {
         this.eventName = eventName;
         this.userId = userId;
     }
@@ -39,12 +44,20 @@ public class Event {
         return date;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public String getTime() {
-        return time;
+    public String getstartTime() {
+        return startTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
     }
 
     public void setCategory(String category) {
@@ -53,6 +66,14 @@ public class Event {
 
     public String getCategory() {
         return category;
+    }
+
+    public void setCategoryColor(Color color) {
+        this.categoryColor = color;
+    }
+
+    public Color getCategoryColor(Color color) {
+        return this.categoryColor;
     }
 
     public String getUserId() {
