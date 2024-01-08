@@ -5,4 +5,5 @@ public class db_collection_constant {
 
     public static String EventCollection = "EVENT";
     public static String BabyInfoCollection = "BABY_INFO";
+    public static String MomInfoCollection = "MOM_INFO";
 }
