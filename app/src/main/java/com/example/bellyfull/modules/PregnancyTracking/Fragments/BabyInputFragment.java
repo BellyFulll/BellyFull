@@ -1,9 +1,12 @@
 package com.example.bellyfull.modules.PregnancyTracking.Fragments;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +21,7 @@ import androidx.navigation.Navigation;
 import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.repository.fbBabyInfoRepositoryImpl;
+import com.example.bellyfull.utils.hideKeyboardUtils;
 
 import java.util.UUID;
 
@@ -59,57 +63,103 @@ public class BabyInputFragment extends Fragment {
         IVFetalLengthInc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double currentValue = Double.parseDouble(ETFetalLength.getText().toString());
-                currentValue += 0.5;
+                String fetalLength = ETFetalLength.getText().toString();
+                System.out.println(fetalLength);
+                Double currentValue = 0.0;
+                if (!fetalLength.matches("")) {
+                    currentValue = Double.parseDouble(fetalLength);
+                    currentValue += 0.5;
+                } else {
+                    currentValue = 0.5;
+                }
                 ETFetalLength.setText(currentValue.toString());
+                ETFetalLength.clearFocus();
+                hideKeyboardUtils.hideKeyboard(getActivity(), v);
             }
         });
 
         IVFetalLengthDec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double currentValue = Double.parseDouble(ETFetalLength.getText().toString());
-                if (currentValue <= 0) return;
-                currentValue -= 0.5;
+                String fetalLength = ETFetalLength.getText().toString();
+                Double currentValue = 0.0;
+                if (!fetalLength.matches("") && !fetalLength.matches("0.0")) {
+                    currentValue = Double.parseDouble(fetalLength);
+                    currentValue -= 0.5;
+                } else {
+                    return;
+                }
                 ETFetalLength.setText(currentValue.toString());
+                ETFetalLength.clearFocus();
+                hideKeyboardUtils.hideKeyboard(getActivity(), v);
             }
         });
 
         IVFetalWeightInc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double currentValue = Double.parseDouble(ETFetalWeight.getText().toString());
-                currentValue += 0.5;
+                String fetalWeight = ETFetalWeight.getText().toString();
+                Double currentValue = 0.0;
+                if (!fetalWeight.matches("")) {
+                    currentValue = Double.parseDouble(fetalWeight);
+                    currentValue += 0.5;
+                } else {
+                    currentValue = 0.5;
+                }
                 ETFetalWeight.setText(currentValue.toString());
+                ETFetalWeight.clearFocus();
+                hideKeyboardUtils.hideKeyboard(getActivity(), v);
             }
         });
 
         IVFetalWeightDec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double currentValue = Double.parseDouble(ETFetalWeight.getText().toString());
-                if (currentValue <= 0) return;
-                currentValue -= 0.5;
+                String fetalWeight = ETFetalWeight.getText().toString();
+                Double currentValue = 0.0;
+                if (!fetalWeight.matches("") && !fetalWeight.matches("0.0")) {
+                    currentValue = Double.parseDouble(fetalWeight);
+                    currentValue -= 0.5;
+                } else {
+                    return;
+                }
                 ETFetalWeight.setText(currentValue.toString());
+                ETFetalWeight.clearFocus();
+                hideKeyboardUtils.hideKeyboard(getActivity(), v);
             }
         });
 
         IVHeadCircumferenceInc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double currentValue = Double.parseDouble(ETHeadCircumference.getText().toString());
-                currentValue += 0.5;
+                String headCircumference = ETHeadCircumference.getText().toString();
+                Double currentValue = 0.0;
+                if (!headCircumference.matches("")) {
+                    currentValue = Double.parseDouble(headCircumference);
+                    currentValue += 0.5;
+                } else {
+                    currentValue = 0.5;
+                }
                 ETHeadCircumference.setText(currentValue.toString());
+                ETHeadCircumference.clearFocus();
+                hideKeyboardUtils.hideKeyboard(getActivity(), v);
             }
         });
 
         IVHeadCircumferenceDec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double currentValue = Double.parseDouble(ETHeadCircumference.getText().toString());
-                if (currentValue <= 0) return;
-                currentValue -= 0.5;
+                String headCircumference = ETHeadCircumference.getText().toString();
+                Double currentValue = 0.0;
+                if (!headCircumference.matches("") && !headCircumference.matches("0.0")) {
+                    currentValue = Double.parseDouble(headCircumference);
+                    currentValue -= 0.5;
+                } else {
+                    return;
+                }
                 ETHeadCircumference.setText(currentValue.toString());
+                ETHeadCircumference.clearFocus();
+                hideKeyboardUtils.hideKeyboard(getActivity(), v);
             }
         });
 
