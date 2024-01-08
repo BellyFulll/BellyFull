@@ -33,6 +33,42 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/ETDigestiveSymptomsInput"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/ETPhysicalDiscomfortsInput"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/ETMentalAndEmotionalHealthInput"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/ETBreastAndBodyChangesInput"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/ETUrinaryAndReproductiveHealthInput"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/ETGastrointestinalSymptomsInput"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible" />
+
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
@@ -45,6 +81,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/BtnDigestiveSymptoms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -55,6 +92,7 @@
                         app:cornerRadius="15dp" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/BtnPhysicalDiscomforts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -65,16 +103,18 @@
                         app:cornerRadius="15dp" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/BtnMentalAndEmotionalHealth"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
                         android:backgroundTint="@color/overlay_bg"
                         android:paddingVertical="15dp"
-                        android:text="Material and\nEmotional Health"
+                        android:text="Mental and\nEmotional Health"
                         android:textColor="@color/pink2"
                         app:cornerRadius="15dp" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/BtnBreastAndBodyChanges"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -85,6 +125,7 @@
                         app:cornerRadius="15dp" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/BtnUrinaryAndReproductiveHealth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -95,6 +136,7 @@
                         app:cornerRadius="15dp" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/BtnGastrointestinalSymptoms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -125,7 +167,7 @@
                 android:padding="10dp">
 
                 <EditText
-                    android:id="@+id/etFoodDiary"
+                    android:id="@+id/ETFoodDiary"
                     android:layout_width="104dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"
@@ -173,7 +215,7 @@
                 android:padding="10dp">
 
                 <EditText
-                    android:id="@+id/etSleepPatterns"
+                    android:id="@+id/ETSleepPatterns"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginRight="10dp"
@@ -183,6 +225,7 @@
                     android:ems="10"
                     android:hint="Type..."
                     android:inputType="text"
+                    android:paddingLeft="10dp"
                     tools:layout_editor_absoluteX="49dp"
                     tools:layout_editor_absoluteY="394dp" />
             </LinearLayout>
@@ -192,7 +235,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/btnMomCancel"
+                    android:id="@+id/BtnMomInputCancel"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -204,7 +247,7 @@
                     android:textSize="20sp" />
 
                 <Button
-                    android:id="@+id/btnMomUpdate"
+                    android:id="@+id/BtnMomInputUpdate"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
