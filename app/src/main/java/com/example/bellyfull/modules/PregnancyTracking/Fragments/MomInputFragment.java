@@ -65,8 +65,10 @@ public class MomInputFragment extends Fragment {
             public void onClick(View view) {
                 // check camera permission
                 if (!checkCameraPermission(requireContext())) {
+                    System.out.println("in if block");
                     requestCameraPermission(requireContext());
                 } else {
+                    System.out.println("in else block");
                     dispatchTakePictureIntent();
                 }
             }
@@ -92,6 +94,7 @@ public class MomInputFragment extends Fragment {
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
             // Create the File where the photo should go
+            System.out.println("i dont think this is coming out");
             File photoFile = null;
             try {
                 photoFile = createImageFile();
@@ -155,7 +158,7 @@ public class MomInputFragment extends Fragment {
         }
     }
 
-        @Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
