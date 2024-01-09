@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.PersonalisedNotifications.Fragments.CalendarFragment"
-    android:background="@color/pink4">
+    android:background="@color/pink4"
+    tools:context=".modules.PersonalisedNotifications.Fragments.CalendarFragment">
 
     <ImageView
         android:id="@+id/lowerVector"
@@ -75,5 +75,21 @@
         app:backgroundTint="@color/pink1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="invisible"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/FCVforInputEvent"
+        android:name="com.example.bellyfull.modules.PersonalisedNotifications.Fragments.BlankFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
