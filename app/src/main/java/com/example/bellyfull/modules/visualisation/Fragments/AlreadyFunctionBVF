@@ -1,3 +1,5 @@
+//Keep here because I'll be trial and error in the BabyVisualisationFragment.java
+//Will delete once done with it
 package com.example.bellyfull.modules.visualisation.Fragments;
 
 import android.app.ProgressDialog;
@@ -26,6 +28,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+
 public class BabyVisualisationFragment extends Fragment {
 
     private RecyclerView recyclerView;
@@ -47,12 +50,7 @@ public class BabyVisualisationFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-
-        // Use LinearLayoutManager with reverseLayout set to true
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true); // Optional, ensures that the last item stays at the bottom
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         db = FirebaseFirestore.getInstance();
         babyArrayList = new ArrayList<>();
@@ -85,21 +83,18 @@ public class BabyVisualisationFragment extends Fragment {
         return view;
     }
 
+
     private void eventChangeListener() {
         db.collection("BABY_INFO")
-                .orderBy("timestamp", Query.Direction.DESCENDING) // Assuming you have a timestamp field for sorting
-                .addSnapshotListener((value, error) -> {
-                    if (error != null) {
-                        Log.e("Firestore error", "Error getting documents: ", error);
-                        return;
-                    }
-
-                    if (value != null) {
-                        babyArrayList.clear(); // Clear existing data
-                        for (DocumentSnapshot document : value) {
-                            babyArrayList.add(0, document.toObject(Baby.class)); // Add new items at the beginning
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (DocumentSnapshot document : task.getResult()) {
+                            babyArrayList.add(document.toObject(Baby.class));
                         }
                         myAdapter.notifyDataSetChanged();
+                    } else {
+                        Log.e("Firestore error", "Error getting documents: ", task.getException());
                     }
 
                     if (progressDialog.isShowing()) {
@@ -108,9 +103,11 @@ public class BabyVisualisationFragment extends Fragment {
                 });
     }
 
+
     private void navigateToBabyInputFragment() {
         // Use Navigation Component to navigate to BabyInputFragment
         NavHostFragment.findNavController(this)
                 .navigate(R.id.action_babyVisualisationFragment_to_babyInputFragment);
     }
+
 }

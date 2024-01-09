@@ -13,14 +13,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
@@ -41,7 +38,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.Event;
-import com.example.bellyfull.data.firebase.ports.eventRepository;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
 import com.example.bellyfull.modules.PersonalisedNotifications.Activity.NotificationSettingsActivity;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -71,9 +67,14 @@ public class CalendarFragment extends Fragment  {
     }
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        TVDate = view.findViewById(R.id.TVDate);
+        TVStartTime = view.findViewById(R.id.TVStartTime);
+        TVEndTime = view.findViewById(R.id.TVEndTime);
+
+        FloatingActionButton btnAddEvent = getView().findViewById(R.id.btnBabyInput);
         overlayView = getView().findViewById(R.id.overlayView);
         CalendarView calendarView = view.findViewById(R.id.calendarView);
-        FloatingActionButton btnAddEvent = getView().findViewById(R.id.btnAddEvent);
         Button settingsButton = view.findViewById(R.id.settingsButton);
         overlayView.setOnClickListener(new View.OnClickListener() {
             @Override

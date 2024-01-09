@@ -166,6 +166,7 @@ public class BabyInputFragment extends Fragment {
                 NavDirections action = BabyInputFragmentDirections.actionBabyInputFragmentToHomeFragment();
                 Navigation.findNavController(view).navigate(action);
             }
+
         });
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -200,6 +201,11 @@ public class BabyInputFragment extends Fragment {
 
                 ETGrowthNotes.clearFocus();
                 Toast.makeText(getContext(), "Successfully updated", Toast.LENGTH_SHORT).show();
+
+                // After updating the baby information, navigate to BabyVisualizationFragment
+                NavDirections action = BabyInputFragmentDirections.actionBabyInputFragmentToBabyVisualisationFragment();
+                Navigation.findNavController(view).navigate(action);
+
             }
         });
     }
