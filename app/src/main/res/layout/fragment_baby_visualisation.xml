@@ -7,6 +7,63 @@
     android:background="@color/pink2"
     tools:context=".modules.visualisation.Fragments.BabyVisualisationFragment">
 
+
+    <ImageView
+        android:id="@+id/IVCard"
+        android:layout_width="450dp"
+        android:layout_height="162dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="240dp"
+        android:foregroundGravity="center_horizontal"
+        android:src="@mipmap/card"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TVHeadCircumferenceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:text="Head\nCircumference (cm)"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/TVHeightTitle"
+        app:layout_constraintStart_toEndOf="@+id/TVHeightTitle"
+        app:layout_constraintTop_toTopOf="@+id/TVHeightTitle"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/TVHeightTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="Height (cm)"
+        app:layout_constraintBottom_toBottomOf="@+id/TVWeightTitle"
+        app:layout_constraintStart_toEndOf="@+id/TVWeightTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/TVWeightTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="272dp"
+        android:text="Weight (g)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="330dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.478" />
+
     <ImageView
         android:id="@+id/IVBaby"
         android:layout_width="595dp"
@@ -17,92 +74,98 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/IVCard"
-        android:layout_width="450dp"
-        android:layout_height="162dp"
-        android:layout_marginStart="-20dp"
-        android:layout_marginTop="284dp"
-        android:src="@mipmap/card"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/TVWeightTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="316dp"
-        android:text="Weight (g)"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/TVHeightTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:text="Height (cm)"
-        app:layout_constraintBottom_toBottomOf="@+id/TVWeightTitle"
-        app:layout_constraintStart_toEndOf="@+id/TVWeightTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/TVHeadCircumferenceTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="Head\nCircumference (cm)"
-        android:textAlignment="viewEnd"
-        app:layout_constraintBottom_toBottomOf="@+id/TVHeightTitle"
-        app:layout_constraintStart_toEndOf="@+id/TVHeightTitle"
-        app:layout_constraintTop_toTopOf="@+id/TVHeightTitle"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <!--
-    <TextView
-        android:id="@+id/tvWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="-"
-        app:layout_constraintEnd_toEndOf="@+id/TVWeightTitle"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="@+id/TVWeightTitle"
-        app:layout_constraintTop_toBottomOf="@+id/TVWeightTitle" />-->
-
-    <!--TextView
-        android:id="@+id/tvHeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:text="-"
-        app:layout_constraintEnd_toEndOf="@+id/TVHeightTitle"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="@+id/TVHeightTitle"
-        app:layout_constraintTop_toBottomOf="@+id/TVHeightTitle" /-->
-
-    <!--TextView
-        android:id="@+id/tvHeadCircumference"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="-"
-        app:layout_constraintEnd_toEndOf="@+id/TVHeadCircumferenceTitle"
-        app:layout_constraintHorizontal_bias="0.468"
-        app:layout_constraintStart_toStartOf="@+id/TVHeadCircumferenceTitle"
-        app:layout_constraintTop_toBottomOf="@+id/TVHeadCircumferenceTitle" /-->
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="330dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/imageView9"
+        android:layout_width="395dp"
+        android:layout_height="554dp"
+        android:layout_marginTop="400dp"
+        android:src="@drawable/card2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="18dp"
+        android:layout_height="15dp"
+        android:layout_alignTop="@+id/spinner"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="504dp"
+        android:src="@drawable/baseline_info_outline_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="32dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="428dp"
+        android:src="@mipmap/graph_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.532" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="420dp"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnBabyInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="48dp"
+        android:clickable="true"
+        android:src="@drawable/baseline_add_circle_outline_24"
+        app:backgroundTint="@color/pink1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="317dp"
+        android:layout_height="379dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/graph"
+        app:layout_constraintEnd_toEndOf="@+id/TVGraph"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/TVGraph" />
+
+    <TextView
+        android:id="@+id/TVGraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="48dp"
+        android:text="Graphic WHO are used for children ages 0 - 5 years old."
+        android:textColor="#F48FB1"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/TVGraphicCDC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="468dp"
+        android:text="Graphic CDC"
+        android:textColor="#E85B7D"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
