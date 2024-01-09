@@ -53,18 +53,23 @@ import java.util.List;
 import java.util.UUID;
 
 
-public class CalendarFragment extends Fragment  {
+public class CalendarFragment extends Fragment {
     public View overlayView;
+    public TextView TVDate;
+    public TextView TVStartTime;
+    public TextView TVEndTime;
     private static final String CHANNEL_ID = "ReminderChannel";
 
     public CalendarFragment() {
         super(R.layout.fragment_calendar);
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        impl = new eventRepositoryImpl(getContext());
     }
+
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -100,6 +105,7 @@ public class CalendarFragment extends Fragment  {
         // Schedule health checkup reminder when the fragment is created
         scheduleHealthCheckupReminder();
     }
+
     private void showEventInputFragment() {
         overlayView.setVisibility(View.VISIBLE);
         EventInputFragment fragment = new EventInputFragment();
@@ -111,6 +117,7 @@ public class CalendarFragment extends Fragment  {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
     private void hideEventInputFragment() {
         overlayView.setVisibility(View.GONE);
 
@@ -122,9 +129,11 @@ public class CalendarFragment extends Fragment  {
             transaction.commit();
         }
     }
+
     public View getOverlayView() {
         return overlayView;
     }
+
     private void onSettingsButtonClick() {
         Intent intent = new Intent(requireContext(), NotificationSettingsActivity.class);
         startActivity(intent);
@@ -165,7 +174,7 @@ public class CalendarFragment extends Fragment  {
         }
     }
 
-//    private void addEventToCalendar() {
+    //    private void addEventToCalendar() {
 //        ContentResolver cr = requireActivity().getContentResolver();
 //        ContentValues values = new ContentValues();
 //        // Set your values for calendar event
