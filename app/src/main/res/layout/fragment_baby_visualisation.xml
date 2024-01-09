@@ -60,6 +60,7 @@
         app:layout_constraintTop_toTopOf="@+id/TVHeightTitle"
         app:layout_constraintVertical_bias="1.0" />
 
+    <!--
     <TextView
         android:id="@+id/tvWeight"
         android:layout_width="wrap_content"
@@ -69,9 +70,9 @@
         app:layout_constraintEnd_toEndOf="@+id/TVWeightTitle"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="@+id/TVWeightTitle"
-        app:layout_constraintTop_toBottomOf="@+id/TVWeightTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/TVWeightTitle" />-->
 
-    <TextView
+    <!--TextView
         android:id="@+id/tvHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,9 +81,9 @@
         app:layout_constraintEnd_toEndOf="@+id/TVHeightTitle"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="@+id/TVHeightTitle"
-        app:layout_constraintTop_toBottomOf="@+id/TVHeightTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/TVHeightTitle" /-->
 
-    <TextView
+    <!--TextView
         android:id="@+id/tvHeadCircumference"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,6 +92,17 @@
         app:layout_constraintEnd_toEndOf="@+id/TVHeadCircumferenceTitle"
         app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="@+id/TVHeadCircumferenceTitle"
-        app:layout_constraintTop_toBottomOf="@+id/TVHeadCircumferenceTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/TVHeadCircumferenceTitle" /-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="330dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
