@@ -1,10 +1,7 @@
 <!-- res/values/strings.xml -->
 <resources>
     <string name="app_name">BellyFull</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nutritional">Nutritional Guidelines</string>
-    <string name="exercise_re">Exercise Recommendations</string>
-    <string name="faq">FAQ</string>
     <string name="appwidget_text">Emergency</string>
     <string name="widget_action">Call</string>
     <string name="app_widget_description">Add a way to contact emergency.</string>
