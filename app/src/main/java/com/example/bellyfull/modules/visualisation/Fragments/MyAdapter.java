@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bellyfull.R;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 

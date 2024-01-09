@@ -1,6 +1,5 @@
 package com.example.bellyfull.modules.Authentication.Fragments;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.repository.fbProfileRepositoryImpl;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import com.example.bellyfull.R;
 
 public class ResetPasswordFragment extends Fragment {
     private FirebaseFirestore db;

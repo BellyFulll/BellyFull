@@ -1,20 +1,12 @@
 package com.example.bellyfull.data.firebase.repository;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 
 import com.example.bellyfull.Constant.db_collection_constant;
 import com.example.bellyfull.data.firebase.collection.Event;
 import com.example.bellyfull.data.firebase.firebase;
 import com.example.bellyfull.data.firebase.ports.eventRepository;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.UUID;
 
 public class eventRepositoryImpl implements eventRepository {
     Context context;

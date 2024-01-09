@@ -16,7 +16,6 @@ import androidx.navigation.Navigation;
 
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.repository.fbProfileRepositoryImpl;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 

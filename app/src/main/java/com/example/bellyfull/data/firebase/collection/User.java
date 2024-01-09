@@ -1,7 +1,5 @@
 package com.example.bellyfull.data.firebase.collection;
 
-import java.util.UUID;
-
 public class User {
     private String userId;
     private String name;

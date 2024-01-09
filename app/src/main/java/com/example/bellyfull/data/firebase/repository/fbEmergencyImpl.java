@@ -5,8 +5,8 @@ import android.content.Context;
 import com.example.bellyfull.Constant.db_collection_constant;
 import com.example.bellyfull.data.firebase.collection.User;
 import com.example.bellyfull.data.firebase.firebase;
-import com.example.bellyfull.data.firebase.ports.dbProfileCallback;
 import com.example.bellyfull.data.firebase.ports.dbEmergency;
+import com.example.bellyfull.data.firebase.ports.dbProfileCallback;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 

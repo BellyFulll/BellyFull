@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 
 import com.example.bellyfull.Constant.db_collection_constant;
 import com.example.bellyfull.data.firebase.firebase;
+import com.example.bellyfull.data.firebase.ports.dbLoginCallback;
 import com.example.bellyfull.data.firebase.ports.fbLoginRepository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.example.bellyfull.data.firebase.ports.dbLoginCallback;
 
 public class fbLoginRepositoryImpl implements fbLoginRepository {
 
