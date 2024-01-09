@@ -7,17 +7,90 @@
     android:background="@color/pink2"
     tools:context=".modules.visualisation.Fragments.BabyVisualisationFragment">
 
+    <ImageView
+        android:id="@+id/IVBaby"
+        android:layout_width="595dp"
+        android:layout_height="278dp"
+        android:layout_marginStart="-75dp"
+        android:src="@mipmap/embryo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/IVCard"
+        android:layout_width="450dp"
+        android:layout_height="162dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="284dp"
+        android:src="@mipmap/card"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
+        android:id="@+id/TVWeightTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Baby Visualisation Fragment"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="316dp"
+        android:text="Weight (g)"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TVHeightTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:text="Height (cm)"
+        app:layout_constraintBottom_toBottomOf="@+id/TVWeightTitle"
+        app:layout_constraintStart_toEndOf="@+id/TVWeightTitle"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/TVHeadCircumferenceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Head\nCircumference (cm)"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/TVHeightTitle"
+        app:layout_constraintStart_toEndOf="@+id/TVHeightTitle"
+        app:layout_constraintTop_toTopOf="@+id/TVHeightTitle"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tvWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="-"
+        app:layout_constraintEnd_toEndOf="@+id/TVWeightTitle"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="@+id/TVWeightTitle"
+        app:layout_constraintTop_toBottomOf="@+id/TVWeightTitle" />
+
+    <TextView
+        android:id="@+id/tvHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="-"
+        app:layout_constraintEnd_toEndOf="@+id/TVHeightTitle"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/TVHeightTitle"
+        app:layout_constraintTop_toBottomOf="@+id/TVHeightTitle" />
+
+    <TextView
+        android:id="@+id/tvHeadCircumference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="-"
+        app:layout_constraintEnd_toEndOf="@+id/TVHeadCircumferenceTitle"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="@+id/TVHeadCircumferenceTitle"
+        app:layout_constraintTop_toBottomOf="@+id/TVHeadCircumferenceTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

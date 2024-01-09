@@ -7,15 +7,51 @@
     android:background="@color/pink2"
     tools:context=".modules.AdviceAndTips.Fragments.AdviceAndTipsFragment">
 
+    <ImageView
+        android:id="@+id/lowerVector"
+        android:layout_width="415dp"
+        android:layout_height="147dp"
+        android:layout_marginBottom="616dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/lower_vector" />
+
+    <ImageView
+        android:id="@+id/upperVector"
+        android:layout_width="413dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="640dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/upper_vector" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="215dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/logo" />
+
     <TextView
         android:id="@+id/nutritionalguidelines"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="124dp"
+        android:fontFamily="@font/a_bee_zee_regular"
         android:gravity="center_vertical"
         android:text="@string/nutritional"
         android:textAppearance="@style/nutritional"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/leftMargin"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,10 +60,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="300dp"
+        android:fontFamily="@font/a_bee_zee_regular"
         android:gravity="center_vertical"
         android:text="Exercise Recommendations"
         android:textAppearance="@style/nutritional"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/leftMargin"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,10 +76,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="484dp"
+        android:layout_marginTop="480dp"
+        android:fontFamily="@font/a_bee_zee_regular"
         android:gravity="center_vertical"
         android:text="Frequently Asked Questions"
         android:textAppearance="@style/nutritional"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/leftMargin"
         app:layout_constraintTop_toTopOf="parent" />
 
