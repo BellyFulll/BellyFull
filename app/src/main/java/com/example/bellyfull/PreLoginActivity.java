@@ -5,12 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.bellyfull.Constant.preference_constant;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.modules.General.MainLoadingFragmentDirections;
 
 public class PreLoginActivity extends AppCompatActivity {

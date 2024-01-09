@@ -4,10 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bellyfull.R;
 import com.example.bellyfull.modules.AdviceAndTips.Adapter.AdviceAdapter;
 import com.example.bellyfull.modules.AdviceAndTips.Models.AdviceItem;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;

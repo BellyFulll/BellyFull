@@ -1,15 +1,31 @@
 package com.example.bellyfull.modules.EmergencyAndHelp.Fragments;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.net.Uri;
-import android.location.Location;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.method.ScrollingMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.PreLoginActivity;
@@ -17,7 +33,6 @@ import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.User;
 import com.example.bellyfull.data.firebase.ports.dbProfileCallback;
 import com.example.bellyfull.data.firebase.repository.fbEmergencyImpl;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,31 +41,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.ScrollingMovementMethod;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.text.style.TypefaceSpan;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.libraries.places.api.net.PlacesClient;
-import java.util.List;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import java.util.List;
 
 
 public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCallback {

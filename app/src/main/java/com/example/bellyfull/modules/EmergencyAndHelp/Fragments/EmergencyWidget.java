@@ -9,7 +9,6 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.example.bellyfull.R;
-import com.example.bellyfull.modules.EmergencyAndHelp.Fragments.EmergencyActivity;
 
 /**
  * Implementation of App Widget functionality.

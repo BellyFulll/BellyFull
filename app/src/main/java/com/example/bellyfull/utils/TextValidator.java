@@ -1,7 +1,5 @@
 package com.example.bellyfull.utils;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.TextView;
 
 import java.util.regex.Matcher;

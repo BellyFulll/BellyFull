@@ -10,30 +10,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.bellyfull.MainActivity;
-import com.example.bellyfull.data.firebase.repository.fbLoginRepositoryImpl;
-import com.example.bellyfull.data.firebase.ports.dbLoginCallback;
-import com.example.bellyfull.Constant.preference_constant;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.example.bellyfull.Constant.preference_constant;
+import com.example.bellyfull.MainActivity;
 import com.example.bellyfull.R;
+import com.example.bellyfull.data.firebase.ports.dbLoginCallback;
+import com.example.bellyfull.data.firebase.repository.fbLoginRepositoryImpl;
 import com.example.bellyfull.data.firebase.repository.fbSignUpRepositoryImpl;
 import com.example.bellyfull.utils.TextValidator;
-
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.android.gms.tasks.Task;
 
 public class LoginFragment extends Fragment {
     private static final int RC_SIGN_IN = 9001;
