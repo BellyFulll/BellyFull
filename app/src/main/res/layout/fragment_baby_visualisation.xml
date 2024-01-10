@@ -4,168 +4,406 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink2"
-    tools:context=".modules.visualisation.Fragments.BabyVisualisationFragment">
+    android:background="@drawable/babyvisualisation_background"
+    tools:context=".modules.visualisation.Fragments.BabyVisualisationFragment" >
 
-
-    <ImageView
-        android:id="@+id/IVCard"
-        android:layout_width="450dp"
-        android:layout_height="162dp"
-        android:layout_marginStart="-20dp"
-        android:layout_marginTop="240dp"
-        android:foregroundGravity="center_horizontal"
-        android:src="@mipmap/card"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/TVHeadCircumferenceTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:text="Head\nCircumference (cm)"
-        android:textAlignment="viewEnd"
-        app:layout_constraintBottom_toBottomOf="@+id/TVHeightTitle"
-        app:layout_constraintStart_toEndOf="@+id/TVHeightTitle"
-        app:layout_constraintTop_toTopOf="@+id/TVHeightTitle"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/TVHeightTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="Height (cm)"
-        app:layout_constraintBottom_toBottomOf="@+id/TVWeightTitle"
-        app:layout_constraintStart_toEndOf="@+id/TVWeightTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/TVWeightTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="272dp"
-        android:text="Weight (g)"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="330dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:layout_width="415dp"
+        android:layout_height="531dp"
+        android:layout_marginTop="228dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/IVBaby"
-        android:layout_width="595dp"
-        android:layout_height="278dp"
-        android:layout_marginStart="-75dp"
-        android:src="@mipmap/embryo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="395dp"
-        android:layout_height="554dp"
-        android:layout_marginTop="400dp"
-        android:src="@drawable/card2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="18dp"
-        android:layout_height="15dp"
-        android:layout_alignTop="@+id/spinner"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="504dp"
-        android:src="@drawable/baseline_info_outline_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="32dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="428dp"
-        android:src="@mipmap/graph_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+                <LinearLayout
+                    android:id="@+id/linearLayout8"
+                    android:layout_width="380dp"
+                    android:layout_height="115dp"
+                    android:background="@drawable/rounded_linear_layout"
+                    android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="420dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                    <LinearLayout
+                        android:layout_width="380dp"
+                        android:layout_height="91dp"
+                        android:orientation="horizontal">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnBabyInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="48dp"
-        android:clickable="true"
-        android:src="@drawable/baseline_add_circle_outline_24"
-        app:backgroundTint="@color/pink1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+                        <LinearLayout
+                            android:layout_width="125dp"
+                            android:layout_height="99dp"
+                            android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="317dp"
-        android:layout_height="379dp"
-        android:layout_marginTop="20dp"
-        android:src="@mipmap/graph"
-        app:layout_constraintEnd_toEndOf="@+id/TVGraph"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/TVGraph" />
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="12dp" />
 
-    <TextView
-        android:id="@+id/TVGraph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="48dp"
-        android:text="Graphic WHO are used for children ages 0 - 5 years old."
-        android:textColor="#F48FB1"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.0" />
+                            <TextView
+                                android:id="@+id/Weight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/a_bee_zee_regular"
+                                android:text="Weight"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                android:textColor="@color/pink2"
+                                android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/TVGraphicCDC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="468dp"
-        android:text="Graphic CDC"
-        android:textColor="#E85B7D"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp" />
+
+                            <TextView
+                                android:id="@+id/WeightText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="110gram"
+                                android:textAlignment="center"
+                                android:textColor="@color/pink2"
+                                android:textStyle="bold" />
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="14dp"
+                                android:orientation="horizontal">
+
+                                <Space
+                                    android:layout_width="35dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+
+                                <LinearLayout
+                                    android:layout_width="55dp"
+                                    android:layout_height="14dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_linear_layout"
+                                    android:backgroundTint="#DAF5E9"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/WeightStatus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/a_bee_zee_regular"
+                                        android:text="Normal"
+                                        android:textAlignment="center"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textColor="#4AAD7D"
+                                        android:textSize="11sp" />
+                                </LinearLayout>
+
+                                <Space
+                                    android:layout_width="35dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="125dp"
+                            android:layout_height="98dp"
+                            android:orientation="vertical">
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="12dp" />
+
+                            <TextView
+                                android:id="@+id/Height"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/a_bee_zee_regular"
+                                android:text="Height"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                android:textColor="@color/pink2"
+                                android:textSize="10sp" />
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp" />
+
+                            <TextView
+                                android:id="@+id/HeightText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="17cm"
+                                android:textAlignment="center"
+                                android:textColor="@color/pink2"
+                                android:textStyle="bold" />
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <Space
+                                    android:layout_width="35dp"
+                                    android:layout_height="15dp"
+                                    android:layout_weight="1" />
+
+                                <LinearLayout
+                                    android:layout_width="55dp"
+                                    android:layout_height="14dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_linear_layout"
+                                    android:backgroundTint="#DAF5E9"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/HeightStatus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/a_bee_zee_regular"
+                                        android:text="Normal"
+                                        android:textAlignment="center"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textColor="#4AAD7D"
+                                        android:textSize="11sp" />
+                                </LinearLayout>
+
+                                <Space
+                                    android:layout_width="35dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="125dp"
+                            android:layout_height="97dp"
+                            android:orientation="vertical">
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="12dp" />
+
+                            <TextView
+                                android:id="@+id/HeadCircumference"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/a_bee_zee_regular"
+                                android:text="Head Circumference"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                android:textColor="@color/pink2"
+                                android:textSize="10sp" />
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp" />
+
+                            <TextView
+                                android:id="@+id/HeadCircumferenceText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="10cm"
+                                android:textAlignment="center"
+                                android:textColor="@color/pink2"
+                                android:textStyle="bold" />
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <Space
+                                    android:layout_width="35dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+
+                                <LinearLayout
+                                    android:layout_width="55dp"
+                                    android:layout_height="14dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_linear_layout"
+                                    android:backgroundTint="#DAF5E9"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/HeadCircumferenceStatus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/a_bee_zee_regular"
+                                        android:text="Normal"
+                                        android:textAlignment="center"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textColor="#4AAD7D"
+                                        android:textSize="11sp" />
+                                </LinearLayout>
+
+                                <Space
+                                    android:layout_width="35dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="44dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="252dp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="sans-serif"
+                            android:text="Last Updated on 11 December 2023"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/pink2"
+                            android:textSize="11sp" />
+
+                        <Space
+                            android:layout_width="106dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="495dp"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout7"
+                    android:layout_width="377dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_linear_layout"
+                    android:backgroundTint="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="184dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@drawable/chart_icon" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="14dp" />
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/ChartName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Weight to Height"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabBackground="@color/white"
+                        app:tabIndicatorColor="@color/pink1"
+                        app:tabIndicatorFullWidth="true"
+                        app:tabTextColor="@color/pink2">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Graphic WHO" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text="Graphic CDC" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/graphic_viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="399dp" />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
