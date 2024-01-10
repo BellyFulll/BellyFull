@@ -11,9 +11,12 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,8 +26,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bellyfull.R;
+import com.example.bellyfull.data.firebase.collection.Event;
+import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
 import com.example.bellyfull.modules.PersonalisedNotifications.Activity.NotificationSettingsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 public class CalendarFragment extends Fragment {
@@ -32,7 +43,7 @@ public class CalendarFragment extends Fragment {
     public TextView TVDate;
     public TextView TVStartTime;
     public TextView TVEndTime;
-//    boolean eventInputFragmentIsCalled;
+    eventRepositoryImpl impl;
     private static final String CHANNEL_ID = "ReminderChannel";
 
     public CalendarFragment() {
@@ -42,7 +53,7 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        impl = new eventRepositoryImpl(getContext());
+        impl = new eventRepositoryImpl(getContext());
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -63,6 +74,18 @@ public class CalendarFragment extends Fragment {
 //        while (eventInputFragmentIsCalled ==false){
 //            overlayView.setVisibility(View.GONE);
 //        }
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                // This method will be called when the user selects a date in the CalendarView
+                Calendar selectedDate = Calendar.getInstance();
+                selectedDate.set(Calendar.YEAR, year);
+                selectedDate.set(Calendar.MONTH, month);
+                selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                retrieveAndDisplayEvents(selectedDate.getTime());
+            }
+        });
         overlayView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,11 +133,58 @@ public class CalendarFragment extends Fragment {
             transaction.commit();
         }
     }
-
-    public View getOverlayView() {
-        return overlayView;
+    private void retrieveAndDisplayEvents(Date selectedDate) {
+        impl.getEventsForDate(selectedDate, new eventRepositoryImpl.EventCallback() {
+            @Override
+            public void onEventsRetrieved(List<Event> events) {
+                // Update UI to display the events
+                updateUIWithEvents(events);
+            }
+        });
     }
+    private void updateUIWithEvents(List<Event> events) {
+        LinearLayout eventContainer = getView().findViewById(R.id.eventContainer);
+        eventContainer.removeAllViews();
 
+        int marginBetweenEvents = getResources().getDimensionPixelSize(R.dimen.margin_between_events);
+
+        for (Event event : events) {
+            View eventView = LayoutInflater.from(requireContext()).inflate(R.layout.event_item, eventContainer, false);
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            layoutParams.setMargins(0, 0, 0, marginBetweenEvents);
+            eventView.setLayoutParams(layoutParams);
+
+            TextView eventTitle = eventView.findViewById(R.id.eventTitle);
+            TextView eventTime = eventView.findViewById(R.id.eventTime);
+            TextView eventNote = eventView.findViewById(R.id.eventNote);
+
+            String eventstarttime =event.getStartTime();
+            String eventendtime = event.getEndTime();
+            eventTitle.setText(event.getEventName());
+            if((eventstarttime == null)&&(eventendtime == null)){
+                eventTime.setVisibility(View.GONE);
+            }if((eventstarttime != null)&&(eventendtime == null)){
+                eventTime.setText(eventstarttime);
+            }if ((eventstarttime == null)&&(eventendtime != null)){
+                eventTime.setText("until "+ eventendtime);
+            }if((eventstarttime != null)&&(eventendtime != null)) {
+                eventTime.setText(eventstarttime + " - " + eventendtime);
+            }
+
+            String eventnote = event.getNote();
+            if(eventnote==null){
+                eventNote.setVisibility(View.GONE);
+            }else {
+                eventNote.setText(event.getNote());
+            }
+
+            eventContainer.addView(eventView);
+        }
+    }
     private void onSettingsButtonClick() {
         Intent intent = new Intent(requireContext(), NotificationSettingsActivity.class);
         startActivity(intent);

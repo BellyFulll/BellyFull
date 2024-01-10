@@ -23,14 +23,14 @@ tools:context=".modules.PersonalisedNotifications.Fragments.EventInputFragment">
     <EditText
     android:id="@+id/ETEventName"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     android:background="@drawable/rounded_text"
     android:gravity="left"
     android:hint="Event name*"
     android:inputType="text"
     android:paddingLeft="10dp"
-    android:paddingTop="5dp" />
+    android:paddingVertical="15dp" />
 
 <EditText
     android:id="@+id/ETNote"
@@ -46,10 +46,10 @@ tools:context=".modules.PersonalisedNotifications.Fragments.EventInputFragment">
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="50sp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@drawable/rounded_text"
-    android:paddingLeft="10dp"
+    android:paddingVertical="10dp"
     android:layout_marginBottom="8dp">
 
     <TextView
@@ -59,7 +59,7 @@ tools:context=".modules.PersonalisedNotifications.Fragments.EventInputFragment">
         android:layout_height="match_parent"
         android:layout_marginRight="30dp"
         android:hint="Date"
-        android:paddingTop="8dp"
+        android:paddingLeft="10dp"
         android:textSize="18sp" />
 
     <ImageView
