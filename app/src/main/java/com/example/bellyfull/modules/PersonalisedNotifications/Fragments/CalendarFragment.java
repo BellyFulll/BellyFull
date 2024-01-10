@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,7 @@ public class CalendarFragment extends Fragment {
     public TextView TVDate;
     public TextView TVStartTime;
     public TextView TVEndTime;
+//    boolean eventInputFragmentIsCalled;
     private static final String CHANNEL_ID = "ReminderChannel";
 
     public CalendarFragment() {
@@ -50,15 +52,22 @@ public class CalendarFragment extends Fragment {
         TVStartTime = view.findViewById(R.id.TVStartTime);
         TVEndTime = view.findViewById(R.id.TVEndTime);
 
-        FloatingActionButton btnAddEvent = getView().findViewById(R.id.btnBabyInput);
+        FloatingActionButton btnAddEvent = getView().findViewById(R.id.btnAddEvent);
         overlayView = getView().findViewById(R.id.overlayView);
         CalendarView calendarView = view.findViewById(R.id.calendarView);
         Button settingsButton = view.findViewById(R.id.settingsButton);
+
+//        EventInputFragment eventInputFragment = new EventInputFragment();
+//        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+//        eventInputFragmentIsCalled = fragmentManager.findFragmentById(R.id.FCVforInputEvent) == eventInputFragment;
+//        while (eventInputFragmentIsCalled ==false){
+//            overlayView.setVisibility(View.GONE);
+//        }
         overlayView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnAddEvent.setVisibility(View.VISIBLE);
-                hideEventInputFragment();
+                    btnAddEvent.setVisibility(View.VISIBLE);
+                    hideEventInputFragment();
             }
         });
         btnAddEvent.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +87,6 @@ public class CalendarFragment extends Fragment {
         // Schedule health checkup reminder when the fragment is created
         scheduleHealthCheckupReminder();
     }
-
     private void showEventInputFragment() {
         overlayView.setVisibility(View.VISIBLE);
         EventInputFragment fragment = new EventInputFragment();
