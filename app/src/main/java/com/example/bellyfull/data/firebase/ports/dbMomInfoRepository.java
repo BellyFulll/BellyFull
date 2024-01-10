@@ -10,4 +10,5 @@ public interface dbMomInfoRepository {
     public void setGastrointestinalSymptoms(String MomInfoId, String input);
     public void setFoodDiary(String MomInfoId, String input);
     public void setSleepPatterns(String MomInfoId, String input);
+    public void setPhotoUrl(String MomInfoId, String input);
 }
