@@ -22,7 +22,7 @@ public class dbMomInfoRepositoryImpl implements dbMomInfoRepository {
 
     @Override
     public void createMomInfo(String userId, String MomInfoId) {
-        MomInfo momInfo = new MomInfo(MomInfoId, userId, new Date(), null, null, null, null, null, null, null, null);
+        MomInfo momInfo = new MomInfo(MomInfoId, userId, new Date(), null, null, null, null, null, null, null, null, null);
         db.collection(db_collection_constant.MomInfoCollection).document(MomInfoId.toString())
                 .set(momInfo);
     }
@@ -73,5 +73,11 @@ public class dbMomInfoRepositoryImpl implements dbMomInfoRepository {
     public void setSleepPatterns(String MomInfoId, String input) {
         db.collection(db_collection_constant.MomInfoCollection).document(MomInfoId.toString())
                 .update("sleepPatterns", input);
+    }
+
+    @Override
+    public void setPhotoUrl(String MomInfoId, String input) {
+        db.collection(db_collection_constant.MomInfoCollection).document(MomInfoId.toString())
+                .update("photoUrl", input);
     }
 }

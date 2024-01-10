@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +47,7 @@ public class MomInputFragment extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final int CAMERA_PERMISSION_REQUEST_CODE = 1001;
     private String currentPhotoPath;
+    private String photoName;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private String downloadUrl;
@@ -77,6 +80,7 @@ public class MomInputFragment extends Fragment {
         Button BtnBreastAndBodyChanges = view.findViewById(R.id.BtnBreastAndBodyChanges);
         Button BtnUrinaryAndReproductiveHealth = view.findViewById(R.id.BtnUrinaryAndReproductiveHealth);
         Button BtnGastrointestinalSymptoms = view.findViewById(R.id.BtnGastrointestinalSymptoms);
+        Button BtnDownload = view.findViewById(R.id.btnDownload);
         ImageView cameraIcon = view.findViewById(R.id.cameraIcon);
         EditText ETFoodDiary = view.findViewById(R.id.ETFoodDiary);
         EditText ETSleepPattern = view.findViewById(R.id.ETSleepPatterns);
@@ -191,6 +195,11 @@ public class MomInputFragment extends Fragment {
                     impl.setSleepPatterns(babyInfoId, sleepPattern);
                 }
 
+                // if photo was taken, save photo downloadurl to database
+                if (downloadUrl != null) {
+                    impl.setPhotoUrl(babyInfoId, downloadUrl);
+                }
+
                 NavDirections action = MomInputFragmentDirections.actionMomInputFragmentToHomeFragment();
                 Toast.makeText(getContext(), "Mom Info successfully added", Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(view).navigate(action);
@@ -202,6 +211,17 @@ public class MomInputFragment extends Fragment {
             public void onClick(View v) {
                 NavDirections action = MomInputFragmentDirections.actionMomInputFragmentToHomeFragment();
                 Navigation.findNavController(view).navigate(action);
+            }
+        });
+
+        BtnDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (downloadUrl != null) {
+                    downloadPhoto();
+                } else {
+                    Toast.makeText(getContext(), "Waiting upload to complete.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -230,9 +250,9 @@ public class MomInputFragment extends Fragment {
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
+        photoName = "JPEG_" + timeStamp + "_";
         File storageDir = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File imageFile = File.createTempFile(imageFileName,  /* prefix */
+        File imageFile = File.createTempFile(photoName,  /* prefix */
                 ".jpg",         /* suffix */
                 storageDir      /* directory */);
         // Save a file path for use with ACTION_VIEW intents
@@ -249,22 +269,27 @@ public class MomInputFragment extends Fragment {
         ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
     }
 
-    private void uploadPhotoToFirebase(Uri photoUri) {
-        if (photoUri != null) {
-            StorageReference photoRef = storageReference.child("images/" + photoUri.getLastPathSegment());
-            UploadTask uploadTask = photoRef.putFile(photoUri);
-            uploadTask.addOnSuccessListener(taskSnapshot -> {
-                // Photo upload success
-                // You can handle success actions here
-                downloadUrl = photoRef.getDownloadUrl().toString();
-                Log.d("MomInputFragment", "Photo uploaded successfully");
+private void uploadPhotoToFirebase(Uri photoUri) {
+    if (photoUri != null) {
+        StorageReference photoRef = storageReference.child("images/" + photoUri.getLastPathSegment());
+        UploadTask uploadTask = photoRef.putFile(photoUri);
+        uploadTask.addOnSuccessListener(taskSnapshot -> {
+            // Photo upload success
+            // You can handle success actions here
+            photoRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                downloadUrl = uri.toString();
+                Log.d("MomInputFragment", "Photo uploaded successfully with downloadURL: " + downloadUrl);
             }).addOnFailureListener(exception -> {
-                // Photo upload failed
-                // You can handle failure actions here
-                Log.e("MomInputFragment", "Error uploading photo", exception);
+                // Handle the failure to get download URL
+                Log.e("MomInputFragment", "Error getting download URL", exception);
             });
-        }
+        }).addOnFailureListener(exception -> {
+            // Photo upload failed
+            // You can handle failure actions here
+            Log.e("MomInputFragment", "Error uploading photo", exception);
+        });
     }
+}
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -283,6 +308,12 @@ public class MomInputFragment extends Fragment {
                 imageUpload.setImageURI(photoUri);
                 // set layout height to wrap content
                 imageUpload.getLayoutParams().height = 450;
+                // show download button
+                Button btnDownload = requireView().findViewById(R.id.btnDownload);
+                btnDownload.setVisibility(View.VISIBLE);
+                // set textview to image name
+                TextView tvPhotoName = requireView().findViewById(R.id.tvPhotoName);
+                tvPhotoName.setText(photoName);
             }
         }
     }
@@ -291,5 +322,21 @@ public class MomInputFragment extends Fragment {
         InputDialog exampleDialog = new InputDialog(editText);
         exampleDialog.show(getActivity().getSupportFragmentManager(), "input dialog");
     }
+
+    private void downloadPhoto(){
+        Toast.makeText(getContext(), "Downloading photo...", Toast.LENGTH_SHORT).show();
+        StorageReference photoRef = storage.getReferenceFromUrl(downloadUrl);
+        File publicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File imageFile = new File(publicDirectory, photoName + ".jpg");
+        MediaScannerConnection mediaScanner = new MediaScannerConnection(getContext(), null);
+        mediaScanner.connect();
+        photoRef.getFile(imageFile).addOnSuccessListener(taskSnapshot -> {
+            mediaScanner.scanFile(imageFile.toString(), null);
+            Toast.makeText(getContext(), "Photo downloaded to gallery", Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(exception -> {
+            Log.e("MomInputFragment", "Error downloading photo", exception);
+        });
+    }
+
 
 }
