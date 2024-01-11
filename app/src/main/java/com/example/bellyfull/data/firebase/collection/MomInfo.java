@@ -15,11 +15,12 @@ public class MomInfo {
     private String gastrointestinalSymptoms;
     private String foodDiary;
     private String sleepPatterns;
+    private String photoUrl;
 
     public MomInfo() {
     }
 
-    public MomInfo(String momInfoId, String userId, Date entryDate, String digestiveSymptomsCondition, String physicalDiscomfortsCondition, String mentalAndEmotionalHealthCondition, String breastAndBodyChanges, String urinaryAndReproductiveHealth, String gastrointestinalSymptoms, String foodDiary, String sleepPatterns) {
+    public MomInfo(String momInfoId, String userId, Date entryDate, String digestiveSymptomsCondition, String physicalDiscomfortsCondition, String mentalAndEmotionalHealthCondition, String breastAndBodyChanges, String urinaryAndReproductiveHealth, String gastrointestinalSymptoms, String foodDiary, String sleepPatterns, String photoUrl) {
         this.momInfoId = momInfoId;
         this.userId = userId;
         this.entryDate = entryDate;
@@ -31,6 +32,7 @@ public class MomInfo {
         this.gastrointestinalSymptoms = gastrointestinalSymptoms;
         this.foodDiary = foodDiary;
         this.sleepPatterns = sleepPatterns;
+        this.photoUrl = photoUrl;
     }
 
     public String getMomInfoId() {
@@ -119,5 +121,13 @@ public class MomInfo {
 
     public void setSleepPatterns(String sleepPatterns) {
         this.sleepPatterns = sleepPatterns;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }
