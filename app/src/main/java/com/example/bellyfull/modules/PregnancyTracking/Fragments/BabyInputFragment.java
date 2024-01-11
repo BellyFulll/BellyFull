@@ -17,7 +17,7 @@ import androidx.navigation.Navigation;
 
 import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
-import com.example.bellyfull.data.firebase.repository.fbBabyInfoRepositoryImpl;
+import com.example.bellyfull.data.firebase.repository.dbBabyInfoRepositoryImpl;
 import com.example.bellyfull.utils.hideKeyboardUtils;
 
 import java.util.UUID;
@@ -28,7 +28,7 @@ public class BabyInputFragment extends Fragment {
     EditText ETFetalWeight;
     EditText ETHeadCircumference;
     EditText ETGrowthNotes;
-    fbBabyInfoRepositoryImpl impl;
+    dbBabyInfoRepositoryImpl impl;
 
     public BabyInputFragment() {
         super(R.layout.fragment_baby_input);
@@ -37,7 +37,7 @@ public class BabyInputFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        impl = new fbBabyInfoRepositoryImpl(getContext());
+        impl = new dbBabyInfoRepositoryImpl(getContext());
     }
 
     @Override
