@@ -10,11 +10,12 @@ public class BabyInfo {
     private String growthNotes;
     private String userId;
     private Date entryDate;
+    private String photoUrl;
 
     public BabyInfo() {
     }
 
-    public BabyInfo(String babyInfoId, Double fetalLength, Double fetalWeight, Double headCircumference, String growthNotes, String userId, Date entryDate) {
+    public BabyInfo(String babyInfoId, Double fetalLength, Double fetalWeight, Double headCircumference, String growthNotes, String userId, Date entryDate, String photoUrl) {
         this.babyInfoId = babyInfoId;
         this.fetalLength = fetalLength;
         this.fetalWeight = fetalWeight;
@@ -22,6 +23,7 @@ public class BabyInfo {
         this.growthNotes = growthNotes;
         this.userId = userId;
         this.entryDate = entryDate;
+        this.photoUrl = photoUrl;
     }
 
     public String getBabyInfoId() {
@@ -78,5 +80,8 @@ public class BabyInfo {
 
     public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
+    }
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

@@ -50,15 +50,14 @@ public class MomInputFragment extends Fragment {
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private String downloadUrl;
-
     private EditText ETDigestiveSymptomsInput;
     private EditText ETPhysicalDiscomfortsInput;
     private EditText ETMentalAndEmotionalHealthInput;
     private EditText ETBreastAndBodyChangesInput;
     private EditText ETUrinaryAndReproductiveHealthInput;
     private EditText ETGastrointestinalSymptomsInput;
-
     private dbMomInfoRepositoryImpl impl;
+    static final String TAG = "MomInputFragment";
 
     public MomInputFragment() {
         super(R.layout.fragment_mom_input);
@@ -235,7 +234,7 @@ public class MomInputFragment extends Fragment {
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 // Handle errors while creating the file
-                Log.e("MomInputFragment", "Error creating image file", ex);
+                Log.e(TAG, "Error creating image file", ex);
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
@@ -268,27 +267,27 @@ public class MomInputFragment extends Fragment {
         ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
     }
 
-private void uploadPhotoToFirebase(Uri photoUri) {
-    if (photoUri != null) {
-        StorageReference photoRef = storageReference.child("images/" + photoUri.getLastPathSegment());
-        UploadTask uploadTask = photoRef.putFile(photoUri);
-        uploadTask.addOnSuccessListener(taskSnapshot -> {
-            // Photo upload success
-            // You can handle success actions here
-            photoRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                downloadUrl = uri.toString();
-                Log.d("MomInputFragment", "Photo uploaded successfully with downloadURL: " + downloadUrl);
+    private void uploadPhotoToFirebase(Uri photoUri) {
+        if (photoUri != null) {
+            StorageReference photoRef = storageReference.child("images/" + photoUri.getLastPathSegment());
+            UploadTask uploadTask = photoRef.putFile(photoUri);
+            uploadTask.addOnSuccessListener(taskSnapshot -> {
+                // Photo upload success
+                // You can handle success actions here
+                photoRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                    downloadUrl = uri.toString();
+                    Log.d(TAG, "Photo uploaded successfully with downloadURL: " + downloadUrl);
+                }).addOnFailureListener(exception -> {
+                    // Handle the failure to get download URL
+                    Log.e(TAG, "Error getting download URL", exception);
+                });
             }).addOnFailureListener(exception -> {
-                // Handle the failure to get download URL
-                Log.e("MomInputFragment", "Error getting download URL", exception);
+                // Photo upload failed
+                // You can handle failure actions here
+                Log.e(TAG, "Error uploading photo", exception);
             });
-        }).addOnFailureListener(exception -> {
-            // Photo upload failed
-            // You can handle failure actions here
-            Log.e("MomInputFragment", "Error uploading photo", exception);
-        });
+        }
     }
-}
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -333,7 +332,7 @@ private void uploadPhotoToFirebase(Uri photoUri) {
             mediaScanner.scanFile(imageFile.toString(), null);
             Toast.makeText(getContext(), "Photo downloaded to gallery", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(exception -> {
-            Log.e("MomInputFragment", "Error downloading photo", exception);
+            Log.e(TAG, "Error downloading photo", exception);
         });
     }
 
