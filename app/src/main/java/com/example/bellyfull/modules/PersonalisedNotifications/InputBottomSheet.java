@@ -1,16 +1,14 @@
-package com.example.bellyfull.modules.PersonalisedNotifications.Fragments;
+package com.example.bellyfull.modules.PersonalisedNotifications;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -21,13 +19,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bellyfull.Constant.preference_constant;
+import com.example.bellyfull.MainActivity;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
 
@@ -37,64 +34,45 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
-
-public class EventInputFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
-    public EventInputFragment() {
-        super(R.layout.fragment_event_input);
-    }
+public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
+    Dialog dialog;
     private List<RadioButton> radioButtons;
     private RadioGroup radioGroup;
     private TextView TVDate;
     private TextView TVStartTime;
     private TextView TVEndTime;
     private View overlayView;
-    private CalendarFragment calendarFragment;
+    private Context context;
     eventRepositoryImpl impl;
 
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        impl = new eventRepositoryImpl(getContext());
+    public InputBottomSheet(Dialog dialog) {
+        this.dialog = dialog;
+        this.context = dialog.getContext();
+        impl = new eventRepositoryImpl(dialog.getContext());
     }
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_event_input, container, false);
 
-        // Set OnClickListener on the root view to consume the click event
-        rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Do nothing haha
-            }
-        });
+    public void setUp() {
+        TVDate = dialog.findViewById(R.id.TVDate);
+        TVStartTime = dialog.findViewById(R.id.TVStartTime);
+        TVEndTime = dialog.findViewById(R.id.TVEndTime);
 
-        return rootView;
-    }
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        TVDate = view.findViewById(R.id.TVDate);
-        TVStartTime = view.findViewById(R.id.TVStartTime);
-        TVEndTime = view.findViewById(R.id.TVEndTime);
-//        overlayView = calendarFragment.getView().findViewById(R.id.overlayView);
-        calendarFragment = new CalendarFragment();
-//        overlayView = calendarFragment.getOverlayView();
-
-        ImageView ivCalendar = view.findViewById(R.id.IVCalendar);
-        ImageView ivStartTime = view.findViewById(R.id.IVStartTime);
-        ImageView ivEndTime = view.findViewById(R.id.IVEndTime);
-        Button btnCreateEvent = view.findViewById(R.id.btnCreateEvent);
-        TextView TVAddCategory = view.findViewById(R.id.TVAddCategory);
-        RadioButton RB2 = view.findViewById(R.id.RB2);
-        RadioButton RB3 = view.findViewById(R.id.RB3);
-        RadioButton RB4 = view.findViewById(R.id.RB4);
-        RadioButton RB5 = view.findViewById(R.id.RB5);
+        ImageView ivCalendar = dialog.findViewById(R.id.IVCalendar);
+        ImageView ivStartTime = dialog.findViewById(R.id.IVStartTime);
+        ImageView ivEndTime = dialog.findViewById(R.id.IVEndTime);
+        Button btnCreateEvent = dialog.findViewById(R.id.btnCreateEvent);
+        TextView TVAddCategory = dialog.findViewById(R.id.TVAddCategory);
+        RadioButton RB2 = dialog.findViewById(R.id.RB2);
+        RadioButton RB3 = dialog.findViewById(R.id.RB3);
+        RadioButton RB4 = dialog.findViewById(R.id.RB4);
+        RadioButton RB5 = dialog.findViewById(R.id.RB5);
 
         radioButtons = new ArrayList<>();
-        radioGroup = view.findViewById(R.id.MyRG);
+        radioGroup = dialog.findViewById(R.id.MyRG);
 
         ivCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onDateIconClick(view, TVDate);
+                onDateIconClick();
             }
         });
         ivStartTime.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +88,7 @@ public class EventInputFragment extends Fragment implements DatePickerDialog.OnD
             }
         });
 
+        // TODO: figure out a better implementation
         TVAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,10 +96,10 @@ public class EventInputFragment extends Fragment implements DatePickerDialog.OnD
             }
 
             private void showAddCategoryDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Add New Category");
 
-                final EditText input = new EditText(requireContext());
+                final EditText input = new EditText(context);
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 builder.setView(input);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -158,7 +137,7 @@ public class EventInputFragment extends Fragment implements DatePickerDialog.OnD
                     RB5.setVisibility(View.VISIBLE);
                     radioButtons.add(RB5);
                 } else {
-                    Toast.makeText(requireContext(), "Maximum number of categories reached", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Maximum number of categories reached", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -166,17 +145,18 @@ public class EventInputFragment extends Fragment implements DatePickerDialog.OnD
         btnCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences preferences = getActivity().getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
+                SharedPreferences preferences = context.getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
                 String userId = preferences.getString(preference_constant.pUserId, "");
                 String eventId = UUID.randomUUID().toString();
                 impl.createEventInfo(userId, eventId);
 
-                EditText ETEventName = getView().findViewById(R.id.ETEventName);
-                EditText ETNote = getView().findViewById(R.id.ETNote);
-                TextView TVDate = getView().findViewById(R.id.TVDate);
-                TextView TVStartTime = getView().findViewById(R.id.TVStartTime);
-                TextView TVEndTime = getView().findViewById(R.id.TVEndTime);
-                RadioButton selectedRB = getView().findViewById(radioGroup.getCheckedRadioButtonId());
+                EditText ETEventName = dialog.findViewById(R.id.ETEventName);
+                EditText ETNote = dialog.findViewById(R.id.ETNote);
+                TextView TVDate = dialog.findViewById(R.id.TVDate);
+                TextView TVStartTime = dialog.findViewById(R.id.TVStartTime);
+                TextView TVEndTime = dialog.findViewById(R.id.TVEndTime);
+                RadioButton selectedRB = dialog.findViewById(radioGroup.getCheckedRadioButtonId());
+
                 if (ETEventName.getText().toString().isEmpty() || TVDate.getText().toString().isEmpty()) {
                     showRequireFieldsDialog();
                 } else {
@@ -204,33 +184,21 @@ public class EventInputFragment extends Fragment implements DatePickerDialog.OnD
                         impl.setEventInfoEndTime(eventId, null);
                     impl.setEventInfoCategory(eventId, category);
 
-                    closeEventInputFragment();
-                }
-            }
-            private void closeEventInputFragment() {
-                if (overlayView != null) {
-                    overlayView.setVisibility(View.GONE);
-                } //I CANNOT ACCESS OVERLAYVIEWWWWWWWWWWWWWWW
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                Fragment fragment = fragmentManager.findFragmentById(R.id.FCVforInputEvent);
-
-                if (fragment != null) {
-                    transaction.remove(fragment);
-                    transaction.commitAllowingStateLoss();
+                    dialog.dismiss();
                 }
             }
 
         });
 
     }
+
     private void onTimeCLick(View v, TextView TVTime, ImageView IVTime) {
         Calendar currentTime = Calendar.getInstance();
         int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
         int currentMinute = currentTime.get(Calendar.MINUTE);
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(
-                requireContext(),
+                context,
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
@@ -254,26 +222,29 @@ public class EventInputFragment extends Fragment implements DatePickerDialog.OnD
 
         timePickerDialog.show();
     }
-    private void onDateIconClick(View view, TextView TVDate) {
+
+    private void onDateIconClick() {
 
         Calendar currentDate = Calendar.getInstance();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Choose Event Date");
-        DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), this,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(context, this,
                 currentDate.get(Calendar.YEAR),
                 currentDate.get(Calendar.MONTH),
                 currentDate.get(Calendar.DAY_OF_MONTH)
         );
         datePickerDialog.show();
     }
+
     private void showRequireFieldsDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Error");
         builder.setMessage("Please enter the required fields.");
-        builder.setPositiveButton("OK", null); // You can add a listener if needed
+        builder.setPositiveButton("OK", null);
         builder.create().show();
     }
+
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
@@ -281,8 +252,9 @@ public class EventInputFragment extends Fragment implements DatePickerDialog.OnD
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        updateUIWithSelectedDate(c, getView().findViewById(R.id.TVDate));
+        updateUIWithSelectedDate(c, dialog.findViewById(R.id.TVDate));
     }
+
     private void updateUIWithSelectedDate(Calendar selectedDate, View dialogView) {
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(selectedDate.getTime());
         TVDate.setText(currentDateString);

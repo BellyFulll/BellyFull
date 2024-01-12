@@ -16,8 +16,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginBottom="20dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
@@ -253,13 +253,13 @@
         android:textSize="16sp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/BtnLogin"
+        android:id="@+id/btnCreateEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/pink1"
         android:fontFamily="@font/a_bee_zee_regular"
-        android:text="Login"
+        android:text="Create Event"
         android:textSize="20sp"
         app:cornerRadius="10dp" />
 
