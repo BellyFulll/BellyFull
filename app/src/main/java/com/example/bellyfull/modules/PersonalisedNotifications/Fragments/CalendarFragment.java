@@ -31,6 +31,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.Event;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
+import com.example.bellyfull.modules.PersonalisedNotifications.InputBottomSheet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
@@ -97,6 +98,10 @@ public class CalendarFragment extends Fragment {
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom_sheet_layout);
+
+        // setup bottom sheet logic
+        InputBottomSheet inputBottomSheet = new InputBottomSheet(dialog);
+        inputBottomSheet.setUp();
 
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
