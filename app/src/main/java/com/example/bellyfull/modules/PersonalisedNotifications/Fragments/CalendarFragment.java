@@ -1,6 +1,7 @@
 package com.example.bellyfull.modules.PersonalisedNotifications.Fragments;
 
 import android.app.AlarmManager;
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,14 +9,16 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.CalendarView;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,18 +31,16 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.Event;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
-import com.example.bellyfull.modules.PersonalisedNotifications.Activity.NotificationSettingsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import io.grpc.internal.JsonUtil;
+
 
 public class CalendarFragment extends Fragment {
-    public View overlayView;
     public TextView TVDate;
     public TextView TVStartTime;
     public TextView TVEndTime;
@@ -64,17 +65,10 @@ public class CalendarFragment extends Fragment {
         TVEndTime = view.findViewById(R.id.TVEndTime);
 
         FloatingActionButton btnAddEvent = getView().findViewById(R.id.btnAddEvent);
-        overlayView = getView().findViewById(R.id.overlayView);
         CalendarView calendarView = view.findViewById(R.id.calendarView);
-        Button settingsButton = view.findViewById(R.id.settingsButton);
 
-//        EventInputFragment eventInputFragment = new EventInputFragment();
-//        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-//        eventInputFragmentIsCalled = fragmentManager.findFragmentById(R.id.FCVforInputEvent) == eventInputFragment;
-//        while (eventInputFragmentIsCalled ==false){
-//            overlayView.setVisibility(View.GONE);
-//        }
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 // This method will be called when the user selects a date in the CalendarView
@@ -86,62 +80,43 @@ public class CalendarFragment extends Fragment {
                 retrieveAndDisplayEvents(selectedDate.getTime());
             }
         });
-        overlayView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    btnAddEvent.setVisibility(View.VISIBLE);
-                    hideEventInputFragment();
-            }
-        });
+
         btnAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btnAddEvent.setVisibility(View.INVISIBLE);
-                showEventInputFragment();
+                showBottomDialog();
             }
         });
 
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSettingsButtonClick();
-            }
-        });
         // Schedule health checkup reminder when the fragment is created
         scheduleHealthCheckupReminder();
     }
-    private void showEventInputFragment() {
-        overlayView.setVisibility(View.VISIBLE);
-        EventInputFragment fragment = new EventInputFragment();
 
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+    private void showBottomDialog() {
 
-        transaction.replace(R.id.FCVforInputEvent, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottom_sheet_layout);
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
     }
 
-    private void hideEventInputFragment() {
-        overlayView.setVisibility(View.GONE);
-
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment fragment = fragmentManager.findFragmentById(R.id.FCVforInputEvent);
-        if (fragment != null) {
-            transaction.remove(fragment);
-            transaction.commit();
-        }
-    }
     private void retrieveAndDisplayEvents(Date selectedDate) {
         impl.getEventsForDate(selectedDate, new eventRepositoryImpl.EventCallback() {
             @Override
             public void onEventsRetrieved(List<Event> events) {
                 // Update UI to display the events
+                System.out.println(events.size());
                 updateUIWithEvents(events);
             }
         });
     }
+
     private void updateUIWithEvents(List<Event> events) {
         LinearLayout eventContainer = getView().findViewById(R.id.eventContainer);
         eventContainer.removeAllViews();
@@ -158,38 +133,36 @@ public class CalendarFragment extends Fragment {
             layoutParams.setMargins(0, 0, 0, marginBetweenEvents);
             eventView.setLayoutParams(layoutParams);
 
-            TextView eventTitle = eventView.findViewById(R.id.eventTitle);
-            TextView eventTime = eventView.findViewById(R.id.eventTime);
-            TextView eventNote = eventView.findViewById(R.id.eventNote);
+            TextView TVEventTitle = eventView.findViewById(R.id.eventTitle);
+            TextView TVEventTime = eventView.findViewById(R.id.eventTime);
+            TextView TVEventNote = eventView.findViewById(R.id.eventNote);
 
-            String eventstarttime =event.getStartTime();
-            String eventendtime = event.getEndTime();
-            eventTitle.setText(event.getEventName());
-            if((eventstarttime == null)&&(eventendtime == null)){
-                eventTime.setVisibility(View.GONE);
-            }if((eventstarttime != null)&&(eventendtime == null)){
-                eventTime.setText(eventstarttime);
-            }if ((eventstarttime == null)&&(eventendtime != null)){
-                eventTime.setText("until "+ eventendtime);
-            }if((eventstarttime != null)&&(eventendtime != null)) {
-                eventTime.setText(eventstarttime + " - " + eventendtime);
+            String eventStartTime = event.getStartTime();
+            String eventEndTime = event.getEndTime();
+            TVEventTitle.setText(event.getEventName());
+            if ((eventStartTime == null) && (eventEndTime == null)) {
+                TVEventTime.setVisibility(View.GONE);
+            }
+            if ((eventStartTime != null) && (eventEndTime == null)) {
+                TVEventTime.setText(eventStartTime);
+            }
+            if ((eventStartTime == null) && (eventEndTime != null)) {
+                TVEventTime.setText("until " + eventEndTime);
+            }
+            if ((eventStartTime != null) && (eventEndTime != null)) {
+                TVEventTime.setText(eventStartTime + " - " + eventEndTime);
             }
 
-            String eventnote = event.getNote();
-            if(eventnote==null){
-                eventNote.setVisibility(View.GONE);
-            }else {
-                eventNote.setText(event.getNote());
+            String eventNote = event.getNote();
+            if (eventNote == null) {
+                TVEventNote.setVisibility(View.GONE);
+            } else {
+                TVEventNote.setText(event.getNote());
             }
 
             eventContainer.addView(eventView);
         }
     }
-    private void onSettingsButtonClick() {
-        Intent intent = new Intent(requireContext(), NotificationSettingsActivity.class);
-        startActivity(intent);
-    }
-
 
     public class ReminderBroadcastReceiver extends BroadcastReceiver {
 

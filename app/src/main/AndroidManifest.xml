@@ -43,9 +43,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name=".modules.PersonalisedNotifications.Activity.NotificationSettingsActivity"
-                android:exported="false" />
 
         <activity
                 android:name=".MainActivity"

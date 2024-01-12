@@ -5,7 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.BellyFull" parent="Base.Theme.BellyFull" >
+    <style name="Theme.BellyFull" parent="Base.Theme.BellyFull">
         <item name="android:statusBarColor">@color/pink6</item>
     </style>
 
@@ -22,5 +22,10 @@
     <style name="Theme.BellyFull.AppWidgetContainer" parent="Theme.BellyFull.AppWidgetContainerParent">
         <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
         <item name="appWidgetPadding">16dp</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
 </resources>

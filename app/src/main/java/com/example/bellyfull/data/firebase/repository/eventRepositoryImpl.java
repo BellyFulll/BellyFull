@@ -40,24 +40,29 @@ public class eventRepositoryImpl implements eventRepository {
         db.collection(db_collection_constant.EventCollection).document(eventId)
                 .update("eventName", eventName);
     }
-@Override
+
+    @Override
     public void setEventInfoNote(String eventId, String note) {
         db.collection(db_collection_constant.EventCollection).document(eventId)
                 .update("note", note);
     }
-@Override
+
+    @Override
     public void setEventInfoDate(String eventId, String date) {
         db.collection(db_collection_constant.EventCollection).document(eventId)
                 .update("date", date);
     }
-@Override
+
+    @Override
     public void setEventInfoStartTime(String eventId, String startTime) {
         db.collection(db_collection_constant.EventCollection).document(eventId).update("startTime", startTime);
     }
-@Override
+
+    @Override
     public void setEventInfoEndTime(String eventId, String endTime) {
         db.collection(db_collection_constant.EventCollection).document(eventId).update("endTime", endTime);
     }
+
     @Override
     public void setEventInfoCategory(String eventId, String category) {
         db.collection(db_collection_constant.EventCollection).document(eventId).update("category", category);
@@ -88,6 +93,7 @@ public class eventRepositoryImpl implements eventRepository {
 
 
     }
+
     public interface EventCallback {
         void onEventsRetrieved(List<Event> events);
     }
@@ -98,7 +104,9 @@ public class eventRepositoryImpl implements eventRepository {
     }
 
     private String formatDateToStringLongForm(Date date) {
+        System.out.println("[date]" + date);
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd, yyyy", Locale.getDefault());
+        System.out.println(dateFormat.format(date).toString());
         return dateFormat.format(date);
     }
 //    @Override
