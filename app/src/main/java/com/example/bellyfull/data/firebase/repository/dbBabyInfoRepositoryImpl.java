@@ -38,7 +38,7 @@ public class dbBabyInfoRepositoryImpl implements dbBabyInfoRepository {
 
     @Override
     public void createBabyInfo(String userId, String babyInfoId) {
-        BabyInfo babyInfo = new BabyInfo(babyInfoId, null, null, null, null, userId, new Date());
+        BabyInfo babyInfo = new BabyInfo(babyInfoId, null, null, null, null, userId, new Date(), null);
         db.collection(db_collection_constant.BabyInfoCollection).document(babyInfoId.toString())
                 .set(babyInfo);
     }
@@ -67,5 +67,9 @@ public class dbBabyInfoRepositoryImpl implements dbBabyInfoRepository {
                 .update("growthNotes", growthNotes);
     }
 
-
+    @Override
+    public void setPhotoUrl(String babyInfoId, String input) {
+        db.collection(db_collection_constant.BabyInfoCollection).document(babyInfoId.toString())
+                .update("photoUrl", input);
+    }
 }

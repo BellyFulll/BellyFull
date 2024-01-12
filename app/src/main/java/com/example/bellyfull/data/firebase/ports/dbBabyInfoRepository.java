@@ -12,4 +12,5 @@ public interface dbBabyInfoRepository {
     public void setBabyInfoHeadCircumference(String babyInfoId, Double headCircumference);
 
     public void setBabyInfoGrowthNotes(String babyInfoId, String growthNotes);
+    public void setPhotoUrl(String babyInfoId, String input);
 }
