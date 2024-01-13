@@ -219,6 +219,7 @@
                         android:layout_marginLeft="50dp"
                         android:layout_marginTop="40dp"
                         android:src="@drawable/diet_graphic" />
+
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
@@ -281,8 +282,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:text="Placeholder text for card 5"
-                        android:textSize="18sp" />
+                        android:fontFamily="@font/a_bee_zee_regular"
+                        android:text="350kcal"
+                        android:textColor="@color/pink1"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="45dp"
+                        android:fontFamily="@font/a_bee_zee_regular"
+                        android:text="Burned"
+                        android:textColor="@color/pink1" />
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="82dp"
+                        android:layout_height="112dp"
+                        android:layout_marginLeft="110dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/sport2_graphic" />
+
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
