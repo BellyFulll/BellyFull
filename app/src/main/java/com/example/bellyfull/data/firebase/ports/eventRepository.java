@@ -1,7 +1,9 @@
 package com.example.bellyfull.data.firebase.ports;
 
+import com.example.bellyfull.data.firebase.collection.Event;
+
 public interface eventRepository {
-    void createEventInfo(String userId, String eventId);
+    void createEventInfo(Event event);
 
     void setEventInfoEventName(String eventId, String eventName);
 
