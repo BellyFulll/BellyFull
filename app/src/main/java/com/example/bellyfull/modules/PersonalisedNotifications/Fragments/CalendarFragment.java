@@ -92,6 +92,7 @@ public class CalendarFragment extends Fragment {
     private void showBottomDialog() {
 
         final Dialog dialog = new Dialog(getActivity());
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom_sheet_layout);
 

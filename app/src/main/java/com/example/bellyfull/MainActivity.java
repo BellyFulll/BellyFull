@@ -1,6 +1,9 @@
 package com.example.bellyfull;
 
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +19,7 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.bellyfull.Constant.notification_constant;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 constraintSet.connect(R.id.NHFMain, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
                 constraintSet.connect(R.id.NHFMain, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
                 constraintSet.applyTo(findViewById(R.id.CLMainActivity));
-                navBar.setAlpha(1f); 
+                navBar.setAlpha(1f);
             }
         }).start();
     }

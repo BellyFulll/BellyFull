@@ -1,16 +1,26 @@
 package com.example.bellyfull.modules.PersonalisedNotifications;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.SystemClock;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +35,11 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import com.example.bellyfull.Constant.notification_constant;
 import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.Event;
@@ -36,6 +49,7 @@ import com.example.bellyfull.utils.showColorPickerUtil;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -53,6 +67,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private LinearLayout cardContainer;
+    private Date selectedStartTime;
     eventRepositoryImpl impl;
 
     public InputBottomSheet(Dialog dialog) {
@@ -222,6 +237,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
             }
         });
 
+
         btnCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -243,6 +259,29 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 String endTime = TVEndTime.getText().toString();
                 String category = lastSelectedEventCategory != null ? lastSelectedEventCategory.getEventCategoryName() : "";
 
+                AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    if(remindsMe.isChecked()){
+                        if(!alarmManager.canScheduleExactAlarms()){
+                            Toast.makeText(context, "Please grant permission to set alarm", Toast.LENGTH_LONG).show();
+                            context.startActivity(new Intent(android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:"+ context.getPackageName())));
+                            return;
+                        }
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                            int notificationPermission = ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS);
+                            if(notificationPermission != PackageManager.PERMISSION_GRANTED){
+                                Intent intent = new Intent();
+                                intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("android.provider.extra.APP_PACKAGE", context.getPackageName());
+                                context.startActivity(intent);
+                                return;
+                            }
+                        }
+                    }
+                }
+
                 if (eventName.isEmpty() || date.isEmpty() || startTime.equals("Start Time") || endTime.equals("End Time") || category.isEmpty()) {
                     showRequireFieldsDialog();
                 } else {
@@ -250,19 +289,15 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                     event.setEventNote(note);
                     impl.createEventInfo(event);
 
-
-
-                    // Schedule the reminder using AlarmManager
-                    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-
-//                    Intent intent = new Intent(this, ReminderBroadcastReceiver.class);
-//                    PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-
-                    // Schedule the alarm
-//                    alarmManager.set(AlarmManager.RTC_WAKEUP, selectedDateTimeInMillis, pendingIntent);
-
-//                    impl.setEventInfoCategory(eventId, category);
-
+                    if(remindsMe.isChecked()){
+                        createNotificationChannel();
+                        Intent intent = new Intent(context, NotificationReceiver.class);
+                        intent.putExtra("title", eventName);
+                        intent.putExtra("message", note);
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,1, intent,PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, selectedStartTime.getTime(), pendingIntent);
+                        Toast.makeText(context, "Scheduled", Toast.LENGTH_LONG).show();
+                    }
 
                     dialog.dismiss();
                 }
@@ -270,6 +305,18 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
 
         });
 
+    }
+
+    private void createNotificationChannel() {
+        CharSequence name = "eventNotification";
+        String description = "Notification for event";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel(notification_constant.EVENT_CHANNEL_ID, name, importance);
+        channel.setDescription(description);
+        // Register the channel with the system; you can't change the importance
+        // or other notification behaviors after this.
+        NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
 
     private void onTimeCLick(View v, TextView TVTime, ImageView IVTime) {
@@ -287,10 +334,11 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                         selectedTime.set(Calendar.MINUTE, selectedMinute);
 
                         if (IVTime.getId() == R.id.IVStartTime) {
-                            String currentTimeString = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedTime.getTime());
+                            selectedStartTime = selectedTime.getTime();
+                            String currentTimeString = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedStartTime);
                             TVStartTime.setText(currentTimeString);
                         } else if (IVTime.getId() == R.id.IVEndTime) {
-                            String currentTimeString = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedTime.getTime());
+                            String currentTimeString = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedStartTime);
                             TVEndTime.setText(currentTimeString);
                         }
                     }
