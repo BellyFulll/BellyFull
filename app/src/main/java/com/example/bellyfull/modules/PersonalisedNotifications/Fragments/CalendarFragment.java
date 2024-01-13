@@ -25,8 +25,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.Event;
@@ -37,8 +35,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import io.grpc.internal.JsonUtil;
 
 
 public class CalendarFragment extends Fragment {
@@ -99,7 +95,6 @@ public class CalendarFragment extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom_sheet_layout);
 
-        // setup bottom sheet logic
         InputBottomSheet inputBottomSheet = new InputBottomSheet(dialog);
         inputBottomSheet.setUp();
 
@@ -115,8 +110,6 @@ public class CalendarFragment extends Fragment {
         impl.getEventsForDate(selectedDate, new eventRepositoryImpl.EventCallback() {
             @Override
             public void onEventsRetrieved(List<Event> events) {
-                // Update UI to display the events
-                System.out.println(events.size());
                 updateUIWithEvents(events);
             }
         });
@@ -142,8 +135,8 @@ public class CalendarFragment extends Fragment {
             TextView TVEventTime = eventView.findViewById(R.id.eventTime);
             TextView TVEventNote = eventView.findViewById(R.id.eventNote);
 
-            String eventStartTime = event.getStartTime();
-            String eventEndTime = event.getEndTime();
+            String eventStartTime = event.getEventStartTime();
+            String eventEndTime = event.getEventEndTime();
             TVEventTitle.setText(event.getEventName());
             if ((eventStartTime == null) && (eventEndTime == null)) {
                 TVEventTime.setVisibility(View.GONE);
@@ -158,11 +151,11 @@ public class CalendarFragment extends Fragment {
                 TVEventTime.setText(eventStartTime + " - " + eventEndTime);
             }
 
-            String eventNote = event.getNote();
+            String eventNote = event.getEventNote();
             if (eventNote == null) {
                 TVEventNote.setVisibility(View.GONE);
             } else {
-                TVEventNote.setText(event.getNote());
+                TVEventNote.setText(event.getEventNote());
             }
 
             eventContainer.addView(eventView);

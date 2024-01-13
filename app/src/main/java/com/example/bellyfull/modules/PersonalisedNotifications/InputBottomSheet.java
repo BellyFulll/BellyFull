@@ -7,49 +7,151 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.example.bellyfull.Constant.preference_constant;
-import com.example.bellyfull.MainActivity;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
+import com.example.bellyfull.utils.convertHexToIntUtil;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
     Dialog dialog;
-    private List<RadioButton> radioButtons;
-    private RadioGroup radioGroup;
     private TextView TVDate;
     private TextView TVStartTime;
     private TextView TVEndTime;
-    private View overlayView;
     private Context context;
+    private Set<String> eventCategories;
+    private Set<EventCategory> defaultEventCategories;
+    private View lastSelectedEventCategoryCard = null;
+    private EventCategory lastSelectedEventCategory = null;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private LinearLayout cardContainer;
     eventRepositoryImpl impl;
 
     public InputBottomSheet(Dialog dialog) {
+        defaultEventCategories = new HashSet<>();
+        defaultEventCategories.add(new EventCategory("#735BF2", "#4D3EAF", "#FFA500", "something"));
+
         this.dialog = dialog;
         this.context = dialog.getContext();
+        sharedPreferences = dialog.getContext().getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
+        eventCategories = sharedPreferences.getStringSet(
+                preference_constant.pEventCategories,
+                convertEventCategoriesToStringSet(defaultEventCategories)
+        );
+        editor = sharedPreferences.edit();
         impl = new eventRepositoryImpl(dialog.getContext());
     }
+
+    private static Set<String> convertEventCategoriesToStringSet(Set<EventCategory> eventCategories) {
+        Set<String> stringSet = new HashSet<>();
+        String stringed;
+        for (EventCategory category : eventCategories) {
+            stringed = category.getPrimaryColor() + "," + category.getSelectedColor() + "," + category.getIconColor() + "," + category.getEventCategoryName();
+            stringSet.add(stringed);
+        }
+        return stringSet;
+    }
+
+    private static Set<EventCategory> convertStringSetToEventCategories(Set<String> stringSet) {
+        Set<EventCategory> eventCategories = new HashSet<>();
+        for (String str : stringSet) {
+            String[] parts = str.split(",");
+            if (parts.length == 4) {
+                String color1 = parts[0];
+                String color2 = parts[1];
+                String color3 = parts[2];
+                String name = parts[3];
+                EventCategory category = new EventCategory(color1, color2, color3, name);
+                eventCategories.add(category);
+            }
+        }
+        return eventCategories;
+    }
+
+    private void addCategory(EventCategory eventCategory) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        View cardView = createCardView(eventCategory);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleCategorySelection(cardView, eventCategory);
+            }
+        });
+
+        cardContainer.addView(cardView, params);
+    }
+
+    private View createCardView(EventCategory eventCategory) {
+        LinearLayout cardView = new LinearLayout(context);
+        cardView.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+        cardView.setOrientation(LinearLayout.HORIZONTAL);
+        cardView.setGravity(Gravity.CENTER_VERTICAL);
+
+        GradientDrawable shape = new GradientDrawable();
+        shape.setColor(convertHexToIntUtil.change(eventCategory.getPrimaryColor()));
+        shape.setCornerRadius(context.getResources().getDimension(R.dimen.card_corner_radius));
+        cardView.setBackground(shape);
+
+        ImageView ovalIcon = new ImageView(context);
+        ovalIcon.setImageResource(R.drawable.eventcategoryicon);
+        ovalIcon.setPadding(20, 0, 0, 0);
+        int iconColor = convertHexToIntUtil.change(eventCategory.getIconColor());
+        DrawableCompat.setTint(ovalIcon.getDrawable(), iconColor);
+        ovalIcon.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+        cardView.addView(ovalIcon);
+
+        TextView textView = new TextView(context);
+        textView.setText(eventCategory.getEventCategoryName());
+        textView.setTextColor(Color.BLACK);
+        textView.setPadding(16, 16, 16, 16);
+
+        cardView.addView(textView);
+
+        return cardView;
+    }
+
+    private void handleCategorySelection(View currentSelectedCard, EventCategory currentSelectedEventCategory) {
+        if (lastSelectedEventCategoryCard != null && lastSelectedEventCategory != null) {
+            lastSelectedEventCategoryCard.setBackgroundColor(convertHexToIntUtil.change(lastSelectedEventCategory.getPrimaryColor()));
+        }
+        currentSelectedCard.setBackgroundColor(convertHexToIntUtil.change(currentSelectedEventCategory.getSelectedColor()));
+
+        lastSelectedEventCategoryCard = currentSelectedCard;
+        lastSelectedEventCategory = currentSelectedEventCategory;
+    }
+
 
     public void setUp() {
         TVDate = dialog.findViewById(R.id.TVDate);
@@ -61,13 +163,12 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
         ImageView ivEndTime = dialog.findViewById(R.id.IVEndTime);
         Button btnCreateEvent = dialog.findViewById(R.id.btnCreateEvent);
         TextView TVAddCategory = dialog.findViewById(R.id.TVAddCategory);
-        RadioButton RB2 = dialog.findViewById(R.id.RB2);
-        RadioButton RB3 = dialog.findViewById(R.id.RB3);
-        RadioButton RB4 = dialog.findViewById(R.id.RB4);
-        RadioButton RB5 = dialog.findViewById(R.id.RB5);
+        cardContainer = dialog.findViewById(R.id.cardContainer);
+        Set<EventCategory> convertedEventCategories = convertStringSetToEventCategories(eventCategories);
 
-        radioButtons = new ArrayList<>();
-        radioGroup = dialog.findViewById(R.id.MyRG);
+        for (EventCategory category : convertedEventCategories) {
+            addCategory(category);
+        }
 
         ivCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,25 +221,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
             }
 
             private void onAddNewCategoryClick(String categoryText) {
-                if (radioButtons.size() == 0) {
-                    RB2.setText(categoryText);
-                    RB2.setVisibility(View.VISIBLE);
-                    radioButtons.add(RB2);
-                } else if (radioButtons.size() == 1) {
-                    RB3.setText(categoryText);
-                    RB3.setVisibility(View.VISIBLE);
-                    radioButtons.add(RB3);
-                } else if (radioButtons.size() == 2) {
-                    RB4.setText(categoryText);
-                    RB4.setVisibility(View.VISIBLE);
-                    radioButtons.add(RB4);
-                } else if (radioButtons.size() == 3) {
-                    RB5.setText(categoryText);
-                    RB5.setVisibility(View.VISIBLE);
-                    radioButtons.add(RB5);
-                } else {
-                    Toast.makeText(context, "Maximum number of categories reached", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
 
@@ -155,7 +238,6 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 TextView TVDate = dialog.findViewById(R.id.TVDate);
                 TextView TVStartTime = dialog.findViewById(R.id.TVStartTime);
                 TextView TVEndTime = dialog.findViewById(R.id.TVEndTime);
-                RadioButton selectedRB = dialog.findViewById(radioGroup.getCheckedRadioButtonId());
 
                 if (ETEventName.getText().toString().isEmpty() || TVDate.getText().toString().isEmpty()) {
                     showRequireFieldsDialog();
@@ -165,11 +247,11 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                     String date = TVDate.getText().toString();
                     String starttime = TVStartTime.getText().toString();
                     String endtime = TVEndTime.getText().toString();
-                    String category;
-                    if (selectedRB != null) {
-                        category = selectedRB.getText().toString();
-                    } else
-                        category = null;
+//                    String category;
+//                    if (selectedRB != null) {
+//                        category = selectedRB.getText().toString();
+//                    } else
+//                        category = null;
 
                     impl.setEventInfoEventName(eventId, eventName);
                     impl.setEventInfoNote(eventId, note);
@@ -182,7 +264,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                         impl.setEventInfoEndTime(eventId, endtime);
                     } else
                         impl.setEventInfoEndTime(eventId, null);
-                    impl.setEventInfoCategory(eventId, category);
+//                    impl.setEventInfoCategory(eventId, category);
 
                     dialog.dismiss();
                 }
