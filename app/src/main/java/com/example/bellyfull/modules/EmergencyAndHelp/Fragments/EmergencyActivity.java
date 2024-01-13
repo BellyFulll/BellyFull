@@ -33,6 +33,8 @@ import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.User;
 import com.example.bellyfull.data.firebase.ports.dbProfileCallback;
 import com.example.bellyfull.data.firebase.repository.fbEmergencyImpl;
+import com.example.bellyfull.data.firebase.repository.fbProfileRepositoryImpl;
+import com.example.bellyfull.modules.Authentication.Fragments.EmailSender;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -54,6 +56,8 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
     private static final String FB_TAG = "Firebase - Emergency";
     private String preferredHospitalPhoneNumber;
     private AlertDialog alertDialog;
+    private Double latitude;
+    private Double longitude;
     SharedPreferences preferences;
 
     @Override
@@ -78,9 +82,15 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
 
         Button vMedInfoBtn = findViewById(R.id.vMedInfoBtn);
         vMedInfoBtn.setOnClickListener(view -> {
-            Intent medicalInfoIntent = new Intent(this, MedicalInfoActivity.class);
-            medicalInfoIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // This flag starts the activity in a new task
-            startActivity(medicalInfoIntent);
+            dbProfileCallback callback = new dbProfileCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    // TODO: make the pregnant weeks actually come from somewhere
+                    EmailSender.sendEmergencyDataEmail(user.getEmail(), user.getName(), latitude, longitude, "3");
+                }
+            };
+            fbProfileRepositoryImpl impl = new fbProfileRepositoryImpl(this);
+            impl.getUserDetails(userId, callback);
         });
         Button vPreferredHospitalBtn = findViewById(R.id.vPrefHosp);
         vPreferredHospitalBtn.setOnClickListener(new View.OnClickListener() {
@@ -118,11 +128,13 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(this, location -> {
                         if (location != null) {
-                            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                            LatLng currentLocation = new LatLng(latitude, longitude);
                             mMap.addMarker(new MarkerOptions()
-                                .position(currentLocation)
-                                .title("Current Location")
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                                    .position(currentLocation)
+                                    .title("Current Location")
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 13));
                         }
                     });
@@ -132,16 +144,13 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void performNearbySearch() {
-        // Create an instance of NearbySearchAsyncTask
         NearbySearchAsyncTask nearbySearchAsyncTask = new NearbySearchAsyncTask(
                 this, 5000, new NearbySearchAsyncTask.NearbySearchListener() {
             @Override
             public void onNearbySearchComplete(List<PlaceResult> placeResults) {
-                // Handle the list of PlaceResult objects (e.g., update UI, display markers on the map)
                 updateMapWithPlaces(placeResults);
             }
         });
-        // Execute the task
         nearbySearchAsyncTask.execute();
     }
 
@@ -150,67 +159,57 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
         mTextView.setMovementMethod(new ScrollingMovementMethod());
 
         for (PlaceResult placeResult : placeResults) {
-            // Create a SpannableString to apply blue color and bold style to the hospital name
             SpannableString spannableString = new SpannableString(placeResult.getName() + "\n");
             spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.brown1)), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, placeResult.getName().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            // Append hospital name and address
+
             mTextView.append(spannableString);
             mTextView.append(placeResult.getAddress() + "\n");
-            // Append hospital phone number (with a clickable link)
+
             appendClickablePhoneNumber(mTextView, placeResult.getPhoneNumber());
             mTextView.append("\n");
 
-            // Add markers for each place
             LatLng placeLatLng = new LatLng(placeResult.getLatitude(), placeResult.getLongitude());
             mMap.addMarker(new MarkerOptions().position(placeLatLng).title(placeResult.getName()));
         }
     }
 
     private void appendClickablePhoneNumber(TextView textView, final String phoneNumber) {
-        // Append phone number with a clickable link
         SpannableString spannable = new SpannableString(phoneNumber);
         spannable.setSpan(new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                // Handle the click event (e.g., open the dialer with the phone number)
                 dialPhoneNumber(phoneNumber);
             }
         }, 0, phoneNumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        // Make the phone number appear as a clickable link
         textView.append(spannable);
         textView.append("\n");
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void dialPhoneNumber(String phoneNumber) {
-        // Open the dialer with the provided phone number
         Intent dialIntent = new Intent(Intent.ACTION_DIAL);
         dialIntent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(dialIntent);
     }
 
     private void initiatePhoneCall(String phoneNumber) {
-        // Intent to initiate a phone call
         Intent dialIntent = new Intent(Intent.ACTION_DIAL);
         dialIntent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(dialIntent);
     }
 
     private void showLoginDialog() {
-        // Create a custom dialog with your layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.req_login_dialog, null);
         builder.setView(dialogView);
 
         Button confirmButton = dialogView.findViewById(R.id.confirmButton);
         Button cancelButton = dialogView.findViewById(R.id.cancelButton);
-        // Set click listeners for buttons
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // start PreLoginActivity
                 Intent preLoginIntent = new Intent(EmergencyActivity.this, PreLoginActivity.class);
                 startActivity(preLoginIntent);
             }
@@ -218,12 +217,10 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // User clicked the "No" button, dismiss the dialog
                 alertDialog.dismiss();
             }
         });
 
-        // Create and show the AlertDialog
         alertDialog = builder.create();
         alertDialog.show();
     }

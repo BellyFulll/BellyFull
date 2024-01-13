@@ -38,6 +38,7 @@ public class NearbySearchAsyncTask extends AsyncTask<Void, Void, List<PlaceResul
         try {
             // Obtain the current location
             Location currentLocation = getCurrentLocation();
+            System.out.println(currentLocation);
             Log.i(TAG, "Current location: " + currentLocation);
 
             if (currentLocation != null) {
