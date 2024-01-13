@@ -1,6 +1,7 @@
 package com.example.bellyfull.modules.visualisation.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,13 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.bellyfull.MainActivity;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.BabyInfo;
 import com.example.bellyfull.data.firebase.ports.dbBabyInfoCallback;
 import com.example.bellyfull.data.firebase.repository.dbBabyInfoRepositoryImpl;
+import com.example.bellyfull.modules.PregnancyTracking.Fragments.BabyInputFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -60,6 +66,21 @@ public class BabyVisualisationFragment extends Fragment {
         new TabLayoutMediator(tabLayout, viewPager2,
                 (tab, position) -> tab.setText(tabTitles[position])
         ).attach();
+
+        FloatingActionButton fab = view.findViewById(R.id.btnUpdateBaby);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BabyInputFragment babyInputFragment = new BabyInputFragment();
+
+                // Use FragmentManager to navigate to the new fragment
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.NHFMain, babyInputFragment);
+                fragmentTransaction.addToBackStack(null); // Optional, to allow navigating back
+                fragmentTransaction.commit();
+            }
+        });
 
         return view;
     }

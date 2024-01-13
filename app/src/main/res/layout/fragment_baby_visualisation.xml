@@ -406,12 +406,20 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/button"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnUpdateBaby"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="277dp"
-        tools:layout_editor_absoluteY="69dp" />
+        android:layout_marginStart="290dp"
+        android:layout_marginTop="650dp"
+        android:background="@color/pink1"
+        android:clickable="true"
+        android:src="@drawable/whiteplus"
+        android:translationZ="8dp"
+        app:backgroundTint="@color/pink1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
