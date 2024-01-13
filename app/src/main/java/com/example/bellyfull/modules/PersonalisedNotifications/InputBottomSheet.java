@@ -29,6 +29,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
+import com.example.bellyfull.data.firebase.collection.Event;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
 import com.example.bellyfull.utils.convertHexToIntUtil;
 import com.example.bellyfull.utils.showColorPickerUtil;
@@ -227,7 +228,6 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 SharedPreferences preferences = context.getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
                 String userId = preferences.getString(preference_constant.pUserId, "");
                 String eventId = UUID.randomUUID().toString();
-                impl.createEventInfo(userId, eventId);
 
                 EditText ETEventName = dialog.findViewById(R.id.ETEventName);
                 EditText ETNote = dialog.findViewById(R.id.ETNote);
@@ -241,17 +241,16 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 String date = TVDate.getText().toString();
                 String startTime = TVStartTime.getText().toString();
                 String endTime = TVEndTime.getText().toString();
-                String category;
+                String category = lastSelectedEventCategory != null ? lastSelectedEventCategory.getEventCategoryName() : "";
 
-                if (eventName.isEmpty() || date.isEmpty() || startTime.equals("Start Time") || endTime.equals("End Time")) {
+                if (eventName.isEmpty() || date.isEmpty() || startTime.equals("Start Time") || endTime.equals("End Time") || category.isEmpty()) {
                     showRequireFieldsDialog();
                 } else {
+                    Event event = new Event(eventId, eventName, date, startTime, endTime, category, userId);
+                    event.setEventNote(note);
+                    impl.createEventInfo(event);
 
-                    impl.setEventInfoEventName(eventId, eventName);
-                    impl.setEventInfoNote(eventId, note);
-                    impl.setEventInfoDate(eventId, date);
-                    impl.setEventInfoStartTime(eventId, startTime);
-                    impl.setEventInfoEndTime(eventId, endTime);
+
 
                     // Schedule the reminder using AlarmManager
                     AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

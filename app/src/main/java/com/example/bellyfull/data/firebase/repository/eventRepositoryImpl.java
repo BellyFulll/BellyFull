@@ -11,6 +11,7 @@ import com.example.bellyfull.Constant.db_collection_constant;
 import com.example.bellyfull.data.firebase.collection.Event;
 import com.example.bellyfull.data.firebase.firebase;
 import com.example.bellyfull.data.firebase.ports.eventRepository;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -29,10 +30,9 @@ public class eventRepositoryImpl implements eventRepository {
     }
 
     @Override
-    public void createEventInfo(String userId, String eventId) {
-        Event eventInfo = new Event(eventId, null, null, null, null, null, userId);
-        db.collection(db_collection_constant.EventCollection).document(eventId.toString())
-                .set(eventInfo);
+    public void createEventInfo(Event event) {
+        db.collection(db_collection_constant.EventCollection).document(event.getEventId())
+                .set(event);
     }
 
     @Override
