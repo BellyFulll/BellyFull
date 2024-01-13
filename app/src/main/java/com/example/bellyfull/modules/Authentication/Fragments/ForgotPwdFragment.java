@@ -60,7 +60,7 @@ public class ForgotPwdFragment extends Fragment {
                         // Email exists, send verification code
                         String verificationCode = generateVerificationCode();
                         // Send email with verification code using your preferred method (e.g., email service)
-                        emailSender.sendEmail(email, verificationCode);
+                        emailSender.sendVerificationEmail(email, verificationCode);
                         Toast.makeText(requireContext(), "Verification code sent", Toast.LENGTH_SHORT).show();
                         // Now, navigate to the verification code input page
                         NavDirections action = ForgotPwdFragmentDirections.actionForgotPwdFragmentToVerifyCodeFragment(email, verificationCode);

@@ -58,10 +58,6 @@
             android:name=".modules.EmergencyAndHelp.Fragments.EmergencyActivity"
             android:exported="true" />
 
-        <activity
-            android:name=".modules.EmergencyAndHelp.Fragments.MedicalInfoActivity"
-            android:exported="true" />
-
         <!-- metadata for api key-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/pink2">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pink2">
 
     <FrameLayout
-            android:id="@+id/map_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/map_bg_box">
+        android:id="@+id/map_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/map_bg_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <fragment
-                android:id="@+id/mapView"
-                class="com.google.android.gms.maps.SupportMapFragment"
-                tools:context=".modules.EmergencyAndHelp.Fragments.EmergencyActivity"
-                android:layout_width="370dp"
-                android:layout_height="262dp"
-                android:layout_margin="6dp" />
+            android:id="@+id/mapView"
+            class="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="370dp"
+            android:layout_height="262dp"
+            android:layout_margin="6dp"
+            tools:context=".modules.EmergencyAndHelp.Fragments.EmergencyActivity" />
     </FrameLayout>
 
     <FrameLayout
-            android:id="@+id/textFrame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/map_container"
-            android:background="@color/pink6">
+        android:id="@+id/textFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/pink6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map_container">
 
         <TextView
-                android:scrollbars="vertical"
-                android:layout_width="375dp"
-                android:layout_height="472dp"
-                android:id="@+id/mTextView"
-                android:textSize="20sp"
-                android:textColor="@color/dark_pink"
-                android:fontFamily="@font/a_bee_zee_regular"
-                android:layout_margin="6dp" />
+            android:id="@+id/mTextView"
+            android:layout_width="375dp"
+            android:layout_height="472dp"
+            android:layout_margin="6dp"
+            android:fontFamily="@font/a_bee_zee_regular"
+            android:scrollbars="vertical"
+            android:textColor="@color/dark_pink"
+            android:textSize="20sp" />
     </FrameLayout>
 
     <Button
-            android:text="View Medical Info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/pink1"
-            android:id="@+id/vMedInfoBtn"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textFrame"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+        android:id="@+id/vMedInfoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/pink1"
+        android:text="Share Medical Info"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFrame" />
 
     <Button
-            android:text="Call Preferred Hospital"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/pink1"
-            android:id="@+id/vPrefHosp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textFrame"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+        android:id="@+id/vPrefHosp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/pink1"
+        android:text="Call Preferred Hospital"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFrame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
