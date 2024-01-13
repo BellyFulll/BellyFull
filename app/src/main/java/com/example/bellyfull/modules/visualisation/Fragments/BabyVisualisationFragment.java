@@ -30,6 +30,9 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import com.example.bellyfull.Constant.preference_constant;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class BabyVisualisationFragment extends Fragment {
     SharedPreferences preferences;
 
@@ -111,13 +114,20 @@ public class BabyVisualisationFragment extends Fragment {
     }
 
     private void updateUI(BabyInfo babyInfo) {
+        if (getView() == null) {
+            return;
+        }
         TextView TVFetalWeight = getView().findViewById(R.id.WeightText);
         TextView TVFetalHeight = getView().findViewById(R.id.HeightText);
         TextView TVHeadCircumference = getView().findViewById(R.id.HeadCircumferenceText);
+        TextView TVUpdateDate = getView().findViewById(R.id.txtLastUpdated);
         if (babyInfo != null) {
             Double Weight = babyInfo.getFetalWeight();
             Double Height = babyInfo.getFetalLength();
             Double HeadCircumference = babyInfo.getHeadCircumference();
+            SimpleDateFormat dateformat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+            String formattedDate = dateformat.format(babyInfo.getEntryDate());
+            TVUpdateDate.setText("Last Updated on " + formattedDate);
             if (Weight != null) {
                 TVFetalWeight.setText(String.valueOf(Weight));
             } else {
