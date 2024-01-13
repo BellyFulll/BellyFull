@@ -23,7 +23,7 @@ import java.util.List;
 public class NearbySearchAsyncTask extends AsyncTask<Void, Void, List<PlaceResult>> {
     private static final String TAG = "NearbySearchAsyncTask";
     private Context context;
-    private int radius; // Replace with your desired radius
+    private int radius;
     private NearbySearchListener listener;
 
     public NearbySearchAsyncTask(Context context, int radius, NearbySearchListener listener) {

@@ -167,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:fontFamily="@font/a_bee_zee_regular"
-                        android:text=" More Self Love & Fulfilment"
+                        android:text=" More Self Love &amp; Fulfilment"
                         android:textColor="@color/pink1"
                         android:textSize="22sp"
                         android:textStyle="bold" />
