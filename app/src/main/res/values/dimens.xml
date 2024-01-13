@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_between_events">8dp</dimen> <!-- Adjust the value as needed -->
+    <dimen name="margin_between_events">8dp</dimen>
+    <dimen name="card_corner_radius">10dp</dimen>
 </resources>

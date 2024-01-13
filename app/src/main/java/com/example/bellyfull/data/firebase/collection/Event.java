@@ -5,21 +5,21 @@ import android.graphics.Color;
 public class Event {
     private String eventId;
     private String eventName;
-    private String note;
-    private String date;
-    private String startTime;
-    private String endTime;
+    private String eventNote;
+    private String eventDate;
+    private String eventStartTime;
+    private String eventEndTime;
     private String userId;
-    private String category;
+    private String eventCategory;
     private Color categoryColor;
 
-    public Event(String eventId, String eventName, String date, String startTime, String endTime, String category, String userId) {
+    public Event(String eventId, String eventName, String eventDate, String eventStartTime, String eventEndTime, String eventCategory, String userId) {
         this.eventId = eventId;
         this.eventName = eventName;
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.category = category;
+        this.eventDate = eventDate;
+        this.eventStartTime = eventStartTime;
+        this.eventEndTime = eventEndTime;
+        this.eventCategory = eventCategory;
         this.userId = userId;
     }
 
@@ -42,44 +42,44 @@ public class Event {
         return eventName;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setEventNote(String eventNote) {
+        this.eventNote = eventNote;
     }
 
-    public String getNote() {
-        return note;
+    public String getEventNote() {
+        return eventNote;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
     }
 
-    public String getDate() {
-        return date;
+    public String getEventDate() {
+        return eventDate;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setEventStartTime(String eventStartTime) {
+        this.eventStartTime = eventStartTime;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getEventStartTime() {
+        return eventStartTime;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setEventEndTime(String eventEndTime) {
+        this.eventEndTime = eventEndTime;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getEventEndTime() {
+        return eventEndTime;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setEventCategory(String eventCategory) {
+        this.eventCategory = eventCategory;
     }
 
-    public String getCategory() {
-        return category;
+    public String getEventCategory() {
+        return eventCategory;
     }
 
     public void setCategoryColor(Color color) {
