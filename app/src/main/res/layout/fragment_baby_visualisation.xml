@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/babyvisualisation_background"
-    tools:context=".modules.visualisation.Fragments.BabyVisualisationFragment" >
+    tools:context=".modules.visualisation.Fragments.BabyVisualisationFragment">
 
     <ScrollView
         android:layout_width="415dp"
