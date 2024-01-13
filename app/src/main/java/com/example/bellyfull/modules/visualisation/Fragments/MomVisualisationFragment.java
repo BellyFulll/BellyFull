@@ -43,7 +43,7 @@ public class MomVisualisationFragment extends Fragment {
         }
 
         // Initialize TextView
-        tvCardViewBig = view.findViewById(R.id.tvCardViewBig);
+        tvCardViewBig = view.findViewById(R.id.sleepanalysis_text);
 
         // Attach a listener to read the data at your data node
         if (databaseReference != null) {

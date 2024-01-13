@@ -74,18 +74,75 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewBig"
                 android:layout_width="381dp"
-                android:layout_height="170dp"
+                android:layout_height="212dp"
                 android:layout_margin="16dp"
                 app:cardBackgroundColor="@color/overlay_bg"
                 app:cardCornerRadius="8dp">
 
                 <TextView
-                    android:id="@+id/tvCardViewBig"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/sleepanalysis_text"
+                    android:layout_width="348dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="Placeholder text for card 1"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/a_bee_zee_regular"
+                    android:text="Sleep Analysis"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/pink1"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="208dp"
+                    android:layout_height="166dp"
+                    android:layout_marginLeft="-20dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/sleepquality_progresscircle" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="347dp"
+                    android:layout_height="105dp"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginTop="120dp"
+                    android:src="@drawable/sleep_graphic" />
+
+                <TextView
+                    android:id="@+id/sleep_duration"
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="190dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/a_bee_zee_regular"
+                    android:text="7h 30m"
+                    android:textAlignment="center"
+                    android:textColor="@color/pink1"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="205dp"
+                    android:layout_marginTop="90dp"
+                    android:fontFamily="@font/a_bee_zee_regular"
+                    android:text="Sleep Duration"
+                    android:textColor="@color/pink1"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="195dp"
+                    android:layout_marginTop="110dp"
+                    android:fontFamily="@font/a_bee_zee_regular"
+                    android:text="Slightly better than yesterday"
+                    android:textColor="@color/pink1"
+                    android:textSize="9sp" />
+
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
