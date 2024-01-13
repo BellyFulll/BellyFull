@@ -163,11 +163,22 @@
 
                     <TextView
                         android:id="@+id/tvCardView2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="164dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:text="Placeholder text for card 2"
-                        android:textSize="18sp" />
+                        android:fontFamily="@font/a_bee_zee_regular"
+                        android:text=" More Self Love & Fulfilment"
+                        android:textColor="@color/pink1"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="100dp"
+                        android:layout_height="84dp"
+                        android:layout_marginLeft="90dp"
+                        android:layout_marginTop="50dp"
+                        android:src="@drawable/mental_health_graphic" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
