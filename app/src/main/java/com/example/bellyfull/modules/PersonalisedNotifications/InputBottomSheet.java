@@ -1,10 +1,12 @@
 package com.example.bellyfull.modules.PersonalisedNotifications;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -17,8 +19,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -98,6 +102,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
+        params.setMargins(0, 0, 20, 0);
 
         View cardView = createCardView(eventCategory);
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -229,33 +234,36 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 TextView TVDate = dialog.findViewById(R.id.TVDate);
                 TextView TVStartTime = dialog.findViewById(R.id.TVStartTime);
                 TextView TVEndTime = dialog.findViewById(R.id.TVEndTime);
+                Switch remindsMe = dialog.findViewById(R.id.remindsMe);
 
-                if (ETEventName.getText().toString().isEmpty() || TVDate.getText().toString().isEmpty()) {
+                String eventName = ETEventName.getText().toString();
+                String note = ETNote.getText().toString();
+                String date = TVDate.getText().toString();
+                String startTime = TVStartTime.getText().toString();
+                String endTime = TVEndTime.getText().toString();
+                String category;
+
+                if (eventName.isEmpty() || date.isEmpty() || startTime.equals("Start Time") || endTime.equals("End Time")) {
                     showRequireFieldsDialog();
                 } else {
-                    String eventName = ETEventName.getText().toString();
-                    String note = ETNote.getText().toString();
-                    String date = TVDate.getText().toString();
-                    String starttime = TVStartTime.getText().toString();
-                    String endtime = TVEndTime.getText().toString();
-//                    String category;
-//                    if (selectedRB != null) {
-//                        category = selectedRB.getText().toString();
-//                    } else
-//                        category = null;
 
                     impl.setEventInfoEventName(eventId, eventName);
                     impl.setEventInfoNote(eventId, note);
                     impl.setEventInfoDate(eventId, date);
-                    if (!starttime.equals("Start Time")) {
-                        impl.setEventInfoStartTime(eventId, starttime);
-                    } else
-                        impl.setEventInfoStartTime(eventId, null);
-                    if (!endtime.equals("End Time")) {
-                        impl.setEventInfoEndTime(eventId, endtime);
-                    } else
-                        impl.setEventInfoEndTime(eventId, null);
+                    impl.setEventInfoStartTime(eventId, startTime);
+                    impl.setEventInfoEndTime(eventId, endTime);
+
+                    // Schedule the reminder using AlarmManager
+                    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+//                    Intent intent = new Intent(this, ReminderBroadcastReceiver.class);
+//                    PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+                    // Schedule the alarm
+//                    alarmManager.set(AlarmManager.RTC_WAKEUP, selectedDateTimeInMillis, pendingIntent);
+
 //                    impl.setEventInfoCategory(eventId, category);
+
 
                     dialog.dismiss();
                 }
@@ -311,11 +319,13 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
     }
 
     private void showRequireFieldsDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Error");
-        builder.setMessage("Please enter the required fields.");
-        builder.setPositiveButton("OK", null);
-        builder.create().show();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        builder.setTitle("Error");
+//        builder.setMessage("Please enter the required fields.");
+//        builder.setPositiveButton("OK", null);
+//        builder.create().show();
+
+        Toast.makeText(context, "Please fill in appropriate event name, date, start time and end time", Toast.LENGTH_SHORT).show();
     }
 
     @Override

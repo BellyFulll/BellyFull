@@ -11,7 +11,7 @@ public class Event {
     private String eventEndTime;
     private String userId;
     private String eventCategory;
-    private Color categoryColor;
+    private Color iconColor;
 
     public Event(String eventId, String eventName, String eventDate, String eventStartTime, String eventEndTime, String eventCategory, String userId) {
         this.eventId = eventId;
@@ -21,6 +21,14 @@ public class Event {
         this.eventEndTime = eventEndTime;
         this.eventCategory = eventCategory;
         this.userId = userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Color getIconColor() {
+        return iconColor;
     }
 
     public Event() {
@@ -33,6 +41,7 @@ public class Event {
     public String getEventId() {
         return eventId;
     }
+
     public void setEventName(String eventName) {
         this.eventName = eventName;
         this.userId = userId;
@@ -82,12 +91,12 @@ public class Event {
         return eventCategory;
     }
 
-    public void setCategoryColor(Color color) {
-        this.categoryColor = color;
+    public void setIconColor(Color color) {
+        this.iconColor = color;
     }
 
     public Color getCategoryColor(Color color) {
-        return this.categoryColor;
+        return this.iconColor;
     }
 
     public void setUserId() {
