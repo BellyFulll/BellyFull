@@ -1,6 +1,5 @@
 package com.example.bellyfull.modules.PersonalisedNotifications;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -21,12 +20,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
 import com.example.bellyfull.utils.convertHexToIntUtil;
+import com.example.bellyfull.utils.showColorPickerUtil;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -61,6 +62,8 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 convertEventCategoriesToStringSet(defaultEventCategories)
         );
         editor = sharedPreferences.edit();
+        editor.putStringSet(preference_constant.pEventCategories, eventCategories);
+        editor.commit();
         impl = new eventRepositoryImpl(dialog.getContext());
     }
 
@@ -189,7 +192,6 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
             }
         });
 
-        // TODO: figure out a better implementation
         TVAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,31 +199,20 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
             }
 
             private void showAddCategoryDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                showColorPickerUtil colorPickerUtil = new showColorPickerUtil(context);
+                AlertDialog.Builder builder = colorPickerUtil.build(new showColorPickerUtil.ColorSelectedCallback() {
+                    @Override
+                    public void onCategoryAdded(EventCategory eventCategory) {
+                        addCategory(eventCategory);
+                        convertedEventCategories.add(eventCategory);
+                        System.out.println("added event category" + eventCategory.getEventCategoryName());
+                        editor.putStringSet(preference_constant.pEventCategories, convertEventCategoriesToStringSet(convertedEventCategories));
+                        editor.commit();
+                    }
+                });
                 builder.setTitle("Add New Category");
 
-                final EditText input = new EditText(context);
-                input.setInputType(InputType.TYPE_CLASS_TEXT);
-                builder.setView(input);
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String categoryText = input.getText().toString();
-                        onAddNewCategoryClick(categoryText);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
                 builder.show();
-            }
-
-            private void onAddNewCategoryClick(String categoryText) {
-
             }
         });
 

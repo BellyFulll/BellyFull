@@ -13,4 +13,50 @@
     <color name="overlay_bg">#FCDDE8</color>
     <color name="purple">#735BF2</color>
     <color name="lavender">#222B45</color>
+
+    <color name="blue_200">#CCE0FF</color>
+    <color name="blue_500">#388BFF</color>
+    <color name="blue_800">#0055CC</color>
+
+    <color name="green_200">#BAF3DB</color>
+    <color name="green_500">#2ABB7F</color>
+    <color name="green_800">#216E4E</color>
+
+    <color name="orange_200">#FEDEC8</color>
+    <color name="orange_500">#F38A3F</color>
+    <color name="orange_800">#A54800</color>
+
+    <color name="purple_200">#DFD8FD</color>
+    <color name="purple_500">#8F7EE7</color>
+    <color name="purple_800">#5E4DB2</color>
+
+
+    <integer-array name="event_category_primary_colors">
+        <item>@color/blue_200</item>
+        <item>@color/green_200</item>
+        <item>@color/orange_200</item>
+        <item>@color/purple_200</item>
+    </integer-array>
+
+    <integer-array name="event_category_selected_colors">
+        <item>@color/blue_500</item>
+        <item>@color/green_500</item>
+        <item>@color/orange_500</item>
+        <item>@color/purple_500</item>
+    </integer-array>
+
+    <integer-array name="event_category_icon_colors">
+        <item>@color/blue_800</item>
+        <item>@color/green_800</item>
+        <item>@color/orange_800</item>
+        <item>@color/purple_800</item>
+    </integer-array>
+
+    <string-array name="event_category_color_names">
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Orange</item>
+        <item>Purple</item>
+    </string-array>
+
 </resources>
