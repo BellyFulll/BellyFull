@@ -67,7 +67,9 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private LinearLayout cardContainer;
+    private Date selectedDate;
     private Date selectedStartTime;
+    private Date selectedEndTime;
     eventRepositoryImpl impl;
 
     public InputBottomSheet(Dialog dialog) {
@@ -247,7 +249,6 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
 
                 EditText ETEventName = dialog.findViewById(R.id.ETEventName);
                 EditText ETNote = dialog.findViewById(R.id.ETNote);
-                TextView TVDate = dialog.findViewById(R.id.TVDate);
                 TextView TVStartTime = dialog.findViewById(R.id.TVStartTime);
                 TextView TVEndTime = dialog.findViewById(R.id.TVEndTime);
                 Switch remindsMe = dialog.findViewById(R.id.remindsMe);
@@ -285,7 +286,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 if (eventName.isEmpty() || date.isEmpty() || startTime.equals("Start Time") || endTime.equals("End Time") || category.isEmpty()) {
                     showRequireFieldsDialog();
                 } else {
-                    Event event = new Event(eventId, eventName, date, startTime, endTime, category, userId);
+                    Event event = new Event(eventId, eventName, selectedStartTime.getTime(), selectedEndTime.getTime(), category, userId);
                     event.setEventNote(note);
                     impl.createEventInfo(event);
 
@@ -330,15 +331,18 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         Calendar selectedTime = Calendar.getInstance();
+                        selectedTime.setTime(new Date(selectedDate.getTime()));
                         selectedTime.set(Calendar.HOUR_OF_DAY, selectedHour);
                         selectedTime.set(Calendar.MINUTE, selectedMinute);
+
 
                         if (IVTime.getId() == R.id.IVStartTime) {
                             selectedStartTime = selectedTime.getTime();
                             String currentTimeString = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedStartTime);
                             TVStartTime.setText(currentTimeString);
                         } else if (IVTime.getId() == R.id.IVEndTime) {
-                            String currentTimeString = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedStartTime);
+                            selectedEndTime = selectedTime.getTime();
+                            String currentTimeString = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedEndTime);
                             TVEndTime.setText(currentTimeString);
                         }
                     }
@@ -383,6 +387,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
         updateUIWithSelectedDate(c, dialog.findViewById(R.id.TVDate));
+        selectedDate = c.getTime();
     }
 
     private void updateUIWithSelectedDate(Calendar selectedDate, View dialogView) {

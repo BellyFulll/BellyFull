@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
 import com.example.bellyfull.modules.PersonalisedNotifications.InputBottomSheet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -63,7 +65,7 @@ public class CalendarFragment extends Fragment {
 
         FloatingActionButton btnAddEvent = getView().findViewById(R.id.btnAddEvent);
         CalendarView calendarView = view.findViewById(R.id.calendarView);
-
+        retrieveAndDisplayEvents(new Date());
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
@@ -136,21 +138,16 @@ public class CalendarFragment extends Fragment {
             TextView TVEventTime = eventView.findViewById(R.id.eventTime);
             TextView TVEventNote = eventView.findViewById(R.id.eventNote);
 
-            String eventStartTime = event.getEventStartTime();
-            String eventEndTime = event.getEventEndTime();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date(event.getEventStartTime()));
+
+            String eventStartTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+
+            calendar.setTime(new Date(event.getEventEndTime()));
+            String eventEndTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+
             TVEventTitle.setText(event.getEventName());
-            if ((eventStartTime == null) && (eventEndTime == null)) {
-                TVEventTime.setVisibility(View.GONE);
-            }
-            if ((eventStartTime != null) && (eventEndTime == null)) {
-                TVEventTime.setText(eventStartTime);
-            }
-            if ((eventStartTime == null) && (eventEndTime != null)) {
-                TVEventTime.setText("until " + eventEndTime);
-            }
-            if ((eventStartTime != null) && (eventEndTime != null)) {
-                TVEventTime.setText(eventStartTime + " - " + eventEndTime);
-            }
+            TVEventTime.setText(String.format("%s - %s", eventStartTime, eventEndTime));
 
             String eventNote = event.getEventNote();
             if (eventNote == null) {

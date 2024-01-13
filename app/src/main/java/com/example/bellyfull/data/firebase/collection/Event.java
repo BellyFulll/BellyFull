@@ -6,17 +6,15 @@ public class Event {
     private String eventId;
     private String eventName;
     private String eventNote;
-    private String eventDate;
-    private String eventStartTime;
-    private String eventEndTime;
+    private long eventStartTime;
+    private long eventEndTime;
     private String userId;
     private String eventCategory;
     private Color iconColor;
 
-    public Event(String eventId, String eventName, String eventDate, String eventStartTime, String eventEndTime, String eventCategory, String userId) {
+    public Event(String eventId, String eventName, long eventStartTime, long eventEndTime, String eventCategory, String userId) {
         this.eventId = eventId;
         this.eventName = eventName;
-        this.eventDate = eventDate;
         this.eventStartTime = eventStartTime;
         this.eventEndTime = eventEndTime;
         this.eventCategory = eventCategory;
@@ -59,27 +57,19 @@ public class Event {
         return eventNote;
     }
 
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
-    }
-
-    public String getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventStartTime(String eventStartTime) {
+    public void setEventStartTime(long eventStartTime) {
         this.eventStartTime = eventStartTime;
     }
 
-    public String getEventStartTime() {
+    public long getEventStartTime() {
         return eventStartTime;
     }
 
-    public void setEventEndTime(String eventEndTime) {
+    public void setEventEndTime(long eventEndTime) {
         this.eventEndTime = eventEndTime;
     }
 
-    public String getEventEndTime() {
+    public long getEventEndTime() {
         return eventEndTime;
     }
 
