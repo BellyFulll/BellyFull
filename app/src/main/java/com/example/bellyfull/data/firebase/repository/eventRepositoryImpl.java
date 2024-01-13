@@ -17,6 +17,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -70,28 +71,34 @@ public class eventRepositoryImpl implements eventRepository {
 
     @SuppressLint("RestrictedApi")
     public void getEventsForDate(Date date, EventCallback callback) {
-
-
-        // Assuming you have a field 'date' in your events
         db.collection(db_collection_constant.EventCollection)
-                .whereEqualTo("date", formatDateToStringLongForm(date))
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         List<Event> events = new ArrayList<>();
+                        Calendar selectedDateCalendar = Calendar.getInstance();
+                        Calendar eventStartTimeCalendar = Calendar.getInstance();
+                        selectedDateCalendar.setTime(date);
+                        int selectedYear = selectedDateCalendar.get(Calendar.YEAR);
+                        int selectedMonth = selectedDateCalendar.get(Calendar.MONTH);
+                        int selectedDay = selectedDateCalendar.get(Calendar.DAY_OF_MONTH);
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Event event = document.toObject(Event.class);
-                            events.add(event);
+                            eventStartTimeCalendar.setTime(new Date(event.getEventStartTime()));
+                            int eventYear = eventStartTimeCalendar.get(Calendar.YEAR);
+                            int eventMonth = eventStartTimeCalendar.get(Calendar.MONTH);
+                            int eventDay = eventStartTimeCalendar.get(Calendar.DAY_OF_MONTH);
+                            if(selectedYear == eventYear && selectedMonth == eventMonth && selectedDay == eventDay){
+                                events.add(event);
+                            }
                         }
                         // You may want to sort events by time or perform additional processing here
                         callback.onEventsRetrieved(events);
                     } else {
                         // Handle the error
-                        Log.e(TAG, "Error getting events for date", task.getException());
+                        Log.e("TESTING", "Error getting events for date", task.getException());
                     }
                 });
-
-
     }
 
     public interface EventCallback {
