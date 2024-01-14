@@ -102,8 +102,8 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
                         Toast.makeText(getApplicationContext(), "please fill in emergency responder email", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    EmailSender es = new EmailSender();
-                    es.sendEmergencyDataEmail(user.getEmergencyResponderEmail(), user.getName(), latitude, longitude, String.valueOf(pregnantWeeks));
+                    EmailSender.sendEmergencyDataEmail(user.getEmergencyResponderEmail(), user.getName(), latitude, longitude, String.valueOf(pregnantWeeks));
+                    Toast.makeText(getApplicationContext(), "Email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
                 }
             };
             fbProfileRepositoryImpl impl = new fbProfileRepositoryImpl(this);

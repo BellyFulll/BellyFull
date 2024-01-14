@@ -353,10 +353,8 @@ public class BabyInputFragment extends Fragment {
                 imageUpload.getLayoutParams().height = 450;
                 // show download button
                 Button btnDownload = requireView().findViewById(R.id.btnDownload);
+                btnDownload.getLayoutParams().height = 120;
                 btnDownload.setVisibility(View.VISIBLE);
-                // set textview to image name
-                TextView tvPhotoName = requireView().findViewById(R.id.tvPhotoName);
-                tvPhotoName.setText(photoName);
             }
         }
     }
