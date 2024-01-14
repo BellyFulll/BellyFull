@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:columnCount="4"
-        android:rowCount="1" />
+        android:columnCount="7"
+        android:rowCount="1"/>
 
     <EditText
         android:id="@+id/editText"

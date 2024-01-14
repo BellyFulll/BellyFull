@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
-            android:clickable="true"
+            android:clickable="false"
             android:onClick="onDateIconClick"
             android:paddingVertical="5dp"
             android:src="@drawable/icon_calendar" />
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:clickable="true"
+                android:clickable="false"
                 android:paddingLeft="10dp"
                 android:src="@drawable/time_icon" />
         </LinearLayout>
@@ -146,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:clickable="true"
+                android:clickable="false"
                 android:paddingLeft="10dp"
                 android:src="@drawable/time_icon" />
         </LinearLayout>
