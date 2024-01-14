@@ -1,7 +1,6 @@
 package com.example.bellyfull.modules.PersonalisedNotifications;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -10,7 +9,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -18,9 +16,6 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
-import android.os.SystemClock;
-import android.text.InputType;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +31,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.example.bellyfull.Constant.notification_constant;
@@ -184,9 +178,9 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
         TVStartTime = dialog.findViewById(R.id.TVStartTime);
         TVEndTime = dialog.findViewById(R.id.TVEndTime);
 
-        ImageView ivCalendar = dialog.findViewById(R.id.IVCalendar);
-        ImageView ivStartTime = dialog.findViewById(R.id.IVStartTime);
-        ImageView ivEndTime = dialog.findViewById(R.id.IVEndTime);
+        LinearLayout calendarClickable = dialog.findViewById(R.id.CalendarClickable);
+        LinearLayout startTimeClickable = dialog.findViewById(R.id.StartTimeClickable);
+        LinearLayout endTimeClickable = dialog.findViewById(R.id.EndTimeClickable);
         Button btnCreateEvent = dialog.findViewById(R.id.btnCreateEvent);
         TextView TVAddCategory = dialog.findViewById(R.id.TVAddCategory);
         cardContainer = dialog.findViewById(R.id.cardContainer);
@@ -196,22 +190,22 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
             addCategory(category);
         }
 
-        ivCalendar.setOnClickListener(new View.OnClickListener() {
+        calendarClickable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onDateIconClick();
             }
         });
-        ivStartTime.setOnClickListener(new View.OnClickListener() {
+        startTimeClickable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onTimeCLick(view, TVStartTime, ivStartTime);
+                onTimeCLick(view, TVStartTime, startTimeClickable);
             }
         });
-        ivEndTime.setOnClickListener(new View.OnClickListener() {
+        endTimeClickable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onTimeCLick(view, TVEndTime, ivEndTime);
+                onTimeCLick(view, TVEndTime, endTimeClickable);
             }
         });
 
@@ -321,7 +315,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
         notificationManager.createNotificationChannel(channel);
     }
 
-    private void onTimeCLick(View v, TextView TVTime, ImageView IVTime) {
+    private void onTimeCLick(View v, TextView TVTime, LinearLayout clickableTime) {
         Calendar currentTime = Calendar.getInstance();
         int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
         int currentMinute = currentTime.get(Calendar.MINUTE);
@@ -337,11 +331,11 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                         selectedTime.set(Calendar.MINUTE, selectedMinute);
 
 
-                        if (IVTime.getId() == R.id.IVStartTime) {
+                        if (clickableTime.getId() == R.id.StartTimeClickable) {
                             selectedStartTime = selectedTime.getTime();
                             String currentTimeString = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedStartTime);
                             TVStartTime.setText(currentTimeString);
-                        } else if (IVTime.getId() == R.id.IVEndTime) {
+                        } else if (clickableTime.getId() == R.id.EndTimeClickable) {
                             selectedEndTime = selectedTime.getTime();
                             String currentTimeString = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedEndTime);
                             TVEndTime.setText(currentTimeString);
