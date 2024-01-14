@@ -25,7 +25,7 @@ public class dbBabyInfoRepositoryImpl implements dbBabyInfoRepository {
     public void getBabyInfo(String userId, dbBabyInfoCallback callback) {
         db.collection(db_collection_constant.BabyInfoCollection)
                 .whereEqualTo("userId", userId)
-                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .orderBy("entryDate", Query.Direction.DESCENDING)
                 .limit(1)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
