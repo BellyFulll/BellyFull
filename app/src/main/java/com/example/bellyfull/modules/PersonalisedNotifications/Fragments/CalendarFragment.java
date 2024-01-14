@@ -44,7 +44,7 @@ public class CalendarFragment extends Fragment {
     public TextView TVDate;
     public TextView TVStartTime;
     public TextView TVEndTime;
-    eventRepositoryImpl impl;
+    private eventRepositoryImpl impl;
     private static final String CHANNEL_ID = "ReminderChannel";
 
     public CalendarFragment() {
@@ -140,7 +140,6 @@ public class CalendarFragment extends Fragment {
 
             ImageView IVEventCategoryIcon = eventView.findViewById(R.id.IVEventCategoryIcon);
             String iconColor = event.getIconColor();
-            System.out.println(iconColor);
             if (iconColor != null) {
                 IVEventCategoryIcon.setColorFilter(Color.parseColor(event.getIconColor()));
             }
