@@ -195,8 +195,8 @@ public class BabyInputFragment extends Fragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavDirections action = BabyInputFragmentDirections.actionBabyInputFragmentToHomeFragment();
-                Navigation.findNavController(view).navigate(action);
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
             }
 
         });

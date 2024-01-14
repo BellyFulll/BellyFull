@@ -281,6 +281,7 @@
         android:layout_marginTop="650dp"
         android:clickable="true"
         android:src="@drawable/whiteplus"
+        android:tint="@color/white"
         app:backgroundTint="@color/pink1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
