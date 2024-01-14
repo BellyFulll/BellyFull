@@ -310,7 +310,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="495dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <Space
@@ -321,7 +321,7 @@
                 <LinearLayout
                     android:id="@+id/linearLayout7"
                     android:layout_width="377dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_linear_layout"
                     android:backgroundTint="@color/white"
                     android:orientation="vertical">
@@ -381,20 +381,20 @@
                         <com.google.android.material.tabs.TabItem
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Graphic WHO" />
+                            android:background="@color/white"
+                            android:text="Graphic CDC" />
 
                         <com.google.android.material.tabs.TabItem
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:text="Graphic CDC" />
+                            android:text="Graphic WHO" />
 
                     </com.google.android.material.tabs.TabLayout>
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/graphic_viewpager"
                         android:layout_width="match_parent"
-                        android:layout_height="399dp" />
+                        android:layout_height="500dp" />
 
                 </LinearLayout>
 
