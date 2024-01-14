@@ -37,7 +37,7 @@
             android:id="@+id/IBMumCTA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="68dp"
             android:background="#00000000"
             android:src="@drawable/momcta"
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:background="#00000000"
             android:src="@drawable/babycta"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
             android:id="@+id/TVBabyCTALabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:text="Baby"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -72,7 +72,7 @@
             android:id="@+id/TVMumCTALabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:text="Mum"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -194,14 +194,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="272dp" />
+            app:layout_constraintGuide_begin="312dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="373dp" />
+            app:layout_constraintGuide_begin="399dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline12"
@@ -215,14 +215,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="577dp" />
+            app:layout_constraintGuide_begin="573dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="370dp"
-            android:layout_height="150dp"
-            android:paddingBottom="20dp"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
-            app:layout_constraintTop_toBottomOf="@+id/TVUpcomingEvent" />
+            app:layout_constraintTop_toBottomOf="@+id/TVUpcomingEvent">
+
+            <LinearLayout
+                android:id="@+id/homeEventContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/TVUpcomingEvent" />
+        </androidx.core.widget.NestedScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
