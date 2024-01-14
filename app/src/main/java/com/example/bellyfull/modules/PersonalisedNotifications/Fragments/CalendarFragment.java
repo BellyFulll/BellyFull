@@ -13,12 +13,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,6 +34,7 @@ import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
 import com.example.bellyfull.modules.PersonalisedNotifications.InputBottomSheet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -63,12 +66,11 @@ public class CalendarFragment extends Fragment {
 
         FloatingActionButton btnAddEvent = getView().findViewById(R.id.btnAddEvent);
         CalendarView calendarView = view.findViewById(R.id.calendarView);
-
+        retrieveAndDisplayEvents(new Date());
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                // This method will be called when the user selects a date in the CalendarView
                 Calendar selectedDate = Calendar.getInstance();
                 selectedDate.set(Calendar.YEAR, year);
                 selectedDate.set(Calendar.MONTH, month);
@@ -92,6 +94,7 @@ public class CalendarFragment extends Fragment {
     private void showBottomDialog() {
 
         final Dialog dialog = new Dialog(getActivity());
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom_sheet_layout);
 
@@ -135,21 +138,23 @@ public class CalendarFragment extends Fragment {
             TextView TVEventTime = eventView.findViewById(R.id.eventTime);
             TextView TVEventNote = eventView.findViewById(R.id.eventNote);
 
-            String eventStartTime = event.getEventStartTime();
-            String eventEndTime = event.getEventEndTime();
+            ImageView IVEventCategoryIcon = eventView.findViewById(R.id.IVEventCategoryIcon);
+            String iconColor = event.getIconColor();
+            System.out.println(iconColor);
+            if (iconColor != null) {
+                IVEventCategoryIcon.setColorFilter(Color.parseColor(event.getIconColor()));
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date(event.getEventStartTime()));
+
+            String eventStartTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+
+            calendar.setTime(new Date(event.getEventEndTime()));
+            String eventEndTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+
             TVEventTitle.setText(event.getEventName());
-            if ((eventStartTime == null) && (eventEndTime == null)) {
-                TVEventTime.setVisibility(View.GONE);
-            }
-            if ((eventStartTime != null) && (eventEndTime == null)) {
-                TVEventTime.setText(eventStartTime);
-            }
-            if ((eventStartTime == null) && (eventEndTime != null)) {
-                TVEventTime.setText("until " + eventEndTime);
-            }
-            if ((eventStartTime != null) && (eventEndTime != null)) {
-                TVEventTime.setText(eventStartTime + " - " + eventEndTime);
-            }
+            TVEventTime.setText(String.format("%s - %s", eventStartTime, eventEndTime));
 
             String eventNote = event.getEventNote();
             if (eventNote == null) {
@@ -187,7 +192,7 @@ public class CalendarFragment extends Fragment {
                         .setContentTitle(title)
                         .setContentText(message)
                         .setSmallIcon(android.R.drawable.ic_dialog_info)
-                        .setAutoCancel(true)  // Automatically removes the notification when tapped
+                        .setAutoCancel(true)
                         .build();
 
                 // Display the notification
@@ -196,16 +201,6 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    //    private void addEventToCalendar() {
-//        ContentResolver cr = requireActivity().getContentResolver();
-//        ContentValues values = new ContentValues();
-//        // Set your values for calendar event
-//        values.put(CalendarContract.Events.TITLE, "Health Checkup");
-//        // Add more details as needed
-//
-//        Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
-//    }
-//
     private void scheduleHealthCheckupReminder() {
         long delayMillis = 10 * 1000; // 10 seconds
 
