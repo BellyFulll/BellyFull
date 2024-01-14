@@ -207,8 +207,8 @@ public class MomInputFragment extends Fragment {
         BtnMomInputCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavDirections action = MomInputFragmentDirections.actionMomInputFragmentToHomeFragment();
-                Navigation.findNavController(view).navigate(action);
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
             }
         });
 
