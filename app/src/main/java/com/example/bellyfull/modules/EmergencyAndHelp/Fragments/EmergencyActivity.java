@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,7 @@ import com.example.bellyfull.data.firebase.ports.dbProfileCallback;
 import com.example.bellyfull.data.firebase.repository.fbEmergencyImpl;
 import com.example.bellyfull.data.firebase.repository.fbProfileRepositoryImpl;
 import com.example.bellyfull.modules.Authentication.Fragments.EmailSender;
+import com.example.bellyfull.utils.WeekCalculator;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -85,8 +87,23 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
             dbProfileCallback callback = new dbProfileCallback() {
                 @Override
                 public void onSuccess(User user) {
-                    // TODO: make the pregnant weeks actually come from somewhere
-                    EmailSender.sendEmergencyDataEmail(user.getEmail(), user.getName(), latitude, longitude, "3");
+                    int pregnantWeeks;
+                    long dateOfConception = user.getDateOfConception();
+                    if (dateOfConception == 0) {
+                        Toast.makeText(getApplicationContext(), "Suggestion: remember to set pregnant weeks to give better insights", Toast.LENGTH_LONG).show();
+                        pregnantWeeks = 0;
+                    } else {
+                        WeekCalculator wc = new WeekCalculator(user.getDateOfConception());
+                        pregnantWeeks = wc.calculateWeeksDifference();
+                    }
+
+                    String emergencyResponderEmail = user.getEmergencyResponderEmail();
+                    if (emergencyResponderEmail == null) {
+                        Toast.makeText(getApplicationContext(), "please fill in emergency responder email", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    EmailSender es = new EmailSender();
+                    es.sendEmergencyDataEmail(user.getEmergencyResponderEmail(), user.getName(), latitude, longitude, String.valueOf(pregnantWeeks));
                 }
             };
             fbProfileRepositoryImpl impl = new fbProfileRepositoryImpl(this);
