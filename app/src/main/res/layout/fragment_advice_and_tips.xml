@@ -4,40 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink2"
+    android:background="@drawable/advice_tips_bg"
     tools:context=".modules.AdviceAndTips.Fragments.AdviceAndTipsFragment">
-
-    <ImageView
-        android:id="@+id/lowerVector"
-        android:layout_width="415dp"
-        android:layout_height="147dp"
-        android:layout_marginBottom="616dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/lower_vector" />
-
-    <ImageView
-        android:id="@+id/upperVector"
-        android:layout_width="413dp"
-        android:layout_height="108dp"
-        android:layout_marginBottom="640dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/upper_vector" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="215dp"
-        android:layout_height="46dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/nutritionalguidelines"
