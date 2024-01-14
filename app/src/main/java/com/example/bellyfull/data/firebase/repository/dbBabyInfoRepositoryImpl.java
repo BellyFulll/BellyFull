@@ -9,6 +9,7 @@ import com.example.bellyfull.data.firebase.ports.dbBabyInfoCallback;
 import com.example.bellyfull.data.firebase.ports.dbBabyInfoRepository;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.Date;
 
@@ -24,6 +25,8 @@ public class dbBabyInfoRepositoryImpl implements dbBabyInfoRepository {
     public void getBabyInfo(String userId, dbBabyInfoCallback callback) {
         db.collection(db_collection_constant.BabyInfoCollection)
                 .whereEqualTo("userId", userId)
+                .orderBy("entryDate", Query.Direction.DESCENDING)
+                .limit(1)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {
