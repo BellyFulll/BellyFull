@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -87,6 +88,7 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
                 public void onSuccess(User user) {
                     // TODO: make the pregnant weeks actually come from somewhere
                     EmailSender.sendEmergencyDataEmail(user.getEmail(), user.getName(), latitude, longitude, "3");
+                    Toast.makeText(getApplicationContext(), "Email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
                 }
             };
             fbProfileRepositoryImpl impl = new fbProfileRepositoryImpl(this);

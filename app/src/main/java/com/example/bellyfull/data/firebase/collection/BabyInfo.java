@@ -81,6 +81,9 @@ public class BabyInfo {
     public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
     }
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
