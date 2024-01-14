@@ -22,7 +22,6 @@ import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.ports.dbLoginCallback;
 import com.example.bellyfull.data.firebase.repository.fbLoginRepositoryImpl;
 import com.example.bellyfull.data.firebase.repository.fbSignUpRepositoryImpl;
-import com.example.bellyfull.modules.PersonalisedNotifications.EventCategory;
 import com.example.bellyfull.utils.TextValidator;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -32,9 +31,6 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class RegisterFragment extends Fragment {
     private static final int RC_SIGN_IN = 9001;

@@ -116,26 +116,4 @@ public class eventRepositoryImpl implements eventRepository {
         System.out.println(dateFormat.format(date).toString());
         return dateFormat.format(date);
     }
-//    @Override
-//    public void addEvent(String userId, String note, String date, String startTime, String endTime, String category) {
-//        FirebaseFirestore db = firebase.getDatabase();
-//        String eventID = UUID.randomUUID().toString();
-//        Event event = new Event(eventID, note, date, startTime, endTime, category, userId);
-//
-//        db.collection(db_collection_constant.EventCollection).document(eventID.toString())
-//                .set(event)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        Toast.makeText(context, "Event Successfully Added", Toast.LENGTH_SHORT).show();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(context, "Failed to add event", Toast.LENGTH_SHORT).show();
-//                        Log.d("addEvent.failure", e.toString());
-//                    }
-//                });
-//    }
 }

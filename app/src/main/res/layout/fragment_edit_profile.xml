@@ -181,6 +181,93 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/EmergencyResponderEmailContainer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_linear_layout"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/PreferredHospitalContainer"
+            app:layout_constraintStart_toStartOf="@+id/PreferredHospitalContainer"
+            app:layout_constraintTop_toBottomOf="@+id/PreferredHospitalContainer">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:textSize="13dp"
+                android:text="Emergency\nResponder\nEmail" />
+
+            <EditText
+                android:id="@+id/ETEmergencyResponderEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edit_text"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/DateOfConceptionContainer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_linear_layout"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/EmergencyResponderEmailContainer"
+            app:layout_constraintStart_toStartOf="@+id/EmergencyResponderEmailContainer"
+            app:layout_constraintTop_toBottomOf="@+id/EmergencyResponderEmailContainer">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:text="Date of\nConception" />
+
+            <LinearLayout
+                android:id="@+id/dateOfConceptionClickable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_text"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingVertical="10dp">
+
+                <TextView
+                    android:id="@+id/TVDateOfConception"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
+                    android:hint="Date"
+                    android:paddingLeft="10dp"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:paddingVertical="5dp"
+                    android:src="@drawable/icon_calendar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/BtnSaveEdit"
             android:layout_width="0dp"
@@ -191,9 +278,9 @@
             android:text="Save"
             android:textSize="12dp"
             app:cornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/PreferredHospitalContainer"
-            app:layout_constraintStart_toStartOf="@+id/PreferredHospitalContainer"
-            app:layout_constraintTop_toBottomOf="@+id/PreferredHospitalContainer" />
+            app:layout_constraintEnd_toEndOf="@+id/DateOfConceptionContainer"
+            app:layout_constraintStart_toStartOf="@+id/DateOfConceptionContainer"
+            app:layout_constraintTop_toBottomOf="@+id/DateOfConceptionContainer" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/BtnBackProfileEdit"

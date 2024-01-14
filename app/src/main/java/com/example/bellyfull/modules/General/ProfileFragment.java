@@ -23,6 +23,9 @@ import com.example.bellyfull.data.firebase.ports.dbProfileCallback;
 import com.example.bellyfull.data.firebase.repository.fbProfileRepositoryImpl;
 import com.example.bellyfull.utils.AlertDialogUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ProfileFragment extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor spEditor;
@@ -99,16 +102,24 @@ public class ProfileFragment extends Fragment {
 
 
     private void updateUI(User user) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         TextView TVNameValueProfile = getView().findViewById(R.id.TVNameValueProfile);
         TextView TVEmailValueProfile = getView().findViewById(R.id.TVEmailValueProfile);
         TextView TVContactValueProfile = getView().findViewById(R.id.TVContactValueProfile);
         TextView TVAddressValueProfile = getView().findViewById(R.id.TVAddressValueProfile);
         TextView TVPreferredHospitalContactValueProfile = getView().findViewById(R.id.TVPreferredHospitalContactValueProfile);
+        TextView TVEmergencyResponderEmail = getView().findViewById(R.id.TVEmergencyResponderEmail);
+        TextView TVDateOfConception = getView().findViewById(R.id.TVDateOfConception);
 
         TVNameValueProfile.setText(user.getName());
         TVEmailValueProfile.setText(user.getEmail());
         TVContactValueProfile.setText(user.getContact());
         TVAddressValueProfile.setText(user.getAddress());
         TVPreferredHospitalContactValueProfile.setText(user.getPreferredHospitalContact());
+        TVEmergencyResponderEmail.setText(user.getEmergencyResponderEmail());
+        if (user.getDateOfConception() != 0) {
+            TVDateOfConception.setText(sdf.format(new Date(user.getDateOfConception())));
+        }
     }
 }

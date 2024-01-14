@@ -9,8 +9,10 @@ public class User {
     private String address;
 
     private String preferredHospitalContact;
+    private String emergencyResponderEmail;
+    private long dateOfConception;
 
-    public User(String userId, String name, String email, String password, String contact, String address, String preferredHospitalContact) {
+    public User(String userId, String name, String email, String password, String contact, String address, String preferredHospitalContact, String emergencyResponderEmail, long dateOfConception) {
         this.userId = userId;
         this.name = name;
         this.email = email;
@@ -18,10 +20,28 @@ public class User {
         this.contact = contact;
         this.address = address;
         this.preferredHospitalContact = preferredHospitalContact;
+        this.emergencyResponderEmail = emergencyResponderEmail;
+        this.dateOfConception = dateOfConception;
     }
 
     public User() {
         // public no-args constructor needed
+    }
+
+    public String getEmergencyResponderEmail() {
+        return emergencyResponderEmail;
+    }
+
+    public void setEmergencyResponderEmail(String emergencyResponderEmail) {
+        this.emergencyResponderEmail = emergencyResponderEmail;
+    }
+
+    public long getDateOfConception() {
+        return dateOfConception;
+    }
+
+    public void setDateOfConception(long dateOfConception) {
+        this.dateOfConception = dateOfConception;
     }
 
     public String getUserId() {

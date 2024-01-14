@@ -78,8 +78,21 @@ public class fbProfileRepositoryImpl implements dbProfileRepository {
     }
 
     @Override
+    public void updateEmergencyResponderEmail(String userId, String emergencyResponderEmail) {
+        db.collection(db_collection_constant.UserCollection)
+                .document(userId)
+                .update("emergencyResponderEmail", emergencyResponderEmail);
+    }
+
+    @Override
+    public void updateDateOfConception(String userId, long dateOfConception) {
+        db.collection(db_collection_constant.UserCollection)
+                .document(userId)
+                .update("dateOfConception", dateOfConception);
+    }
+
+    @Override
     public void updatePassword(String email, String password) {
-        Log.i("fbPRI - email: ", email);
          db.collection(db_collection_constant.UserCollection)
                 .whereEqualTo("email", email)
                 .get()
