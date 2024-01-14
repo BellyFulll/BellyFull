@@ -40,7 +40,7 @@ public class showColorPickerUtil {
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_event_category, null);
         GridLayout gridLayout = dialogView.findViewById(R.id.gridLayout);
         final EditText input = dialogView.findViewById(R.id.editText);
-        gridLayout.setColumnCount(4);
+        gridLayout.setColumnCount(7);
         gridLayout.setRowCount((int) Math.ceil((double) primaryColors.length / 4));
 
         for (int i = 0; i < primaryColors.length; i++) {
