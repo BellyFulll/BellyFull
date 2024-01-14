@@ -1,5 +1,7 @@
 package com.example.bellyfull.modules;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.Event;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
@@ -26,6 +29,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     private eventRepositoryImpl impl;
+    private String userId;
 
     public HomeFragment() {
         super(R.layout.fragment_home);
@@ -35,6 +39,9 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         impl = new eventRepositoryImpl(getContext());
+
+        SharedPreferences preferences = getActivity().getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
+        userId = preferences.getString(preference_constant.pUserId, "");
 
         ImageButton IBProfileCTA = view.findViewById(R.id.IBProfileCTA);
         ImageButton IBBabyCTA = view.findViewById(R.id.IBBabyCTA);
@@ -84,6 +91,10 @@ public class HomeFragment extends Fragment {
         int marginBetweenEvents = getResources().getDimensionPixelSize(R.dimen.margin_between_events);
 
         for (Event event : events) {
+            if (!event.getUserId().matches(userId)) {
+                continue;
+            }
+
             View eventView = LayoutInflater.from(requireContext()).inflate(R.layout.event_item, eventContainer, false);
 
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(

@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -28,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.Event;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
@@ -45,6 +47,7 @@ public class CalendarFragment extends Fragment {
     public TextView TVStartTime;
     public TextView TVEndTime;
     private eventRepositoryImpl impl;
+    private String userId;
     private static final String CHANNEL_ID = "ReminderChannel";
 
     public CalendarFragment() {
@@ -55,6 +58,8 @@ public class CalendarFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         impl = new eventRepositoryImpl(getContext());
+        SharedPreferences preferences = getActivity().getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
+        userId = preferences.getString(preference_constant.pUserId, "");
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -125,6 +130,10 @@ public class CalendarFragment extends Fragment {
         int marginBetweenEvents = getResources().getDimensionPixelSize(R.dimen.margin_between_events);
 
         for (Event event : events) {
+            if (!event.getUserId().matches(userId)) {
+                continue;
+            }
+
             View eventView = LayoutInflater.from(requireContext()).inflate(R.layout.event_item, eventContainer, false);
 
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
