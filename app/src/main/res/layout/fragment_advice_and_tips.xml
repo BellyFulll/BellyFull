@@ -9,8 +9,8 @@
 
     <ScrollView
         android:layout_width="355dp"
-        android:layout_height="722dp"
-        android:layout_marginTop="120dp"
+        android:layout_height="850dp"
+        android:layout_marginTop="250dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
