@@ -22,7 +22,7 @@ public class fbSignUpRepositoryImpl implements fbSignUpRepository {
     @Override
     public void registerUser(String name, String email, String password) {
         String userId = UUID.randomUUID().toString();
-        User user = new User(userId, name, email, password, null, null, null);
+        User user = new User(userId, name, email, password, null, null, null, null, 0);
         FirebaseFirestore db = firebase.getDatabase();
 
         db.collection(db_collection_constant.UserCollection).document(userId.toString())
