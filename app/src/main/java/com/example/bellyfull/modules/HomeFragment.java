@@ -19,8 +19,15 @@ import androidx.navigation.Navigation;
 
 import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
+import com.example.bellyfull.data.firebase.collection.BabyInfo;
 import com.example.bellyfull.data.firebase.collection.Event;
+import com.example.bellyfull.data.firebase.collection.User;
+import com.example.bellyfull.data.firebase.ports.dbBabyInfoCallback;
+import com.example.bellyfull.data.firebase.ports.dbProfileCallback;
+import com.example.bellyfull.data.firebase.repository.dbBabyInfoRepositoryImpl;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
+import com.example.bellyfull.data.firebase.repository.fbProfileRepositoryImpl;
+import com.example.bellyfull.utils.WeekCalculator;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -30,15 +37,29 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private eventRepositoryImpl impl;
     private String userId;
+    private TextView TVWeeksPregnantValue;
 
     public HomeFragment() {
         super(R.layout.fragment_home);
     }
 
+    dbBabyInfoCallback callback = new dbBabyInfoCallback() {
+        @Override
+        public void onSuccess(BabyInfo babyInfo) {
+            updateUI(babyInfo);
+        }
+    };
+
+    dbProfileCallback profileCallback = new dbProfileCallback() {
+        @Override
+        public void onSuccess(User user) {
+            updateProfileUI(user);
+        }
+    };
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        impl = new eventRepositoryImpl(getContext());
 
         SharedPreferences preferences = getActivity().getSharedPreferences(preference_constant.pUserInfo, Context.MODE_PRIVATE);
         userId = preferences.getString(preference_constant.pUserId, "");
@@ -46,6 +67,13 @@ public class HomeFragment extends Fragment {
         ImageButton IBProfileCTA = view.findViewById(R.id.IBProfileCTA);
         ImageButton IBBabyCTA = view.findViewById(R.id.IBBabyCTA);
         ImageButton IBMumCTA = view.findViewById(R.id.IBMumCTA);
+        TVWeeksPregnantValue = view.findViewById(R.id.TVWeeksPregnantValue);
+
+        impl = new eventRepositoryImpl(getContext());
+        dbBabyInfoRepositoryImpl babyImpl = new dbBabyInfoRepositoryImpl(getContext());
+        babyImpl.getBabyInfo(userId, callback);
+        fbProfileRepositoryImpl impl = new fbProfileRepositoryImpl(getContext());
+        impl.getUserDetails(userId, profileCallback);
 
         retrieveAndDisplayEvents(new Date());
 
@@ -133,6 +161,37 @@ public class HomeFragment extends Fragment {
             }
 
             eventContainer.addView(eventView);
+        }
+    }
+
+    private void updateUI(BabyInfo babyInfo) {
+        System.out.println(babyInfo);
+        if (getView() == null) {
+            return;
+        }
+        TextView TVBabyHeightValue = getView().findViewById(R.id.TVBabyHeightValue);
+        TextView TVBabyWeightValue = getView().findViewById(R.id.TVBabyWeightValue);
+
+        if (babyInfo != null) {
+            Double Weight = babyInfo.getFetalWeight();
+            Double Height = babyInfo.getFetalLength();
+
+            if (Weight != null) {
+                TVBabyWeightValue.setText(String.valueOf(Weight));
+            }
+
+            if (Height != null) {
+                TVBabyHeightValue.setText(String.valueOf(Height));
+            }
+
+        }
+    }
+
+    private void updateProfileUI(User user) {
+        if (user.getDateOfConception() != 0) {
+            WeekCalculator wc = new WeekCalculator(user.getDateOfConception());
+            int weeksOfDifference = wc.calculateWeeksDifference();
+            TVWeeksPregnantValue.setText(String.valueOf(weeksOfDifference));
         }
     }
 }
