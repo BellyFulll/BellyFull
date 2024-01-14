@@ -59,6 +59,7 @@
         android:layout_height="475dp"
         android:layout_marginTop="300dp"
         android:layout_marginBottom="16dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -315,5 +316,19 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="650dp"
+        android:clickable="true"
+        android:src="@drawable/whiteplus"
+        app:backgroundTint="@color/pink1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.782"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
