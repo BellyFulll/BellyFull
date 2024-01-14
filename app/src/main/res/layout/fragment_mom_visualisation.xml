@@ -7,64 +7,14 @@
     android:background="@drawable/mom_visual_bg"
     tools:context=".modules.visualisation.Fragments.MomVisualisationFragment">
 
-    <LinearLayout
-        android:id="@+id/linearLayout9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnDaily"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="@color/overlay_bg"
-            android:paddingVertical="15dp"
-            android:text="Daily"
-            android:textColor="@color/pink2"
-            android:textSize="20dp"
-            app:cornerRadius="15dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnWeekly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="@color/overlay_bg"
-            android:paddingVertical="15dp"
-            android:text="Weekly"
-            android:textColor="@color/pink2"
-            android:textSize="20dp"
-            app:cornerRadius="15dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnMonthly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="@color/overlay_bg"
-            android:paddingVertical="15dp"
-            android:text="Monthly"
-            android:textColor="@color/pink2"
-            android:textSize="20dp"
-            app:cornerRadius="15dp" />
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="409dp"
-        android:layout_height="475dp"
-        android:layout_marginTop="300dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.933">
+        app:layout_constraintTop_toTopOf="@+id/guideline28">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -315,5 +265,12 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="232dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
