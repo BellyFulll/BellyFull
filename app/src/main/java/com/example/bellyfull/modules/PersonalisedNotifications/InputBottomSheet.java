@@ -9,6 +9,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.CalendarContract;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +40,10 @@ import com.example.bellyfull.Constant.preference_constant;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.Event;
 import com.example.bellyfull.data.firebase.repository.eventRepositoryImpl;
+import com.example.bellyfull.utils.AlertDialogUtil;
 import com.example.bellyfull.utils.convertHexToIntUtil;
 import com.example.bellyfull.utils.showColorPickerUtil;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -50,6 +54,7 @@ import java.util.UUID;
 
 public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
     Dialog dialog;
+    eventRepositoryImpl impl;
     private TextView TVDate;
     private TextView TVStartTime;
     private TextView TVEndTime;
@@ -64,7 +69,6 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
     private Date selectedDate;
     private Date selectedStartTime;
     private Date selectedEndTime;
-    eventRepositoryImpl impl;
 
     public InputBottomSheet(Dialog dialog) {
         defaultEventCategories = new HashSet<>();
@@ -284,17 +288,39 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                     Event event = new Event(eventId, eventName, selectedStartTime.getTime(), selectedEndTime.getTime(), category, userId);
                     event.setEventNote(note);
                     event.setIconColor(iconColor);
-                    impl.createEventInfo(event);
+                    impl.createEventInfo(event).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            if (remindsMe.isChecked()) {
+                                createNotificationChannel();
+                                Intent intent = new Intent(context, NotificationReceiver.class);
+                                intent.putExtra("title", eventName);
+                                intent.putExtra("message", note);
+                                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+                                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, selectedStartTime.getTime(), pendingIntent);
+                                Toast.makeText(context, "Scheduled", Toast.LENGTH_LONG).show();
+                            }
 
-                    if (remindsMe.isChecked()) {
-                        createNotificationChannel();
-                        Intent intent = new Intent(context, NotificationReceiver.class);
-                        intent.putExtra("title", eventName);
-                        intent.putExtra("message", note);
-                        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, selectedStartTime.getTime(), pendingIntent);
-                        Toast.makeText(context, "Scheduled", Toast.LENGTH_LONG).show();
-                    }
+                            AlertDialogUtil alertDialogUtil = new AlertDialogUtil(context, "Add event to your calendar?");
+                            alertDialogUtil.showAlertDialog(new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Calendar cal = Calendar.getInstance();
+                                    Intent intent = new Intent(Intent.ACTION_EDIT);
+                                    intent.setData(CalendarContract.Events.CONTENT_URI);
+                                    intent.putExtra("beginTime", event.getEventStartTime());
+                                    intent.putExtra("endTime", event.getEventEndTime());
+                                    intent.putExtra("title", event.getEventName());
+                                    context.startActivity(intent);
+                                }
+                            }, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                        }
+                    });
 
                     dialog.dismiss();
                 }
@@ -350,7 +376,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
         timePickerDialog.show();
     }
 
-    private void onDateIconClick() {
+    public void onDateIconClick() {
 
         Calendar currentDate = Calendar.getInstance();
 
