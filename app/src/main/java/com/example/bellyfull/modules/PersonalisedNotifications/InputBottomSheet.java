@@ -308,9 +308,9 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                                     Calendar cal = Calendar.getInstance();
                                     Intent intent = new Intent(Intent.ACTION_EDIT);
                                     intent.setData(CalendarContract.Events.CONTENT_URI);
-                                    intent.putExtra("beginTime", event.getEventStartTime());
-                                    intent.putExtra("endTime", event.getEventEndTime());
-                                    intent.putExtra("title", event.getEventName());
+                                    intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, event.getEventStartTime());
+                                    intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, event.getEventEndTime());
+                                    intent.putExtra(CalendarContract.Events.TITLE, event.getEventName());
                                     context.startActivity(intent);
                                 }
                             }, new DialogInterface.OnClickListener() {
