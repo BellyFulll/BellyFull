@@ -188,10 +188,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateProfileUI(User user) {
-        if (user.getDateOfConception() != 0) {
-            WeekCalculator wc = new WeekCalculator(user.getDateOfConception());
-            int weeksOfDifference = wc.calculateWeeksDifference();
-            TVWeeksPregnantValue.setText(String.valueOf(weeksOfDifference));
+        if (user != null) {
+            if (user.getDateOfConception() != 0) {
+                WeekCalculator wc = new WeekCalculator(user.getDateOfConception());
+                int weeksOfDifference = wc.calculateWeeksDifference();
+                TVWeeksPregnantValue.setText(String.valueOf(weeksOfDifference));
+            }
         }
     }
 }
