@@ -1,9 +1,10 @@
 package com.example.bellyfull.data.firebase.ports;
 
 import com.example.bellyfull.data.firebase.collection.Event;
+import com.google.android.gms.tasks.Task;
 
 public interface eventRepository {
-    void createEventInfo(Event event);
+    Task<Void> createEventInfo(Event event);
 
     void setEventInfoEventName(String eventId, String eventName);
 
