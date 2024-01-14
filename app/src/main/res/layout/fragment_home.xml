@@ -12,7 +12,6 @@
         android:background="@drawable/home"
         tools:context=".modules.HomeFragment">
 
-
         <TextView
             android:id="@+id/TVUpcomingEvent"
             android:layout_width="wrap_content"
@@ -98,17 +97,17 @@
             android:id="@+id/TVBabyHeightValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:rotation="15"
             android:shadowColor="@color/grey"
             android:shadowDx="3"
             android:shadowDy="3"
             android:shadowRadius="3"
-            android:text="17cm"
+            android:text="-"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/TVBabyHeightLabel"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.3"
             app:layout_constraintStart_toStartOf="@+id/TVBabyHeightLabel"
             app:layout_constraintTop_toBottomOf="@+id/TVBabyHeightLabel" />
 
@@ -118,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:rotation="15"
-            android:text="Baby Height"
+            android:text="Baby Height\n(cm)"
             android:textColor="@color/grey"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10" />
@@ -127,8 +126,8 @@
             android:id="@+id/TVBabyWeightLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Baby Weight"
+            android:layout_marginTop="30dp"
+            android:text="Baby Weight (g)"
             android:textColor="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -139,12 +138,12 @@
             android:id="@+id/TVBabyWeightValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="22dp"
             android:shadowColor="@color/grey"
             android:shadowDx="3"
             android:shadowDy="3"
             android:shadowRadius="3"
-            android:text="110 gr"
+            android:text="-"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -158,27 +157,26 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
             android:rotation="-13.5"
-            android:text="Days Left"
+            android:text="Weeks\nPregnant"
             android:textColor="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
         <TextView
-            android:id="@+id/TVDaysLeftValue"
+            android:id="@+id/TVWeeksPregnantValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:rotation="-13.5"
             android:shadowColor="@color/grey"
             android:shadowDx="3"
             android:shadowDy="3"
             android:shadowRadius="3"
-            android:text="168 days"
+            android:text="-"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:translationX="10sp"
             app:layout_constraintEnd_toEndOf="@+id/TVDaysLeftLabel"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/TVDaysLeftLabel"
             app:layout_constraintTop_toBottomOf="@+id/TVDaysLeftLabel" />
 
@@ -194,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="312dp" />
+            app:layout_constraintGuide_begin="290dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline11"

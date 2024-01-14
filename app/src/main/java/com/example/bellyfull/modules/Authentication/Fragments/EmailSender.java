@@ -14,7 +14,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailSender {
-
     public static void sendVerificationEmail(String toEmail, String verificationCode) {
         new SendVerificationCodeEmailTask().execute(toEmail, verificationCode);
     }
@@ -53,7 +52,6 @@ public class EmailSender {
                 message.setText("Your verification code is: " + verificationCode);
 
                 Transport.send(message);
-                System.out.println("Email sent successfully!");
             } catch (MessagingException e) {
                 System.out.println("something wrong happened");
                 throw new RuntimeException(e);
@@ -93,11 +91,10 @@ public class EmailSender {
                 message.setFrom(new InternetAddress(username));
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
                 message.setSubject("Emergency Data of " + name);
-                message.setText("Current Location: " + locationLink + "\nPregnant Weeks: " + pregnantWeeks);
+                message.setText("Current Location: " + locationLink + "\n" + (pregnantWeeks.equals("0") ? "user has not set her pregnant weeks" : "User has been pregnant for " + pregnantWeeks + " weeks"));
 
                 Transport.send(message);
             } catch (MessagingException e) {
-                System.out.println("failure");
                 throw new RuntimeException(e);
             }
             return null;

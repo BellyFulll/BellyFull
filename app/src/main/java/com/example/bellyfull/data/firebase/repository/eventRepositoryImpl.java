@@ -1,11 +1,8 @@
 package com.example.bellyfull.data.firebase.repository;
 
-import static androidx.fragment.app.FragmentManager.TAG;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
-import android.view.inputmethod.InputMethodSession;
 
 import com.example.bellyfull.Constant.db_collection_constant;
 import com.example.bellyfull.data.firebase.collection.Event;
@@ -31,8 +28,8 @@ public class eventRepositoryImpl implements eventRepository {
     }
 
     @Override
-    public void createEventInfo(Event event) {
-        db.collection(db_collection_constant.EventCollection).document(event.getEventId())
+    public Task<Void> createEventInfo(Event event) {
+        return db.collection(db_collection_constant.EventCollection).document(event.getEventId())
                 .set(event);
     }
 
@@ -88,7 +85,7 @@ public class eventRepositoryImpl implements eventRepository {
                             int eventYear = eventStartTimeCalendar.get(Calendar.YEAR);
                             int eventMonth = eventStartTimeCalendar.get(Calendar.MONTH);
                             int eventDay = eventStartTimeCalendar.get(Calendar.DAY_OF_MONTH);
-                            if(selectedYear == eventYear && selectedMonth == eventMonth && selectedDay == eventDay){
+                            if (selectedYear == eventYear && selectedMonth == eventMonth && selectedDay == eventDay) {
                                 events.add(event);
                             }
                         }
@@ -101,10 +98,6 @@ public class eventRepositoryImpl implements eventRepository {
                 });
     }
 
-    public interface EventCallback {
-        void onEventsRetrieved(List<Event> events);
-    }
-
     private String formatDateToString(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         return dateFormat.format(date);
@@ -115,5 +108,9 @@ public class eventRepositoryImpl implements eventRepository {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd, yyyy", Locale.getDefault());
         System.out.println(dateFormat.format(date).toString());
         return dateFormat.format(date);
+    }
+
+    public interface EventCallback {
+        void onEventsRetrieved(List<Event> events);
     }
 }

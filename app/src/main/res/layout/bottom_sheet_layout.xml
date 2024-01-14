@@ -72,6 +72,8 @@
             android:layout_height="match_parent"
             android:layout_marginRight="30dp"
             android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
             android:hint="Date"
             android:paddingLeft="10dp"
             android:textSize="18sp" />
@@ -81,7 +83,6 @@
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:clickable="false"
-            android:onClick="onDateIconClick"
             android:paddingVertical="5dp"
             android:src="@drawable/icon_calendar" />
 
@@ -118,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="false"
+                android:focusable="false"
                 android:paddingLeft="10dp"
                 android:src="@drawable/time_icon" />
         </LinearLayout>
@@ -147,6 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="false"
+                android:focusable="false"
                 android:paddingLeft="10dp"
                 android:src="@drawable/time_icon" />
         </LinearLayout>
