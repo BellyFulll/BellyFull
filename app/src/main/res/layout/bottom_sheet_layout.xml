@@ -57,6 +57,7 @@
         android:paddingTop="10dp" />
 
     <LinearLayout
+        android:id="@+id/CalendarClickable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -76,7 +77,6 @@
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/IVCalendar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
@@ -94,6 +94,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/StartTimeClickable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
@@ -113,7 +114,6 @@
                 android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/IVStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -123,6 +123,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/EndTimeClickable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
@@ -142,7 +143,6 @@
                 android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/IVEndTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
