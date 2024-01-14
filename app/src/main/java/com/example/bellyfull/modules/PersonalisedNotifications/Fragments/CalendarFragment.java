@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -70,7 +71,6 @@ public class CalendarFragment extends Fragment {
 
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                // This method will be called when the user selects a date in the CalendarView
                 Calendar selectedDate = Calendar.getInstance();
                 selectedDate.set(Calendar.YEAR, year);
                 selectedDate.set(Calendar.MONTH, month);
@@ -138,6 +138,13 @@ public class CalendarFragment extends Fragment {
             TextView TVEventTime = eventView.findViewById(R.id.eventTime);
             TextView TVEventNote = eventView.findViewById(R.id.eventNote);
 
+            ImageView IVEventCategoryIcon = eventView.findViewById(R.id.IVEventCategoryIcon);
+            String iconColor = event.getIconColor();
+            System.out.println(iconColor);
+            if (iconColor != null) {
+                IVEventCategoryIcon.setColorFilter(Color.parseColor(event.getIconColor()));
+            }
+
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(new Date(event.getEventStartTime()));
 
@@ -185,7 +192,7 @@ public class CalendarFragment extends Fragment {
                         .setContentTitle(title)
                         .setContentText(message)
                         .setSmallIcon(android.R.drawable.ic_dialog_info)
-                        .setAutoCancel(true)  // Automatically removes the notification when tapped
+                        .setAutoCancel(true)
                         .build();
 
                 // Display the notification
@@ -194,16 +201,6 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    //    private void addEventToCalendar() {
-//        ContentResolver cr = requireActivity().getContentResolver();
-//        ContentValues values = new ContentValues();
-//        // Set your values for calendar event
-//        values.put(CalendarContract.Events.TITLE, "Health Checkup");
-//        // Add more details as needed
-//
-//        Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
-//    }
-//
     private void scheduleHealthCheckupReminder() {
         long delayMillis = 10 * 1000; // 10 seconds
 

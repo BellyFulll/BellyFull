@@ -263,15 +263,15 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    if(remindsMe.isChecked()){
-                        if(!alarmManager.canScheduleExactAlarms()){
+                    if (remindsMe.isChecked()) {
+                        if (!alarmManager.canScheduleExactAlarms()) {
                             Toast.makeText(context, "Please grant permission to set alarm", Toast.LENGTH_LONG).show();
-                            context.startActivity(new Intent(android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:"+ context.getPackageName())));
+                            context.startActivity(new Intent(android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:" + context.getPackageName())));
                             return;
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                             int notificationPermission = ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS);
-                            if(notificationPermission != PackageManager.PERMISSION_GRANTED){
+                            if (notificationPermission != PackageManager.PERMISSION_GRANTED) {
                                 Intent intent = new Intent();
                                 intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -286,16 +286,18 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
                 if (eventName.isEmpty() || date.isEmpty() || startTime.equals("Start Time") || endTime.equals("End Time") || category.isEmpty()) {
                     showRequireFieldsDialog();
                 } else {
+                    String iconColor = lastSelectedEventCategory.getIconColor();
                     Event event = new Event(eventId, eventName, selectedStartTime.getTime(), selectedEndTime.getTime(), category, userId);
                     event.setEventNote(note);
+                    event.setIconColor(iconColor);
                     impl.createEventInfo(event);
 
-                    if(remindsMe.isChecked()){
+                    if (remindsMe.isChecked()) {
                         createNotificationChannel();
                         Intent intent = new Intent(context, NotificationReceiver.class);
                         intent.putExtra("title", eventName);
                         intent.putExtra("message", note);
-                        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,1, intent,PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, selectedStartTime.getTime(), pendingIntent);
                         Toast.makeText(context, "Scheduled", Toast.LENGTH_LONG).show();
                     }
@@ -314,8 +316,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
         NotificationChannel channel = new NotificationChannel(notification_constant.EVENT_CHANNEL_ID, name, importance);
         channel.setDescription(description);
-        // Register the channel with the system; you can't change the importance
-        // or other notification behaviors after this.
+
         NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(channel);
     }
@@ -370,13 +371,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
     }
 
     private void showRequireFieldsDialog() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//        builder.setTitle("Error");
-//        builder.setMessage("Please enter the required fields.");
-//        builder.setPositiveButton("OK", null);
-//        builder.create().show();
-
-        Toast.makeText(context, "Please fill in appropriate event name, date, start time and end time", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Please fill in appropriate event name, date, start time, end time and select a category", Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -10,7 +10,7 @@ public class Event {
     private long eventEndTime;
     private String userId;
     private String eventCategory;
-    private Color iconColor;
+    private String iconColor;
 
     public Event(String eventId, String eventName, long eventStartTime, long eventEndTime, String eventCategory, String userId) {
         this.eventId = eventId;
@@ -25,7 +25,7 @@ public class Event {
         this.userId = userId;
     }
 
-    public Color getIconColor() {
+    public String getIconColor() {
         return iconColor;
     }
 
@@ -81,12 +81,8 @@ public class Event {
         return eventCategory;
     }
 
-    public void setIconColor(Color color) {
+    public void setIconColor(String color) {
         this.iconColor = color;
-    }
-
-    public Color getCategoryColor(Color color) {
-        return this.iconColor;
     }
 
     public void setUserId() {
