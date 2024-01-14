@@ -103,7 +103,7 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
                         return;
                     }
                     EmailSender.sendEmergencyDataEmail(user.getEmergencyResponderEmail(), user.getName(), latitude, longitude, String.valueOf(pregnantWeeks));
-                    Toast.makeText(getApplicationContext(), "Email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Email sent to " + user.getEmergencyResponderEmail(), Toast.LENGTH_SHORT).show();
                 }
             };
             fbProfileRepositoryImpl impl = new fbProfileRepositoryImpl(this);
