@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -24,6 +26,7 @@ import com.example.bellyfull.data.firebase.collection.BabyInfo;
 import com.example.bellyfull.data.firebase.ports.dbBabyInfoCallback;
 import com.example.bellyfull.data.firebase.repository.dbBabyInfoRepositoryImpl;
 import com.example.bellyfull.modules.PregnancyTracking.Fragments.BabyInputFragment;
+import com.example.bellyfull.modules.PregnancyTracking.Fragments.BabyInputFragmentDirections;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -74,14 +77,8 @@ public class BabyVisualisationFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BabyInputFragment babyInputFragment = new BabyInputFragment();
-
-                // Use FragmentManager to navigate to the new fragment
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.NHFMain, babyInputFragment);
-                fragmentTransaction.addToBackStack(null); // Optional, to allow navigating back
-                fragmentTransaction.commit();
+                NavDirections action = BabyVisualisationFragmentDirections.actionBabyVisualisationFragmentToBabyInputFragment();
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
@@ -114,6 +111,7 @@ public class BabyVisualisationFragment extends Fragment {
     }
 
     private void updateUI(BabyInfo babyInfo) {
+        System.out.println(babyInfo);
         if (getView() == null) {
             return;
         }
