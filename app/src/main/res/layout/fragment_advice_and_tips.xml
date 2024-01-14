@@ -4,137 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink2"
+    android:background="@drawable/advice_tips_bg"
     tools:context=".modules.AdviceAndTips.Fragments.AdviceAndTipsFragment">
 
-    <ImageView
-        android:id="@+id/lowerVector"
-        android:layout_width="415dp"
-        android:layout_height="147dp"
-        android:layout_marginBottom="616dp"
+    <ScrollView
+        android:layout_width="359dp"
+        android:layout_height="603dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/rounded_linear_layout"
+        android:backgroundTint="#F48FB1"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/lower_vector" />
-
-    <ImageView
-        android:id="@+id/upperVector"
-        android:layout_width="413dp"
-        android:layout_height="108dp"
-        android:layout_marginBottom="640dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/upper_vector" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="215dp"
-        android:layout_height="46dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/nutritionalguidelines"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="124dp"
-        android:fontFamily="@font/a_bee_zee_regular"
-        android:gravity="center_vertical"
-        android:text="@string/nutritional"
-        android:textAppearance="@style/nutritional"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/leftMargin"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/exerciserecommendations"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="300dp"
-        android:fontFamily="@font/a_bee_zee_regular"
-        android:gravity="center_vertical"
-        android:text="Exercise Recommendations"
-        android:textAppearance="@style/nutritional"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/leftMargin"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/nutritionalguidelines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/a_bee_zee_regular"
+                android:gravity="center_vertical"
+                android:text="@string/nutritional"
+                android:textAppearance="@style/nutritional"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/frequentlyaskedquestions"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="480dp"
-        android:fontFamily="@font/a_bee_zee_regular"
-        android:gravity="center_vertical"
-        android:text="Frequently Asked Questions"
-        android:textAppearance="@style/nutritional"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/leftMargin"
-        app:layout_constraintTop_toTopOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvng"
+                android:layout_width="351dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_linear_layout"
+                android:backgroundTint="@color/pink3"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:padding="10dp"
+                android:scrollbars="none"
+                tools:itemCount="10" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/rightMargin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="376dp" />
+            <TextView
+                android:id="@+id/exerciserecommendations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/a_bee_zee_regular"
+                android:gravity="center_vertical"
+                android:text="Exercise Recommendations"
+                android:textAppearance="@style/nutritional"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/leftMargin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="26dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rver"
+                android:layout_width="349dp"
+                android:layout_height="450dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_linear_layout"
+                android:backgroundTint="@color/pink3"
+                android:padding="10dp"
+                android:scrollbars="none"
+                tools:itemCount="10" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvng"
-        android:layout_width="350dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="156dp"
-        android:background="@color/pink3"
-        android:scrollbars="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="10" />
+            <TextView
+                android:id="@+id/frequentlyaskedquestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/a_bee_zee_regular"
+                android:gravity="center_vertical"
+                android:text="Frequently Asked Questions"
+                android:textAppearance="@style/nutritional"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rver"
-        android:layout_width="350dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="332dp"
-        android:background="@color/pink3"
-        android:scrollbars="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="10" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvfaq"
-        android:layout_width="350dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="512dp"
-        android:background="@color/pink3"
-        android:scrollbars="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="10" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvfaq"
+                android:layout_width="347dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_linear_layout"
+                android:backgroundTint="@color/pink3"
+                android:padding="10dp"
+                android:scrollbars="none"
+                tools:itemCount="10" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
