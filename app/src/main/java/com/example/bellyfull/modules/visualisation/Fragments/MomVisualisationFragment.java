@@ -2,15 +2,20 @@ package com.example.bellyfull.modules.visualisation.Fragments;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import com.example.bellyfull.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +33,21 @@ public class MomVisualisationFragment extends Fragment {
     public MomVisualisationFragment() {
         super(R.layout.fragment_mom_visualisation);
     }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_mom_visualisation, container, false);
+        FloatingActionButton fab = view.findViewById(R.id.btnUpdateMom);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavDirections action = MomVisualisationFragmentDirections.actionMomVisualisationFragmentToMomInputFragment();
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
+        return view;
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
