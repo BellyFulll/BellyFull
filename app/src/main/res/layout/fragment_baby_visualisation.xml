@@ -11,6 +11,7 @@
         android:layout_width="415dp"
         android:layout_height="531dp"
         android:layout_marginTop="228dp"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -309,7 +310,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="495dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <Space
@@ -320,7 +321,7 @@
                 <LinearLayout
                     android:id="@+id/linearLayout7"
                     android:layout_width="377dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_linear_layout"
                     android:backgroundTint="@color/white"
                     android:orientation="vertical">
@@ -380,20 +381,20 @@
                         <com.google.android.material.tabs.TabItem
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Graphic WHO" />
+                            android:background="@color/white"
+                            android:text="Graphic CDC" />
 
                         <com.google.android.material.tabs.TabItem
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:text="Graphic CDC" />
+                            android:text="Graphic WHO" />
 
                     </com.google.android.material.tabs.TabLayout>
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/graphic_viewpager"
                         android:layout_width="match_parent"
-                        android:layout_height="399dp" />
+                        android:layout_height="500dp" />
 
                 </LinearLayout>
 
@@ -412,9 +413,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="290dp"
         android:layout_marginTop="650dp"
-        android:background="@color/pink1"
         android:clickable="true"
         android:src="@drawable/whiteplus"
+        android:tint="@color/white"
         android:translationZ="8dp"
         app:backgroundTint="@color/pink1"
         app:layout_constraintBottom_toBottomOf="parent"

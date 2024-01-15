@@ -25,6 +25,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -197,18 +198,17 @@ public class MomInputFragment extends Fragment {
                 if (downloadUrl != null) {
                     impl.setPhotoUrl(babyInfoId, downloadUrl);
                 }
-
-                NavDirections action = MomInputFragmentDirections.actionMomInputFragmentToHomeFragment();
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
                 Toast.makeText(getContext(), "Mom Info successfully added", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(view).navigate(action);
             }
         });
 
         BtnMomInputCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavDirections action = MomInputFragmentDirections.actionMomInputFragmentToHomeFragment();
-                Navigation.findNavController(view).navigate(action);
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
             }
         });
 

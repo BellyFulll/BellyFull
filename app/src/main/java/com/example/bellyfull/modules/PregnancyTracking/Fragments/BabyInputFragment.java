@@ -25,6 +25,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -194,8 +195,8 @@ public class BabyInputFragment extends Fragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavDirections action = BabyInputFragmentDirections.actionBabyInputFragmentToHomeFragment();
-                Navigation.findNavController(view).navigate(action);
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
             }
 
         });
@@ -238,8 +239,9 @@ public class BabyInputFragment extends Fragment {
                 Toast.makeText(getContext(), "Successfully updated", Toast.LENGTH_SHORT).show();
 
                 // After updating the baby information, navigate to BabyVisualizationFragment
-                NavDirections action = BabyInputFragmentDirections.actionBabyInputFragmentToBabyVisualisationFragment();
-                Navigation.findNavController(view).navigate(action);
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
+
 
             }
         });
