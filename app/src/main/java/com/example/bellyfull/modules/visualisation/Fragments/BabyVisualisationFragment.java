@@ -13,20 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.bellyfull.MainActivity;
 import com.example.bellyfull.R;
 import com.example.bellyfull.data.firebase.collection.BabyInfo;
 import com.example.bellyfull.data.firebase.ports.dbBabyInfoCallback;
 import com.example.bellyfull.data.firebase.repository.dbBabyInfoRepositoryImpl;
-import com.example.bellyfull.modules.PregnancyTracking.Fragments.BabyInputFragment;
-import com.example.bellyfull.modules.PregnancyTracking.Fragments.BabyInputFragmentDirections;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
