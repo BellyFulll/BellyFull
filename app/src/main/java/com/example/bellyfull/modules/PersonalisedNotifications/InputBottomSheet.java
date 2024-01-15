@@ -72,7 +72,7 @@ public class InputBottomSheet implements DatePickerDialog.OnDateSetListener {
 
     public InputBottomSheet(Dialog dialog) {
         defaultEventCategories = new HashSet<>();
-        defaultEventCategories.add(new EventCategory("#735BF2", "#4D3EAF", "#FFA500", "something"));
+        defaultEventCategories.add(new EventCategory("#FDD0EC", "#DA62AC", "#943D73", "checkups"));
 
         this.dialog = dialog;
         this.context = dialog.getContext();
