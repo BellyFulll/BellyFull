@@ -8,7 +8,6 @@
     android:paddingHorizontal="20dp">
 
     <ImageView
-        android:id="@+id/SignUpLogo"
         android:layout_width="298dp"
         android:layout_height="79dp"
         app:layout_constraintEnd_toEndOf="parent"

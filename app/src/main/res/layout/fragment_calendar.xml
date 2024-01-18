@@ -8,7 +8,6 @@
     tools:context=".modules.PersonalisedNotifications.Fragments.CalendarFragment">
 
     <ImageView
-        android:id="@+id/lowerVector"
         android:layout_width="413dp"
         android:layout_height="184dp"
         android:layout_marginBottom="252dp"
@@ -19,7 +18,6 @@
         app:srcCompat="@drawable/lower_vector" />
 
     <ImageView
-        android:id="@+id/upperVector"
         android:layout_width="413dp"
         android:layout_height="108dp"
         android:layout_marginBottom="320dp"
@@ -41,7 +39,6 @@
         app:layout_constraintVertical_bias="0.145" />
 
     <ImageView
-        android:id="@+id/logo"
         android:layout_width="215dp"
         android:layout_height="46dp"
         android:layout_marginTop="4dp"
