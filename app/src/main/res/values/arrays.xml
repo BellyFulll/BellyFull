@@ -1,6 +1,0 @@
-<resources>
-    <string-array name="spinner_items">
-        <item>Weight to Height</item>
-        <item>Head Circumference to Height</item>
-    </string-array>
-</resources>

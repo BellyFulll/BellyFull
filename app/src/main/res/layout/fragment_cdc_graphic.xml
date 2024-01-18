@@ -6,7 +6,6 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView4"
         android:layout_width="360dp"
         android:layout_height="513dp"
         app:layout_constraintBottom_toBottomOf="parent"

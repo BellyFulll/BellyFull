@@ -55,7 +55,6 @@
             app:layout_constraintTop_toBottomOf="@+id/TVWhatIsHappening" />
 
         <TextView
-            android:id="@+id/TVBabyCTALabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -68,7 +67,6 @@
             app:layout_constraintTop_toBottomOf="@+id/IBBabyCTA" />
 
         <TextView
-            android:id="@+id/TVMumCTALabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -118,7 +116,7 @@
             android:layout_marginStart="32dp"
             android:rotation="15"
             android:text="Baby Height\n(cm)"
-            android:textColor="@color/grey"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
@@ -128,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Baby Weight (g)"
-            android:textColor="@color/grey"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,7 +156,7 @@
             android:layout_marginEnd="48dp"
             android:rotation="-13.5"
             android:text="Weeks\nPregnant"
-            android:textColor="@color/grey"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10" />
 

@@ -22,7 +22,6 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewBig"
                 android:layout_width="381dp"
                 android:layout_height="212dp"
                 android:layout_margin="16dp"
@@ -44,7 +43,6 @@
                     android:typeface="normal" />
 
                 <ImageView
-                    android:id="@+id/imageView5"
                     android:layout_width="208dp"
                     android:layout_height="166dp"
                     android:layout_marginLeft="-20dp"
@@ -52,7 +50,6 @@
                     android:src="@drawable/sleepquality_progresscircle" />
 
                 <ImageView
-                    android:id="@+id/imageView6"
                     android:layout_width="347dp"
                     android:layout_height="105dp"
                     android:layout_marginLeft="80dp"
@@ -60,7 +57,6 @@
                     android:src="@drawable/sleep_graphic" />
 
                 <TextView
-                    android:id="@+id/sleep_duration"
                     android:layout_width="138dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="190dp"
@@ -72,7 +68,6 @@
                     android:textSize="26sp" />
 
                 <TextView
-                    android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="205dp"
@@ -83,7 +78,6 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="195dp"
@@ -96,14 +90,12 @@
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
-                android:id="@+id/linearLayout7"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
@@ -112,7 +104,6 @@
                     app:cardCornerRadius="8dp">
 
                     <TextView
-                        android:id="@+id/tvCardView2"
                         android:layout_width="164dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -123,7 +114,6 @@
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/imageView7"
                         android:layout_width="100dp"
                         android:layout_height="84dp"
                         android:layout_marginLeft="90dp"
@@ -132,7 +122,6 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
@@ -141,7 +130,6 @@
                     app:cardCornerRadius="8dp">
 
                     <TextView
-                        android:id="@+id/tvCardView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -152,7 +140,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView7"
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
@@ -163,7 +150,6 @@
                         android:textSize="16sp" />
 
                     <ImageView
-                        android:id="@+id/imageView8"
                         android:layout_width="172dp"
                         android:layout_height="112dp"
                         android:layout_marginLeft="50dp"
@@ -174,13 +160,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout10"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
@@ -189,7 +173,6 @@
                     app:cardCornerRadius="8dp">
 
                     <TextView
-                        android:id="@+id/tvCardView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -200,7 +183,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -210,7 +192,6 @@
                         android:textColor="@color/pink1" />
 
                     <ImageView
-                        android:id="@+id/imageView9"
                         android:layout_width="68dp"
                         android:layout_height="107dp"
                         android:layout_marginLeft="110dp"
@@ -219,7 +200,6 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView5"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
@@ -228,7 +208,6 @@
                     app:cardCornerRadius="8dp">
 
                     <TextView
-                        android:id="@+id/tvCardView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -239,7 +218,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
@@ -249,7 +227,6 @@
                         android:textColor="@color/pink1" />
 
                     <ImageView
-                        android:id="@+id/imageView10"
                         android:layout_width="82dp"
                         android:layout_height="112dp"
                         android:layout_marginLeft="110dp"

@@ -1,5 +1,6 @@
 package com.example.bellyfull.modules;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -112,6 +113,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    @SuppressLint("ResourceAsColor")
     private void updateUIWithEvents(List<Event> events) {
         LinearLayout eventContainer = getView().findViewById(R.id.homeEventContainer);
         eventContainer.removeAllViews();
@@ -152,6 +154,8 @@ public class HomeFragment extends Fragment {
 
             TVEventTitle.setText(event.getEventName());
             TVEventTime.setText(String.format("%s - %s", eventStartTime, eventEndTime));
+            TVEventTime.setTextColor(R.color.black);
+            TVEventNote.setTextColor(R.color.black);
 
             String eventNote = event.getEventNote();
             if (eventNote == null) {
