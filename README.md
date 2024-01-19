@@ -37,4 +37,4 @@ BellyFull is not just an app; it's a supportive companion tailored for pregnant 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/BellyFull.git
+   git clone https://github.com/BellyFulll/BellyFull.git
