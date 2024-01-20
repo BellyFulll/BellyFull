@@ -180,7 +180,7 @@ public class LoginFragment extends Fragment {
             } catch (ApiException e) {
                 Log.e("Google Sign-In", "signInResult:failed code=" + e.getStatusCode());
                 Log.e("Google Sign-In", "signInResult:failed message=" + e);
-                Toast.makeText(requireContext(), "Google Sign-In failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Google Sign-In errorcode: " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
             }
     }
 
