@@ -27,7 +27,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nutritionalguidelines"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/a_bee_zee_regular"
@@ -52,7 +51,6 @@
                 tools:itemCount="10" />
 
             <TextView
-                android:id="@+id/exerciserecommendations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -76,7 +74,6 @@
                 tools:itemCount="10" />
 
             <TextView
-                android:id="@+id/frequentlyaskedquestions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
